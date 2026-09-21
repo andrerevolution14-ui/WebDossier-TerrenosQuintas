@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { saveLeadToSupabase } from '@/lib/supabase';
 
 export async function POST(req: Request) {
   try {
@@ -16,6 +17,14 @@ export async function POST(req: Request) {
     const cleanNome = nome.trim();
     const cleanTelemovel = telemovel.trim();
     const timestamp = new Date().toLocaleString('pt-PT', { timeZone: 'Europe/Lisbon' });
+
+    // 1. Gravar no Supabase (Project ID: zxwkviggbftqiqwnigjn)
+    await saveLeadToSupabase({
+      nome: cleanNome,
+      telemovel: cleanTelemovel,
+      origem: origem || 'Dossier Terreno Quintãs, Aveiro',
+      mensagem: mensagem || '',
+    });
 
     // Server-side env vars (or fallback to public vars if configured)
     const token = process.env.TELEGRAM_BOT_TOKEN || process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN;

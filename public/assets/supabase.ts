@@ -1,13 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key';
-
-if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-    if (typeof window === 'undefined') {
-        console.warn('⚠️ Supabase credentials not found. Forms will fail until variables are set in Vercel.');
-    }
-}
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://zxwkviggbftqiqwnigjn.supabase.co';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_t2eEV1cMmpdr_4YU_UdBbA_X8_6_WD7';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
