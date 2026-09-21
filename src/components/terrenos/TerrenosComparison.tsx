@@ -19,7 +19,7 @@ const rows = [
   },
   {
     common: { icon: '❌', text: 'Construção tributada a 23% ou custos fiscais imprevisíveis' },
-    ours: { icon: '💎', text: 'Benefício fiscal comprovado: IVA a 6% (poupa +25.000€ em obra)' },
+    ours: { icon: '💎', text: 'Benefício fiscal comprovado: IVA a 6% na construção (menos por volta de 40.000€ em impostos)' },
   },
   {
     common: { icon: '❌', text: 'Localização distante ou preços acima de 60.000–80.000€' },

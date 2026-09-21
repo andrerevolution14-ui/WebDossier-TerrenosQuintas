@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: 'Lote de Terreno c/ Projeto Aprovado e IVA a 6% na Construção | Quintãs, Oliveirinha, Aveiro | 55.000€',
   description:
     'Lote urbano de 233m² em Quintãs, Oliveirinha, a 7 min de Aveiro. Projeto 100% Aprovado pela Câmara com benefício fiscal de IVA a 6% na construção da moradia. 55.000€ Negociável.',
+  alternates: {
+    canonical: '/terrenos',
+  },
   openGraph: {
     title: 'Lote c/ Projeto Aprovado e IVA a 6% na Construção | 55.000€ Negociável',
     description:
@@ -26,9 +29,105 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'RealEstateListing',
+      '@id': 'https://terrenosaveiro.pt/terrenos#listing',
+      name: 'Lote de Terreno c/ Projeto Aprovado e IVA a 6% na Construção em Aveiro',
+      description:
+        'Lote urbano de 233m² em Quintãs, Oliveirinha, a 7 min de Aveiro. Projeto 100% Aprovado pela Câmara Municipal de Aveiro com benefício fiscal de IVA a 6% na construção da moradia.',
+      url: 'https://terrenosaveiro.pt/terrenos',
+      datePosted: '2026-09-21',
+      offers: {
+        '@type': 'Offer',
+        price: '55000',
+        priceCurrency: 'EUR',
+        availability: 'https://schema.org/InStock',
+        validFrom: '2026-09-21',
+        priceSpecification: {
+          '@type': 'PriceSpecification',
+          price: '55000',
+          priceCurrency: 'EUR',
+          valueAddedTaxIncluded: true,
+        },
+      },
+      containedInPlace: {
+        '@type': 'Place',
+        name: 'Quintãs, Oliveirinha, Aveiro',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Rua Acácio Simões Vieira, Lote 25',
+          addressLocality: 'Oliveirinha',
+          addressRegion: 'Aveiro',
+          postalCode: '3810-843',
+          addressCountry: 'PT',
+        },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: '40.5829732',
+          longitude: '-8.6175628',
+        },
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': 'https://terrenosaveiro.pt/terrenos#faq',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'O projeto de arquitetura está mesmo 100% aprovado pela Câmara de Aveiro?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sim. O projeto de arquitetura foi formalmente deferido e aprovado pelos serviços de urbanismo da Câmara Municipal de Aveiro. Para o levantamento das licenças de construção é necessário realizar um Aditamento ao Processo — uma formalidade simples, necessária por o projeto ter ultrapassado o prazo máximo obrigatório de 2 anos sem início de obra. Este aditamento é rápido e não coloca em risco a aprovação já concedida.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Como funciona o benefício incrível do IVA a 6% na construção desta moradia?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'A empreitada de construção desta moradia para habitação própria qualifica-se legalmente para a taxa reduzida de IVA a 6%. Em vez de ser tributada à taxa normal de 23%, beneficia de uma redução fiscal direta de 17 pontos percentuais — o que representa menos por volta de 40.000€ no valor de construção em impostos que permanece diretamente na sua conta bancária.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Posso escolher o meu próprio construtor? Ou sou obrigado a usar o vosso?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Tem total liberdade de escolha do construtor. O projeto pertence a si após a escritura — adjudica a obra a quem quiser. Se precisar, podemos apresentar parceiros de confiança (nomeadamente o Grupo Freitas Renovações) com orçamentos detalhados para Betão Armado ou LSF.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'As infraestruturas estão mesmo todas à porta?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Confirmado. A rua já está asfaltada com passeio, iluminação pública, e as ligações às redes de água, saneamento, eletricidade e fibra ótica já chegam à extremidade do lote. Não há extensões de redes nem obras de urbanização a pagar.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'O valor de 55.000€ é realmente negociável?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sim. Estamos abertos a analisar propostas sérias de compradores com perfil validado ou disponibilidade para escritura rápida. Peça-nos contacto e conversamos sem compromisso.',
+          },
+        },
+      ],
+    },
+  ],
+};
+
 export default function TerrenosPage() {
   return (
     <>
+      {/* Dados Estruturados Schema.org para Motores de Busca */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <main>
         {/*
           SEQUÊNCIA COMPLETA OTIMIZADA PARA CONVERSÃO IMOBILIÁRIA:
