@@ -1,42 +1,42 @@
 import type { Metadata, Viewport } from 'next';
-import Script from 'next/script';
 import './globals.css';
-
-export const metadataBase = new URL('https://domainexxv.pt');
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  themeColor: '#1A1A1A',
+  themeColor: '#0a0f1a',
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://domainexxv.pt'),
-  title: 'Domaine XXV — Moradia T4 com Jardim · Oliveirinha, Aveiro',
+  metadataBase: new URL('https://terrenosaveiro.pt'),
+  title: 'Terrenos c/ Projeto Aprovado em Aveiro | Quintãs, Oliveirinha | 55.000€',
   description:
-    'Dossier digital da Moradia T4 Domaine XXV em Oliveirinha, Aveiro. ~180 m² ABP (~146,34 m² úteis habitáveis), jardim privativo de ~82 m², garagem coberta, chave na mão em 10 meses e personalização total.',
+    'Lotes urbanos de 233m² em Quintãs, Oliveirinha, a 7 minutos do centro de Aveiro. Projeto de Arquitetura 100% Aprovado pela Câmara. Construa já sem esperar 1 a 2 anos de burocracia. 55.000€ (Negociável).',
   keywords: [
-    'Domaine XXV',
-    'Moradia Oliveirinha',
-    'Moradia Aveiro',
-    'Comprar moradia Aveiro',
-    'Construção LSF Aveiro',
-    'Moradia chave na mão',
+    'terreno Aveiro',
+    'lote Aveiro',
+    'terreno Oliveirinha',
+    'lote com projeto aprovado',
+    'terreno Quintãs',
+    'comprar terreno Aveiro',
+    'construir moradia Aveiro',
+    'lote urbano Aveiro',
   ],
-  authors: [{ name: 'Silvermont Capital & André Queirós' }],
+  authors: [{ name: 'André Queirós' }],
   openGraph: {
-    title: 'Domaine XXV — Moradia T4 Familiar em Oliveirinha, Aveiro',
-    description: '~180 m² ABP · ~146 m² Úteis · Jardim Privativo ~82 m² · Chave na Mão por 335.000€',
-    images: [{ url: '/images/exterior-capa.webp', width: 1200, height: 675, alt: 'Fachada Domaine XXV' }],
+    title: 'Lote com Projeto Aprovado a 7 min de Aveiro | 55.000€',
+    description:
+      'Lote de 233m² em Quintãs, Oliveirinha. Projeto de Arquitetura 100% Aprovado pela Câmara. Construa já, sem esperar 2 anos em burocracia.',
+    images: [{ url: '/Curado/1.png', width: 1200, height: 675, alt: 'Terreno Quintãs Oliveirinha Aveiro' }],
     locale: 'pt_PT',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Domaine XXV — Moradia T4 Familiar em Oliveirinha',
-    description: '~180 m² ABP · ~146 m² Úteis · Chave na Mão por 335.000€',
-    images: ['/images/exterior-capa.webp'],
+    title: 'Lote com Projeto Aprovado a 7 min de Aveiro | 55.000€',
+    description: 'Lote de 233m² em Quintãs, Oliveirinha. Projeto 100% Aprovado. 55.000€ Negociável.',
+    images: ['/Curado/1.png'],
   },
   icons: {
     icon: '/favicon.svg',
@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <meta name="format-detection" content="telephone=no" />
 
-        {/* ─── Meta Pixel Code (ID: 26022738390737044) ────────────────────── */}
+        {/* ─── Meta Pixel Code ────────────────────────────────────────── */}
         <script
           id="meta-pixel"
           dangerouslySetInnerHTML={{
