@@ -19,7 +19,7 @@ const videos = [
   },
   {
     src: '/videos/Planta-Ad3.mp4',
-    poster: '/Planta-tecnica.webp',
+    poster: '/planta-tecnica.webp',
     label: 'Plantas & Implantação',
     desc: 'Tour em vídeo pelas plantas técnicas e distribuição',
   },

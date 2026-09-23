@@ -1,90 +1,54 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
+import TerrenosLightbox, { LightboxImage } from './TerrenosLightbox';
 
-const curadoPhotos = [
-  { src: '/Curado/1.webp', alt: 'Vista aérea delimitada do lote' },
-  { src: '/Curado/2.webp', alt: 'Vista aérea da envolvente e acessos' },
-  { src: '/Curado/3.webp', alt: 'Vista aérea zona residencial circundante' },
-  { src: '/Curado/4.webp', alt: 'Vista aérea panorâmica do conjunto' },
-  { src: '/Curado/5.webp', alt: 'Vista aérea – moradias vizinhas e infraestruturas' },
+const curadoPhotos: LightboxImage[] = [
+  { src: '/Curado/1.webp', alt: 'Vista frontal delimitada do lote urbano de 233m²', label: 'Foto Frontal com Delimitação' },
+  { src: '/Curado/2.webp', alt: 'Vista da envolvente verde e acessos diretos à estrada', label: 'Envolvente e Acessos' },
+  { src: '/Curado/3.webp', alt: 'Vista aérea da zona residencial e moradias vizinhas', label: 'Zona Residencial Tranquila' },
+  { src: '/Curado/4.webp', alt: 'Vista de topo e enquadramento panorâmico', label: 'Enquadramento Solar e Panorâmica' },
+  { src: '/Curado/5.webp', alt: 'Vista panorâmica do lote plano e infraestruturas concluídas', label: 'Infraestruturas e Frente de Rua' },
 ];
 
 export default function TerrenosGallery() {
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
-  const touchStartX = useRef<number | null>(null);
-
-  const prevImage = useCallback(() => {
-    setCurrentIndex((prev) => {
-      if (prev === null) return null;
-      return prev === 0 ? curadoPhotos.length - 1 : prev - 1;
-    });
-  }, []);
-
-  const nextImage = useCallback(() => {
-    setCurrentIndex((prev) => {
-      if (prev === null) return null;
-      return prev === curadoPhotos.length - 1 ? 0 : prev + 1;
-    });
-  }, []);
-
-  // Keyboard navigation
-  useEffect(() => {
-    if (currentIndex === null) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') prevImage();
-      if (e.key === 'ArrowRight') nextImage();
-      if (e.key === 'Escape') setCurrentIndex(null);
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentIndex, prevImage, nextImage]);
-
-  // Touch swipe support for mobile
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current === null) return;
-    const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40) {
-      if (diff > 0) nextImage();
-      else prevImage();
-    }
-    touchStartX.current = null;
-  };
 
   return (
     <section className="t-section t-section--alt" id="galeria">
       <div className="t-wrap">
         <div className="t-section-header">
           <p className="t-label">Localização Vista de Cima</p>
-          <h2 className="t-heading">O Lote e a sua Envolvente</h2>
+          <h2 className="t-heading">
+            O Terreno, os Acessos e a Envolvente
+          </h2>
           <p className="t-section-sub">
-            Imagens aéreas profissionais do terreno e da zona residencial de Quintãs, Oliveirinha.
-            Clique em qualquer imagem para ampliar e percorrer a galeria.
+            Fotografias reais do lote e da vizinhança em Quintãs, Oliveirinha.
+            Toque em qualquer fotografia para ampliar em ecrã completo.
           </p>
         </div>
 
-        {/* Gallery grid */}
+        {/* Galeria de Fotos */}
         <div className="t-gallery-grid">
-          {curadoPhotos.map((p, idx) => (
+          {curadoPhotos.map((photo, index) => (
             <button
-              key={p.src}
-              className="t-gallery-item"
-              onClick={() => setCurrentIndex(idx)}
-              aria-label={`Ver imagem ampliada: ${p.alt}`}
+              key={photo.src}
+              className={`t-gallery-item ${index === 0 ? 't-gallery-item--featured' : ''}`}
+              onClick={() => setCurrentIndex(index)}
+              aria-label={`Ver ${photo.alt} ampliada`}
+              type="button"
             >
               <Image
-                src={p.src}
-                alt={p.alt}
+                src={photo.src}
+                alt={photo.alt}
                 fill
-                sizes="(max-width: 640px) 50vw, (max-width: 960px) 33vw, 25vw"
-                quality={90}
+                sizes={
+                  index === 0
+                    ? '(max-width: 768px) 100vw, 800px'
+                    : '(max-width: 768px) 50vw, 400px'
+                }
+                quality={85}
                 style={{ objectFit: 'cover' }}
               />
               <div className="t-gallery-overlay">
@@ -94,70 +58,21 @@ export default function TerrenosGallery() {
           ))}
         </div>
 
-        {/* Lightbox com Navegação Contínua */}
-        {currentIndex !== null && (
-          <div
-            className="t-lightbox"
-            onClick={() => setCurrentIndex(null)}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-          >
-            {/* Fechar */}
-            <button
-              className="t-lightbox-close"
-              onClick={() => setCurrentIndex(null)}
-              aria-label="Fechar visualização"
-            >
-              ✕
-            </button>
-
-            {/* Contador */}
-            <div className="t-lightbox-counter">
-              {currentIndex + 1} / {curadoPhotos.length}
-            </div>
-
-            {/* Setas de Navegação */}
-            <button
-              className="t-lightbox-nav-btn t-lightbox-prev"
-              onClick={(e) => {
-                e.stopPropagation();
-                prevImage();
-              }}
-              aria-label="Imagem anterior"
-            >
-              ‹
-            </button>
-
-            <button
-              className="t-lightbox-nav-btn t-lightbox-next"
-              onClick={(e) => {
-                e.stopPropagation();
-                nextImage();
-              }}
-              aria-label="Imagem seguinte"
-            >
-              ›
-            </button>
-
-            {/* Imagem Central */}
-            <div className="t-lightbox-img-wrap" onClick={(e) => e.stopPropagation()}>
-              <Image
-                src={curadoPhotos[currentIndex].src}
-                alt={curadoPhotos[currentIndex].alt}
-                fill
-                sizes="95vw"
-                quality={95}
-                style={{ objectFit: 'contain' }}
-              />
-            </div>
-
-            {/* Legenda */}
-            <div className="t-lightbox-caption">
-              {curadoPhotos[currentIndex].alt}
-            </div>
-          </div>
-        )}
+        <div className="t-cta-center">
+          <a href="#formulario" className="t-btn t-btn-cta t-cta-scroll" id="cta_galeria_contacto">
+            <span>Pedir Mais Informações</span>
+            <span className="t-btn-arrow">→</span>
+          </a>
+        </div>
       </div>
+
+      {/* Lightbox com Navegação Contínua e 0ms de Latência */}
+      <TerrenosLightbox
+        images={curadoPhotos}
+        currentIndex={currentIndex}
+        onClose={() => setCurrentIndex(null)}
+        onIndexChange={(idx) => setCurrentIndex(idx)}
+      />
     </section>
   );
 }

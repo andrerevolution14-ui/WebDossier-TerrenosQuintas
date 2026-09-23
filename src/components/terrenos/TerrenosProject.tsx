@@ -1,65 +1,22 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
+import TerrenosLightbox, { LightboxImage } from './TerrenosLightbox';
 
-const projectGallery = [
+const projectGallery: LightboxImage[] = [
   { src: '/Exterior Capa.webp', alt: 'Render fachada exterior frontal', label: 'Fachada Principal' },
   { src: '/Exterior traseiro completo.webp', alt: 'Render exterior traseiro', label: 'Vista Traseira' },
   { src: '/Sala de Jantar.webp', alt: 'Render interior sala de jantar', label: 'Sala de Jantar' },
   { src: '/Quarto e varanda.webp', alt: 'Render quarto com varanda', label: 'Quarto c/ Varanda' },
   { src: '/Cozinha.webp', alt: 'Render cozinha', label: 'Cozinha' },
   { src: '/Terceiro Andar.webp', alt: 'Render terceiro andar', label: 'Piso Superior' },
-  { src: '/Planta-tecnica.webp', alt: 'Planta técnica de arquitetura', label: 'Planta Técnica 2D — Implantação e Pisos' },
-  { src: '/images/planta-3d.webp', alt: 'Planta 3D do projeto aprovado', label: 'Planta 3D — Visualização Espacial' },
+  { src: '/planta-tecnica.webp', alt: 'Planta técnica de arquitetura cotada com distribuição dos pisos', label: 'Planta Técnica 2D' },
+  { src: '/planta-3d.webp', alt: 'Planta 3D do projeto aprovado com modelo espacial', label: 'Planta 3D Espacial' },
 ];
 
 export default function TerrenosProject() {
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
-  const touchStartX = useRef<number | null>(null);
-
-  const prevImage = useCallback(() => {
-    setCurrentIndex((prev) => {
-      if (prev === null) return null;
-      return prev === 0 ? projectGallery.length - 1 : prev - 1;
-    });
-  }, []);
-
-  const nextImage = useCallback(() => {
-    setCurrentIndex((prev) => {
-      if (prev === null) return null;
-      return prev === projectGallery.length - 1 ? 0 : prev + 1;
-    });
-  }, []);
-
-  // Keyboard navigation
-  useEffect(() => {
-    if (currentIndex === null) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') prevImage();
-      if (e.key === 'ArrowRight') nextImage();
-      if (e.key === 'Escape') setCurrentIndex(null);
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentIndex, prevImage, nextImage]);
-
-  // Touch swipe support for mobile
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current === null) return;
-    const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40) {
-      if (diff > 0) nextImage();
-      else prevImage();
-    }
-    touchStartX.current = null;
-  };
 
   return (
     <section className="t-section t-section--dark" id="projeto">
@@ -72,7 +29,7 @@ export default function TerrenosProject() {
           </h2>
           <p className="t-section-sub t-section-sub--light">
             Renders finais, plantas 2D e 3D de arquitetura — tudo incluído nos 55.000€ do lote.
-            Clique em qualquer imagem para ver em detalhe e navegar lateralmente.
+            Toque em qualquer imagem para ampliar e navegar.
           </p>
         </div>
 
@@ -122,7 +79,7 @@ export default function TerrenosProject() {
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') setCurrentIndex(idx);
               }}
-              aria-label={`Ver render ampliado: ${r.label}`}
+              aria-label={`Ver imagem ampliada de ${r.label}`}
             >
               <div className="t-render-img-wrap">
                 <Image
@@ -130,12 +87,12 @@ export default function TerrenosProject() {
                   alt={r.alt}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  quality={90}
+                  quality={85}
                   style={{ objectFit: 'cover' }}
                 />
               </div>
-              <div className="t-render-overlay-hint"><span>🔍 Ampliar</span></div>
-              <span className="t-render-label">{r.label}</span>
+              <div className="t-render-label">{r.label}</div>
+              <div className="t-render-overlay-hint">🔍 Ampliar</div>
             </div>
           ))}
         </div>
@@ -160,7 +117,7 @@ export default function TerrenosProject() {
             </div>
             <div className="t-planta-img-wrap">
               <Image
-                src="/Planta-tecnica.webp"
+                src="/planta-tecnica.webp"
                 alt="Planta técnica de arquitetura"
                 fill
                 sizes="(max-width: 768px) 100vw, 550px"
@@ -188,7 +145,7 @@ export default function TerrenosProject() {
             </div>
             <div className="t-planta-img-wrap">
               <Image
-                src="/images/planta-3d.webp"
+                src="/planta-3d.webp"
                 alt="Planta 3D do projeto aprovado"
                 fill
                 sizes="(max-width: 768px) 100vw, 550px"
@@ -203,108 +160,65 @@ export default function TerrenosProject() {
         <div className="t-personalize-note">
           <span className="t-personalize-icon">✨</span>
           <p>
-            Pode optar por construir exatamente este projeto aprovado ou{' '}
-            <strong>ajustar materiais e acabamentos interiores</strong> ao seu gosto —
+            <strong>Personalização Disponível:</strong> Pode ajustar materiais, acabamentos e layout interior
+            conforme o seu gosto pessoal. A volumetria exterior principal já está deferida pela Câmara, pelo que
             a implantação e o licenciamento estão garantidos.
           </p>
         </div>
 
-        {/* Conexão Oficial com a Moradia Terminada (Verdemont.eu) */}
-        <div className="t-verdemont-showcase">
-          <div className="t-verdemont-info">
-            <span className="t-verdemont-badge">Opção Chave na Mão · 335.000€</span>
-            <h3 className="t-verdemont-title">Quer a Moradia Pronta a Habitar? Conheça a Domaine XXV</h3>
-            <p className="t-verdemont-desc">
-              Pode optar por comprar apenas o terreno com projeto aprovado por <strong>55.000€</strong> ou
-              adquirir a moradia já completamente construída e pronta a habitar por <strong>335.000€</strong> (com avaliação bancária
-              certificada de <strong>450.000€</strong> e entrega chave na mão em 10 meses).
-            </p>
+        {/* Conexão com Moradia Terminada Verdemont */}
+        <div
+          style={{
+            marginTop: '28px',
+            background: 'rgba(197, 168, 128, 0.08)',
+            border: '1px solid rgba(197, 168, 128, 0.35)',
+            borderRadius: '16px',
+            padding: '24px 28px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '12px',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
+            <span style={{ fontSize: '0.74rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--t-beige-light)' }}>
+              🏡 Projeto Concluído &bull; Chave na Mão
+            </span>
+            <span style={{ fontSize: '1.05rem', fontWeight: 700, color: '#fff' }}>
+              335.000€ Chave na Mão
+            </span>
           </div>
-          <div className="t-verdemont-action">
+          <p style={{ fontSize: '0.88rem', color: '#E2E8F0', lineHeight: 1.6, margin: 0 }}>
+            Quer ver este projeto de moradia totalmente construído e pronto a habitar? Visite o site oficial do empreendimento{' '}
+            <strong style={{ color: '#fff' }}>Domaine XXV</strong> em Oliveirinha (Aveiro), com jardim privativo, garagem e acabamentos de luxo.
+          </p>
+          <div style={{ alignSelf: 'flex-start', marginTop: '4px' }}>
             <a
               href="https://www.verdemont.eu/"
               target="_blank"
               rel="noopener noreferrer"
-              className="t-btn t-btn-cta"
-              id="cta_verdemont_moradia"
+              className="t-btn t-btn-accent"
+              style={{ padding: '8px 18px', fontSize: '0.84rem' }}
             >
-              <span>Ver Moradia Terminada (335k€) ↗</span>
+              <span>Ver Moradia Pronta em Verdemont.eu ↗</span>
             </a>
           </div>
         </div>
 
-        {/* Botão Pequeno e Delicado */}
         <div className="t-cta-center">
-          <a href="#formulario" id="cta3_contacto_projeto" className="t-btn t-btn-cta t-cta-scroll">
-            <span>Saber Mais sobre o Projeto</span>
+          <a href="#formulario" className="t-btn t-btn-cta t-cta-scroll" id="cta_project_contacto">
+            <span>Tenho Interesse no Projeto — Contactar</span>
             <span className="t-btn-arrow">→</span>
           </a>
         </div>
       </div>
 
-      {/* Lightbox com Navegação Contínua */}
-      {currentIndex !== null && (
-        <div
-          className="t-lightbox"
-          onClick={() => setCurrentIndex(null)}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-        >
-          {/* Fechar */}
-          <button
-            className="t-lightbox-close"
-            onClick={() => setCurrentIndex(null)}
-            aria-label="Fechar visualização"
-          >
-            ✕
-          </button>
-
-          {/* Contador */}
-          <div className="t-lightbox-counter">
-            {currentIndex + 1} / {projectGallery.length}
-          </div>
-
-          {/* Setas de Navegação */}
-          <button
-            className="t-lightbox-nav-btn t-lightbox-prev"
-            onClick={(e) => {
-              e.stopPropagation();
-              prevImage();
-            }}
-            aria-label="Imagem anterior"
-          >
-            ‹
-          </button>
-
-          <button
-            className="t-lightbox-nav-btn t-lightbox-next"
-            onClick={(e) => {
-              e.stopPropagation();
-              nextImage();
-            }}
-            aria-label="Imagem seguinte"
-          >
-            ›
-          </button>
-
-          {/* Imagem Central */}
-          <div className="t-lightbox-img-wrap" onClick={(e) => e.stopPropagation()}>
-            <Image
-              src={projectGallery[currentIndex].src}
-              alt={projectGallery[currentIndex].alt}
-              fill
-              sizes="92vw"
-              quality={95}
-              style={{ objectFit: 'contain' }}
-            />
-          </div>
-
-          {/* Legenda */}
-          <div className="t-lightbox-caption">
-            {projectGallery[currentIndex].label}
-          </div>
-        </div>
-      )}
+      {/* Lightbox Ultra-Rápido via Portal (0ms de latência, sem bugs) */}
+      <TerrenosLightbox
+        images={projectGallery}
+        currentIndex={currentIndex}
+        onClose={() => setCurrentIndex(null)}
+        onIndexChange={(idx) => setCurrentIndex(idx)}
+      />
     </section>
   );
 }
