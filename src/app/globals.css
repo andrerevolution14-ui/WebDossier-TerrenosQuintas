@@ -862,14 +862,14 @@ main {
   position: relative;
   width: 100%;
   height: 42vh;
-  min-height: 300px;
+  min-height: 310px;
   max-height: 460px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 20px 24px;
+  padding: 16px 20px 8px;
   box-sizing: border-box;
 }
 @media (min-width: 768px) {
@@ -886,23 +886,26 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 40%;
+  object-position: 20% 35%;
   z-index: 0;
 }
 
+/* Gradiente apenas na base rente ao bloco, sem sombra no topo */
 .t-hero-photo-gradient {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(15, 23, 42, 0.45) 0%,
-    rgba(15, 23, 42, 0.15) 40%,
-    rgba(15, 23, 42, 0.50) 100%
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 45%,
+    rgba(10, 16, 28, 0.40) 80%,
+    rgba(10, 16, 28, 0.72) 100%
   );
   z-index: 1;
+  pointer-events: none;
 }
 
-/* ── Top Navigation Bar ── */
+/* ── Top Navigation Bar: Domaine XXV Dossier bem destacado ── */
 .t-hero-top-bar {
   position: relative;
   z-index: 2;
@@ -914,30 +917,49 @@ main {
   padding: 4px 0;
 }
 
-.t-hero-brand-mark {
-  display: flex;
+.t-hero-brand-badge {
+  display: inline-flex;
   align-items: center;
   gap: 10px;
+  background: rgba(13, 21, 38, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(226, 203, 168, 0.65);
+  padding: 6px 14px 6px 8px;
+  border-radius: 9999px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.32);
 }
+
+.t-hero-brand-logo-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2A3859, #152038);
+  border: 1px solid rgba(226, 203, 168, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
 .t-hero-brand-text {
   display: flex;
   flex-direction: column;
-  line-height: 1;
+  line-height: 1.1;
 }
 .t-hero-brand-name {
   font-family: var(--serif);
-  font-size: 0.92rem;
+  font-size: 0.94rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
-  color: #F8E6C8;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  letter-spacing: 0.12em;
+  color: #FFF2DF;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 .t-hero-brand-sub {
-  font-size: 0.55rem;
+  font-size: 0.56rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
-  color: #FFFFFF;
-  opacity: 0.85;
+  letter-spacing: 0.16em;
+  color: #C5A880;
   text-transform: uppercase;
 }
 
@@ -947,54 +969,57 @@ main {
   gap: 12px;
 }
 .t-hero-action-icon {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(4px);
+  background: rgba(13, 21, 38, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #FFFFFF;
   text-decoration: none;
   transition: all 0.2s ease;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1.5px solid rgba(226, 203, 168, 0.5);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 .t-hero-action-icon:hover {
-  background: rgba(255, 255, 255, 0.35);
-  transform: scale(1.05);
+  background: rgba(197, 168, 128, 0.9);
+  color: #120E0A;
+  transform: scale(1.06);
 }
 
-/* ── Título Central na Foto: "QUINTÃS" ── */
-.t-hero-photo-center {
+/* ── Título Puxado Para Baixo Rente ao Bloco: "QUINTÃS" ── */
+.t-hero-photo-bottom-title {
   position: relative;
   z-index: 2;
   text-align: center;
-  margin: auto 0;
+  margin-top: auto;
+  margin-bottom: 24px;
 }
 .t-hero-photo-headline {
   font-family: var(--serif);
   font-style: italic;
-  font-weight: 400;
-  font-size: clamp(2.8rem, 8vw, 4.4rem);
-  letter-spacing: 0.04em;
+  font-weight: 700;
+  font-size: clamp(3.2rem, 9vw, 4.8rem);
+  letter-spacing: 0.03em;
   color: #FFFFFF;
-  line-height: 1;
-  margin: 0 0 6px;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.6);
+  line-height: 0.95;
+  margin: 0;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.8), 0 1px 4px rgba(0, 0, 0, 0.9);
 }
 .t-hero-photo-location {
-  font-size: 0.76rem;
-  font-weight: 600;
-  letter-spacing: 0.24em;
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: #FFFFFF;
-  margin: 0;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
-  opacity: 0.95;
+  color: #F8E6C8;
+  margin: 4px 0 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
-/* ── Card Inferior Ivory / Cream (Idêntico a Image 2) ── */
+/* ── Card Inferior Ivory / Cream (Puxado para Cima, Sem Bloco de Prédio) ── */
 .t-hero-card-wrap {
   width: 100%;
   max-width: 520px;
@@ -1006,7 +1031,7 @@ main {
 }
 @media (min-width: 768px) {
   .t-hero-card-wrap {
-    margin: -36px auto 0;
+    margin: -34px auto 0;
     padding: 0 20px 36px;
   }
 }
@@ -1014,9 +1039,9 @@ main {
 .t-hero-card {
   background: #FAF6F0;
   border-radius: 28px;
-  box-shadow: 0 14px 44px -8px rgba(15, 23, 42, 0.12), 0 4px 12px rgba(15, 23, 42, 0.05);
-  border: 1px solid rgba(226, 219, 209, 0.7);
-  padding: 24px 20px 22px;
+  box-shadow: 0 16px 48px -8px rgba(15, 23, 42, 0.14), 0 4px 12px rgba(15, 23, 42, 0.05);
+  border: 1px solid rgba(226, 219, 209, 0.8);
+  padding: 20px 20px 22px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1026,24 +1051,36 @@ main {
 }
 @media (min-width: 480px) {
   .t-hero-card {
-    padding: 28px 24px 24px;
+    padding: 24px 24px 24px;
   }
 }
 
-.t-hero-card-icon-wrap {
-  width: 54px;
-  height: 54px;
-  border-radius: 16px;
-  background: #F3EFEA;
-  display: flex;
+/* Badge de Oportunidade Direta */
+.t-hero-badge-pill {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 14px;
-  border: 1px solid rgba(197, 168, 128, 0.25);
+  gap: 6px;
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8A6836;
+  background: rgba(197, 168, 128, 0.15);
+  border: 1px solid rgba(197, 168, 128, 0.4);
+  padding: 3px 12px;
+  border-radius: 9999px;
+  margin-bottom: 12px;
+}
+.t-hero-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #16A34A;
+  box-shadow: 0 0 6px #16A34A;
 }
 
 .t-hero-card-title {
-  margin: 0 0 10px;
+  margin: 0 0 8px;
   text-align: center;
   line-height: 1.22;
 }
@@ -1058,7 +1095,7 @@ main {
 .t-hero-card-title-main {
   display: block;
   font-family: var(--sans);
-  font-size: clamp(1.22rem, 3.4vw, 1.48rem);
+  font-size: clamp(1.24rem, 3.5vw, 1.50rem);
   font-weight: 700;
   color: #0F172A;
   letter-spacing: -0.02em;
@@ -1069,12 +1106,16 @@ main {
   color: #475569;
   line-height: 1.55;
   max-width: 440px;
-  margin: 0 auto 18px;
+  margin: 0 auto 16px;
   text-align: center;
 }
 .t-hero-card-desc strong {
   color: #0F172A;
   font-weight: 600;
+}
+.t-tax-accent {
+  color: #8A6836;
+  font-weight: 700;
 }
 
 /* ── Inset Panel Bege/Sand (Idêntico a Image 2) ── */
@@ -1084,9 +1125,9 @@ main {
   padding: 16px 16px 14px;
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   text-align: center;
-  border: 1px solid rgba(184, 168, 148, 0.3);
+  border: 1px solid rgba(184, 168, 148, 0.4);
 }
 
 .t-hero-price-header {
@@ -1098,15 +1139,15 @@ main {
 .t-hero-price-figure {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(2rem, 5vw, 2.5rem);
-  font-weight: 600;
+  font-size: clamp(2.1rem, 5.2vw, 2.6rem);
+  font-weight: 700;
   color: #1E293B;
   line-height: 1;
   letter-spacing: -0.02em;
 }
 .t-hero-price-status {
   font-size: 0.82rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #64748B;
   margin-top: 3px;
 }
@@ -1125,43 +1166,45 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.86rem;
+  font-size: 0.88rem;
   font-weight: 600;
   color: #1E293B;
   letter-spacing: 0.01em;
 }
 
 .t-hero-specs-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.t-highlight-chip {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #120E0A;
+  background: rgba(197, 168, 128, 0.4);
+  padding: 2px 10px;
+  border-radius: 9999px;
+  border: 1px solid rgba(163, 128, 80, 0.35);
+}
+.t-specs-subline {
   font-size: 0.76rem;
   color: #475569;
-  line-height: 1.55;
+  line-height: 1.5;
   text-align: center;
-  letter-spacing: 0.01em;
 }
 .t-hero-dot {
   color: #9E7D4E;
   margin: 0 4px;
 }
-.t-specs-inline-sep {
-  display: none;
-}
-@media (min-width: 480px) {
-  .t-specs-br {
-    display: none;
-  }
-  .t-specs-inline-sep {
-    display: inline;
-    color: #9E7D4E;
-    margin: 0 4px;
-  }
-}
 
-/* ── Botão Sand/Caramel de Imagem 2 ── */
+/* ── Botão Sand/Caramel Otimizado para Venda ── */
 .t-hero-cta-area {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 .t-hero-btn-sand {
   display: inline-flex;
@@ -1171,64 +1214,70 @@ main {
   background: #A89276;
   color: #FFFFFF !important;
   font-family: var(--sans);
-  font-size: 0.92rem;
-  font-weight: 600;
-  padding: 13px 32px;
+  font-size: 0.94rem;
+  font-weight: 700;
+  padding: 13px 34px;
   border-radius: 9999px;
   text-decoration: none;
-  box-shadow: 0 4px 16px rgba(168, 146, 118, 0.35);
+  box-shadow: 0 4px 18px rgba(168, 146, 118, 0.45);
   transition: all 0.22s ease;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   width: 100%;
   max-width: 320px;
 }
 .t-hero-btn-sand:hover {
   background: #998367;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(168, 146, 118, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(168, 146, 118, 0.55);
 }
 .t-hero-btn-sand:active {
   transform: translateY(0);
 }
 
-/* ── Incentivo Elegante de Scroll (Sem ser botão) ── */
-.t-hero-scroll-cue-wrap {
-  display: flex;
-  flex-direction: column;
+/* ── Incentivo de Scroll com Mais Presença e Vida ── */
+.t-hero-scroll-cue-link {
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  user-select: none;
-  pointer-events: none;
-  margin-top: 2px;
+  gap: 8px;
+  text-decoration: none;
+  margin-top: 4px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  cursor: pointer;
+}
+.t-hero-scroll-cue-link:hover {
+  transform: translateY(2px);
 }
 .t-hero-scroll-label {
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: #78716C;
+  transition: color 0.2s;
 }
-.t-hero-scroll-line {
-  width: 1px;
-  height: 24px;
-  background: linear-gradient(180deg, #A89276, transparent);
-  position: relative;
-  overflow: hidden;
+.t-hero-scroll-cue-link:hover .t-hero-scroll-label {
+  color: #1E293B;
 }
-.t-hero-scroll-pulse {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 40%;
+.t-hero-scroll-cue-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #E8E0D5;
+  border: 1px solid rgba(168, 146, 118, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #78716C;
+  font-size: 0.75rem;
+  transition: all 0.2s ease;
+  animation: t-cue-bounce 1.8s infinite ease-in-out;
+}
+.t-hero-scroll-cue-link:hover .t-hero-scroll-cue-circle {
   background: #A89276;
-  box-shadow: 0 0 4px #A89276;
-  animation: t-scroll-drop-sand 2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  color: #FFFFFF;
 }
-@keyframes t-scroll-drop-sand {
-  0% { transform: translateY(-100%); opacity: 0; }
-  35% { opacity: 1; }
-  100% { transform: translateY(180%); opacity: 0; }
+@keyframes t-cue-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
 }
 
 /* ── Verdemont Connection Cards & Badges ───────────────────────────── */
