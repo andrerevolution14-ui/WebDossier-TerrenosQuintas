@@ -26,40 +26,30 @@ export default function TerrenosHero() {
           QUINTÃS, OLIVEIRINHA · AVEIRO
         </p>
 
-        {/* Título Principal */}
+        {/* Título Principal com Sombra Nítida para Máxima Legibilidade */}
         <h1 className="t-hero-headline">
           Lote de Terreno com<br />
           <span className="t-hero-headline-accent">Projeto de Arquitetura Aprovado</span>
         </h1>
 
-        {/* Subtítulo Clean */}
+        {/* Subtítulo Iluminado e Nítido */}
         <p className="t-hero-sub">
           Lote urbano de 233m² com todas as infraestruturas concluídas, a <strong>7 minutos do centro de Aveiro</strong> e
-          com benefício legal de <strong style={{ color: 'var(--t-beige-light)' }}>IVA a 6% na construção</strong>.
+          com benefício legal de <strong className="t-hero-highlight">IVA a 6% na construção</strong>.
         </p>
 
-        {/* Preço Clean e Simples com Ligação à Moradia Concluída */}
-        <div className="t-hero-price-clean">
-          <div className="t-hero-price-clean-row">
-            <span className="t-hero-price-amount">55.000 €</span>
-            <span className="t-hero-price-subtag">Negociável</span>
+        {/* Preço Super Clean: Pura Tipografia, Sem Círculos, Sem Caixas, Sem Ruído */}
+        <div className="t-hero-price-pure">
+          <div className="t-hero-price-num-row">
+            <span className="t-hero-price-val">55.000 €</span>
+            <span className="t-hero-price-neg">· Negociável</span>
           </div>
-          <span className="t-hero-price-info">
-            Terreno 233m² + Projeto Aprovado · Venda direta sem comissões
-          </span>
-          {/* Conexão com Moradia Terminada Verdemont */}
-          <a
-            href="https://www.verdemont.eu/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="t-verdemont-pill"
-            title="Ver moradia terminada chave na mão em verdemont.eu"
-          >
-            <span>🏡 Ver moradia terminada: 335.000€ Chave na Mão ↗</span>
-          </a>
+          <p className="t-hero-price-desc">
+            Terreno 233 m² + Projeto Aprovado · Venda direta com o proprietário
+          </p>
         </div>
 
-        {/* Linha Minimalista de Especificações */}
+        {/* Linha Minimalista de Especificações Nítidas */}
         <div className="t-hero-specs-row">
           <span className="t-hero-spec-item">233 m² Planos</span>
           <span className="t-hero-spec-dot">•</span>
@@ -70,7 +60,7 @@ export default function TerrenosHero() {
           <span className="t-hero-spec-item">7 min de Aveiro</span>
         </div>
 
-        {/* Botões Pequenos e Delicados (CTA + Incentivo de Exploração) */}
+        {/* Apenas UM Botão no Pre-Scroll */}
         <div className="t-hero-cta-wrap">
           <a
             href="#formulario"
@@ -80,25 +70,14 @@ export default function TerrenosHero() {
             <span>Quero Ser Contactado</span>
             <span className="t-btn-arrow">→</span>
           </a>
-          <a
-            href="#galeria"
-            className="t-btn t-btn-secondary t-cta-scroll"
-            id="cta_hero_explorar"
-          >
-            <span>Ver Fotos & Projeto ↓</span>
-          </a>
         </div>
 
-        {/* Incentivo ao Scroll */}
-        <div className="t-hero-scroll-cue">
-          <a
-            href="#galeria"
-            className="t-hero-scroll-link t-cta-scroll"
-            aria-label="Ver fotos aéreas, plantas e projeto completo abaixo"
-          >
-            <span className="t-hero-scroll-text">Deslize para ver fotos aéreas, projeto e plantas</span>
-            <span className="t-hero-scroll-arrow">↓</span>
-          </a>
+        {/* Incentivo Elegante ao Scroll (Não é Botão) */}
+        <div className="t-hero-scroll-cue" aria-hidden="true">
+          <span className="t-hero-scroll-cue-txt">Deslize para explorar fotos e projeto</span>
+          <div className="t-hero-scroll-cue-indicator">
+            <span className="t-hero-scroll-cue-dot" />
+          </div>
         </div>
       </div>
     </section>
