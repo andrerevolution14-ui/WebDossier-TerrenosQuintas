@@ -676,12 +676,12 @@ main {
 @media (min-width: 1200px) { .t-wrap { padding: 0 48px; } }
 
 .t-section {
-  padding: 58px 0;
+  padding: 44px 0;
   background: var(--bg);
 }
 @media (max-width: 640px) {
   .t-section {
-    padding: 40px 0;
+    padding: 30px 0;
   }
 }
 .t-section--alt {
@@ -713,7 +713,7 @@ main {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--t-beige-dark);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .t-label-accent { color: var(--t-beige); }
 .t-label-accent-light { color: var(--t-beige-light); }
@@ -721,11 +721,11 @@ main {
 .t-heading {
   font-family: var(--serif);
   font-weight: 700;
-  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-  line-height: 1.16;
+  font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+  line-height: 1.18;
   letter-spacing: -0.02em;
   color: var(--text-primary);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 .t-heading--light { color: var(--t-text-light); }
 .t-heading-accent { color: var(--t-beige-light); }
@@ -733,12 +733,12 @@ main {
 .t-section-header {
   text-align: center;
   max-width: 720px;
-  margin: 0 auto 34px;
+  margin: 0 auto 20px;
 }
 .t-section-sub {
-  font-size: 0.98rem;
+  font-size: 0.94rem;
   color: var(--text-body);
-  line-height: 1.62;
+  line-height: 1.55;
 }
 .t-section-sub--light { color: var(--t-text-muted-light); }
 
@@ -844,246 +844,388 @@ main {
 @keyframes t-spin { to { transform: rotate(360deg); } }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   HERO SECTION (Pre-Scroll de Alto Nível)
+   HERO SECTION V2 — DESIGN EDITORIAL LUXO (INSPIRADO EM IMAGE 2)
    ═══════════════════════════════════════════════════════════════════════ */
-.t-hero {
+.t-hero-v2 {
   position: relative;
-  min-height: 100vh;
-  min-height: 100dvh;
-  min-height: 100svh;
+  width: 100%;
+  background: #FAF6F0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   overflow: hidden;
-  padding: 44px 0 52px !important;
-  background: #080C16;
   box-sizing: border-box;
 }
-@media (max-width: 640px) {
-  .t-hero {
-    padding: 18px 0 24px !important;
-    min-height: 100vh;
-    min-height: 100dvh;
-    min-height: 100svh;
+
+/* ── Top Area com Foto e Título ── */
+.t-hero-photo-wrap {
+  position: relative;
+  width: 100%;
+  height: 42vh;
+  min-height: 300px;
+  max-height: 460px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px 24px;
+  box-sizing: border-box;
+}
+@media (min-width: 768px) {
+  .t-hero-photo-wrap {
+    height: 45vh;
+    min-height: 360px;
+    max-height: 500px;
   }
 }
 
-.t-hero-bg {
+.t-hero-photo-img {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
   z-index: 0;
 }
-.t-hero-overlay {
+
+.t-hero-photo-gradient {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse at 50% 20%, rgba(255, 235, 195, 0.22) 0%, transparent 60%),
-    linear-gradient(
-      180deg,
-      rgba(11, 19, 37, 0.42) 0%,
-      rgba(11, 19, 37, 0.58) 40%,
-      rgba(8, 14, 26, 0.78) 82%,
-      rgba(8, 12, 22, 0.95) 100%
-    );
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.45) 0%,
+    rgba(15, 23, 42, 0.15) 40%,
+    rgba(15, 23, 42, 0.50) 100%
+  );
   z-index: 1;
 }
 
-.t-hero-eyebrow {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #F8E6C8;
-  margin-bottom: 12px;
-  text-align: center;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
+/* ── Top Navigation Bar ── */
+.t-hero-top-bar {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
 }
 
-.t-hero-content {
+.t-hero-brand-mark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.t-hero-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.t-hero-brand-name {
+  font-family: var(--serif);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #F8E6C8;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+}
+.t-hero-brand-sub {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #FFFFFF;
+  opacity: 0.85;
+  text-transform: uppercase;
+}
+
+.t-hero-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.t-hero-action-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.t-hero-action-icon:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.05);
+}
+
+/* ── Título Central na Foto: "QUINTÃS" ── */
+.t-hero-photo-center {
   position: relative;
-  z-index: 5;
-  padding-top: 20px !important;
-  padding-bottom: 24px !important;
+  z-index: 2;
+  text-align: center;
+  margin: auto 0;
+}
+.t-hero-photo-headline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.8rem, 8vw, 4.4rem);
+  letter-spacing: 0.04em;
+  color: #FFFFFF;
+  line-height: 1;
+  margin: 0 0 6px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+.t-hero-photo-location {
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  margin: 0;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  opacity: 0.95;
+}
+
+/* ── Card Inferior Ivory / Cream (Idêntico a Image 2) ── */
+.t-hero-card-wrap {
+  width: 100%;
+  max-width: 520px;
+  margin: -24px auto 0;
+  position: relative;
+  z-index: 3;
+  padding: 0 14px 28px;
+  box-sizing: border-box;
+}
+@media (min-width: 768px) {
+  .t-hero-card-wrap {
+    margin: -36px auto 0;
+    padding: 0 20px 36px;
+  }
+}
+
+.t-hero-card {
+  background: #FAF6F0;
+  border-radius: 28px;
+  box-shadow: 0 14px 44px -8px rgba(15, 23, 42, 0.12), 0 4px 12px rgba(15, 23, 42, 0.05);
+  border: 1px solid rgba(226, 219, 209, 0.7);
+  padding: 24px 20px 22px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  box-sizing: border-box;
   width: 100%;
-  max-width: 900px;
 }
-@media (max-width: 640px) {
-  .t-hero-content {
-    padding-top: 14px !important;
-    padding-bottom: 16px !important;
+@media (min-width: 480px) {
+  .t-hero-card {
+    padding: 28px 24px 24px;
   }
 }
 
-.t-hero-headline {
+.t-hero-card-icon-wrap {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: #F3EFEA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  border: 1px solid rgba(197, 168, 128, 0.25);
+}
+
+.t-hero-card-title {
+  margin: 0 0 10px;
+  text-align: center;
+  line-height: 1.22;
+}
+.t-hero-card-title-sub {
+  display: block;
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #1E293B;
+  letter-spacing: -0.01em;
+}
+.t-hero-card-title-main {
+  display: block;
+  font-family: var(--sans);
+  font-size: clamp(1.22rem, 3.4vw, 1.48rem);
+  font-weight: 700;
+  color: #0F172A;
+  letter-spacing: -0.02em;
+}
+
+.t-hero-card-desc {
+  font-size: 0.88rem;
+  color: #475569;
+  line-height: 1.55;
+  max-width: 440px;
+  margin: 0 auto 18px;
+  text-align: center;
+}
+.t-hero-card-desc strong {
+  color: #0F172A;
+  font-weight: 600;
+}
+
+/* ── Inset Panel Bege/Sand (Idêntico a Image 2) ── */
+.t-hero-price-panel {
+  background: #E8E0D5;
+  border-radius: 18px;
+  padding: 16px 16px 14px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 18px;
+  text-align: center;
+  border: 1px solid rgba(184, 168, 148, 0.3);
+}
+
+.t-hero-price-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.t-hero-price-figure {
   font-family: var(--serif);
-  font-weight: 700;
-  font-size: clamp(2.1rem, 5vw, 3.7rem);
-  line-height: 1.15;
-  letter-spacing: -0.025em;
-  color: #FFFFFF;
-  margin: 6px auto 14px;
-  max-width: 860px;
-  text-align: center;
-  text-shadow: 0 3px 20px rgba(0, 0, 0, 0.85), 0 1px 4px rgba(0, 0, 0, 0.9);
+  font-style: italic;
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 600;
+  color: #1E293B;
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
-@media (max-width: 640px) {
-  .t-hero-headline {
-    font-size: 1.85rem;
-    line-height: 1.18;
-    margin: 4px auto 10px;
+.t-hero-price-status {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #64748B;
+  margin-top: 3px;
+}
+
+.t-hero-specs-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px 24px;
+  flex-wrap: wrap;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 10px;
+}
+.t-hero-spec-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #1E293B;
+  letter-spacing: 0.01em;
+}
+
+.t-hero-specs-details {
+  font-size: 0.76rem;
+  color: #475569;
+  line-height: 1.55;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+.t-hero-dot {
+  color: #9E7D4E;
+  margin: 0 4px;
+}
+.t-specs-inline-sep {
+  display: none;
+}
+@media (min-width: 480px) {
+  .t-specs-br {
+    display: none;
+  }
+  .t-specs-inline-sep {
+    display: inline;
+    color: #9E7D4E;
+    margin: 0 4px;
   }
 }
 
-.t-hero-headline-accent {
-  background: linear-gradient(90deg, #FFF1DA 0%, #E8CBA1 50%, #C9A97D 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.7));
+/* ── Botão Sand/Caramel de Imagem 2 ── */
+.t-hero-cta-area {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 16px;
+}
+.t-hero-btn-sand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #A89276;
+  color: #FFFFFF !important;
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 13px 32px;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(168, 146, 118, 0.35);
+  transition: all 0.22s ease;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  width: 100%;
+  max-width: 320px;
+}
+.t-hero-btn-sand:hover {
+  background: #998367;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(168, 146, 118, 0.45);
+}
+.t-hero-btn-sand:active {
+  transform: translateY(0);
 }
 
-.t-hero-sub {
-  font-size: clamp(0.96rem, 1.8vw, 1.15rem);
-  color: #F8FAFC;
-  line-height: 1.65;
-  max-width: 640px;
-  margin: 0 auto 22px;
-  text-align: center;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
-}
-.t-hero-sub strong { color: #FFFFFF; font-weight: 600; }
-.t-hero-highlight {
-  color: #FDE68A;
-  font-weight: 700;
-}
-@media (max-width: 640px) {
-  .t-hero-sub {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin-bottom: 18px;
-  }
-}
-
-/* ── PREÇO SUPER CLEAN & PURO: SEM CÍRCULOS, SEM CAIXAS, SEM QUADRADOS ── */
-.t-hero-price-pure {
+/* ── Incentivo Elegante de Scroll (Sem ser botão) ── */
+.t-hero-scroll-cue-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  margin: 0 auto 22px;
-  text-align: center;
-  background: none !important;
-  border: none !important;
-  padding: 0 !important;
-  box-shadow: none !important;
-}
-.t-hero-price-num-row {
-  display: inline-flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 10px;
-}
-.t-hero-price-val {
-  font-family: var(--serif);
-  font-size: clamp(2.3rem, 5.2vw, 3.4rem);
-  font-weight: 700;
-  color: #FFFFFF;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  text-shadow: 0 3px 20px rgba(0, 0, 0, 0.95), 0 1px 4px rgba(0, 0, 0, 0.9);
-}
-.t-hero-price-neg {
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  font-weight: 600;
-  color: #E8D4B8;
-  letter-spacing: 0.04em;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
-}
-.t-hero-price-desc {
-  font-size: clamp(0.84rem, 1.5vw, 0.94rem);
-  color: rgba(255, 255, 255, 0.90);
-  margin: 0;
-  letter-spacing: 0.02em;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.85);
-}
-
-/* Linha Minimalista de Especificações */
-.t-hero-specs-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 6px 14px;
-  margin: 0 auto 26px;
-  padding: 0;
-  max-width: 660px;
-}
-.t-hero-spec-item {
-  display: inline-flex;
-  align-items: center;
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: #FFFFFF;
-  letter-spacing: 0.02em;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.85);
-}
-.t-hero-spec-dot {
-  color: #E8D4B8;
-  font-size: 0.85rem;
-  opacity: 0.85;
-}
-
-/* CTA Hero: Apenas UM Botão no Pre-Scroll */
-.t-hero-cta-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 4px;
-}
-
-/* ── Incentivo Elegante de Scroll (NÃO É BOTÃO) ───────────────────── */
-.t-hero-scroll-cue {
-  margin-top: 28px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
   user-select: none;
   pointer-events: none;
+  margin-top: 2px;
 }
-.t-hero-scroll-cue-txt {
-  font-size: 0.70rem;
+.t-hero-scroll-label {
+  font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.80);
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.85);
+  color: #78716C;
 }
-.t-hero-scroll-cue-indicator {
+.t-hero-scroll-line {
   width: 1px;
-  height: 34px;
-  background: linear-gradient(180deg, rgba(232, 212, 184, 0.8), transparent);
+  height: 24px;
+  background: linear-gradient(180deg, #A89276, transparent);
   position: relative;
   overflow: hidden;
 }
-.t-hero-scroll-cue-dot {
+.t-hero-scroll-pulse {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 45%;
-  background: #FFFFFF;
-  box-shadow: 0 0 6px #FFFFFF;
-  animation: t-scroll-drop 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  height: 40%;
+  background: #A89276;
+  box-shadow: 0 0 4px #A89276;
+  animation: t-scroll-drop-sand 2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 }
-@keyframes t-scroll-drop {
+@keyframes t-scroll-drop-sand {
   0% { transform: translateY(-100%); opacity: 0; }
   35% { opacity: 1; }
   100% { transform: translateY(180%); opacity: 0; }
