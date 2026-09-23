@@ -80,7 +80,7 @@ export default function TerrenosComparison() {
 
         <div className="t-cta-center">
           <a href="#formulario" id="cta4_contacto_comparativo" className="t-btn t-btn-cta t-cta-scroll">
-            <span>Reservar Visita — Quero Ser Contactado</span>
+            <span>Quero Ser Contactado</span>
             <span className="t-btn-arrow">→</span>
           </a>
         </div>

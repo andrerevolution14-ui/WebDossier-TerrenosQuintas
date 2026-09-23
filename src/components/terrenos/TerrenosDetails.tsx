@@ -140,7 +140,7 @@ export default function TerrenosDetails() {
 
         <div className="t-cta-center">
           <a href="#formulario" id="cta2_contacto_specs" className="t-btn t-btn-cta t-cta-scroll">
-            <span>Agendar Visita com o Proprietário</span>
+            <span>Quero Ser Contactado</span>
             <span className="t-btn-arrow">→</span>
           </a>
         </div>

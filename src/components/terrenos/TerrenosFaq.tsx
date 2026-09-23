@@ -83,7 +83,7 @@ export default function TerrenosFaq() {
 
         <div className="t-cta-center">
           <a href="#formulario" id="cta_faq_contacto" className="t-btn t-btn-cta t-cta-scroll">
-            <span>Tenho Outra Dúvida — Quero Ser Contactado</span>
+            <span>Falar com o Proprietário</span>
             <span className="t-btn-arrow">→</span>
           </a>
         </div>
