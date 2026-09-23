@@ -4,14 +4,14 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 
 const projectGallery = [
-  { src: '/Exterior Capa.png', alt: 'Render fachada exterior frontal', label: 'Fachada Principal' },
-  { src: '/Exterior traseiro completo.png', alt: 'Render exterior traseiro', label: 'Vista Traseira' },
-  { src: '/Sala de Jantar.png', alt: 'Render interior sala de jantar', label: 'Sala de Jantar' },
-  { src: '/Quarto e varanda.png', alt: 'Render quarto com varanda', label: 'Quarto c/ Varanda' },
-  { src: '/Cozinha.png', alt: 'Render cozinha', label: 'Cozinha' },
-  { src: '/Terceiro Andar.png', alt: 'Render terceiro andar', label: 'Piso Superior' },
-  { src: '/Planta-tecnica.png', alt: 'Planta técnica de arquitetura', label: 'Planta Técnica 2D — Implantação e Pisos' },
-  { src: '/images/planta-3d.png', alt: 'Planta 3D do projeto aprovado', label: 'Planta 3D — Visualização Espacial' },
+  { src: '/Exterior Capa.webp', alt: 'Render fachada exterior frontal', label: 'Fachada Principal' },
+  { src: '/Exterior traseiro completo.webp', alt: 'Render exterior traseiro', label: 'Vista Traseira' },
+  { src: '/Sala de Jantar.webp', alt: 'Render interior sala de jantar', label: 'Sala de Jantar' },
+  { src: '/Quarto e varanda.webp', alt: 'Render quarto com varanda', label: 'Quarto c/ Varanda' },
+  { src: '/Cozinha.webp', alt: 'Render cozinha', label: 'Cozinha' },
+  { src: '/Terceiro Andar.webp', alt: 'Render terceiro andar', label: 'Piso Superior' },
+  { src: '/Planta-tecnica.webp', alt: 'Planta técnica de arquitetura', label: 'Planta Técnica 2D — Implantação e Pisos' },
+  { src: '/images/planta-3d.webp', alt: 'Planta 3D do projeto aprovado', label: 'Planta 3D — Visualização Espacial' },
 ];
 
 export default function TerrenosProject() {
@@ -160,11 +160,11 @@ export default function TerrenosProject() {
             </div>
             <div className="t-planta-img-wrap">
               <Image
-                src="/Planta-tecnica.png"
+                src="/Planta-tecnica.webp"
                 alt="Planta técnica de arquitetura"
                 fill
                 sizes="(max-width: 768px) 100vw, 550px"
-                quality={92}
+                quality={90}
                 style={{ objectFit: 'contain' }}
               />
             </div>
@@ -188,11 +188,11 @@ export default function TerrenosProject() {
             </div>
             <div className="t-planta-img-wrap">
               <Image
-                src="/images/planta-3d.png"
+                src="/images/planta-3d.webp"
                 alt="Planta 3D do projeto aprovado"
                 fill
                 sizes="(max-width: 768px) 100vw, 550px"
-                quality={92}
+                quality={90}
                 style={{ objectFit: 'contain' }}
               />
             </div>
@@ -207,6 +207,30 @@ export default function TerrenosProject() {
             <strong>ajustar materiais e acabamentos interiores</strong> ao seu gosto —
             a implantação e o licenciamento estão garantidos.
           </p>
+        </div>
+
+        {/* Conexão Oficial com a Moradia Terminada (Verdemont.eu) */}
+        <div className="t-verdemont-showcase">
+          <div className="t-verdemont-info">
+            <span className="t-verdemont-badge">Opção Chave na Mão · 335.000€</span>
+            <h3 className="t-verdemont-title">Quer a Moradia Pronta a Habitar? Conheça a Domaine XXV</h3>
+            <p className="t-verdemont-desc">
+              Pode optar por comprar apenas o terreno com projeto aprovado por <strong>55.000€</strong> ou
+              adquirir a moradia já completamente construída e pronta a habitar por <strong>335.000€</strong> (com avaliação bancária
+              certificada de <strong>450.000€</strong> e entrega chave na mão em 10 meses).
+            </p>
+          </div>
+          <div className="t-verdemont-action">
+            <a
+              href="https://www.verdemont.eu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="t-btn t-btn-cta"
+              id="cta_verdemont_moradia"
+            >
+              <span>Ver Moradia Terminada (335k€) ↗</span>
+            </a>
+          </div>
         </div>
 
         {/* Botão Pequeno e Delicado */}

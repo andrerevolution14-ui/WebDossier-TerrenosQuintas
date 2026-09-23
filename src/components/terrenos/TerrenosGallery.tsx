@@ -4,11 +4,11 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 
 const curadoPhotos = [
-  { src: '/Curado/1.png', alt: 'Vista aérea delimitada do lote' },
-  { src: '/Curado/2.png', alt: 'Vista aérea da envolvente e acessos' },
-  { src: '/Curado/3.png', alt: 'Vista aérea zona residencial circundante' },
-  { src: '/Curado/4.png', alt: 'Vista panorâmica do conjunto' },
-  { src: '/Curado/5.png', alt: 'Vista aérea – moradias vizinhas e infraestruturas' },
+  { src: '/Curado/1.webp', alt: 'Vista aérea delimitada do lote' },
+  { src: '/Curado/2.webp', alt: 'Vista aérea da envolvente e acessos' },
+  { src: '/Curado/3.webp', alt: 'Vista aérea zona residencial circundante' },
+  { src: '/Curado/4.webp', alt: 'Vista aérea panorâmica do conjunto' },
+  { src: '/Curado/5.webp', alt: 'Vista aérea – moradias vizinhas e infraestruturas' },
 ];
 
 export default function TerrenosGallery() {

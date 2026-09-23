@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: 'Lote c/ Projeto Aprovado e IVA a 6% na Construção | 55.000€ Negociável',
     description:
       'Lote 233m² em Quintãs, Oliveirinha. Projeto Aprovado pela Câmara e benefício de taxa reduzida de IVA a 6% na construção.',
-    images: [{ url: '/Curado/2.png', width: 1200, height: 675, alt: 'Terreno Quintãs Oliveirinha Aveiro com Projeto Aprovado' }],
+    images: [{ url: '/Curado/2.webp', width: 1200, height: 675, alt: 'Terreno Quintãs Oliveirinha Aveiro com Projeto Aprovado' }],
     locale: 'pt_PT',
     type: 'website',
   },

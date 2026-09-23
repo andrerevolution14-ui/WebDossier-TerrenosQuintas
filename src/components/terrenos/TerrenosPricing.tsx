@@ -58,6 +58,45 @@ export default function TerrenosPricing() {
           </div>
         </div>
 
+        {/* Opção B: Moradia Concluída em Verdemont.eu */}
+        <div
+          style={{
+            maxWidth: '680px',
+            margin: '0 auto 28px',
+            background: 'var(--bg-alt)',
+            border: '1px solid var(--border-gold)',
+            borderRadius: 'var(--radius-card)',
+            padding: '24px 28px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '12px',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
+            <span style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gold-dark)' }}>
+              ✦ Ou Prefere a Moradia Já Construída?
+            </span>
+            <span style={{ fontSize: '0.96rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+              335.000€ Chave na Mão
+            </span>
+          </div>
+          <p style={{ fontSize: '0.86rem', color: 'var(--text-body)', lineHeight: 1.55, margin: 0 }}>
+            Se prefere receber a moradia Domaine XXV 100% pronta a habitar (com jardim privativo de ~82 m², garagem coberta
+            e acabamentos de luxo) em 10 meses e com avaliação bancária de <strong>450.000€</strong>, consulte todos os detalhes e o preço final concluído.
+          </p>
+          <div style={{ alignSelf: 'flex-start', marginTop: '4px' }}>
+            <a
+              href="https://www.verdemont.eu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="t-btn t-btn-outline"
+              style={{ color: 'var(--text-primary)', borderColor: 'var(--gold)' }}
+            >
+              <span>Ver Moradia Terminada em Verdemont.eu ↗</span>
+            </a>
+          </div>
+        </div>
+
         {/* Botão Pequeno e Delicado */}
         <div className="t-cta-center">
           <a href="#formulario" id="cta_pricing_contacto" className="t-btn t-btn-cta t-cta-scroll">

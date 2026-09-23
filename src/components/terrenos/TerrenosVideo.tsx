@@ -7,19 +7,19 @@ import Image from 'next/image';
 const videos = [
   {
     src: '/videos/NoiteDia-Ad1.mp4',
-    poster: '/Curado/1.png',
+    poster: '/Curado/1.webp',
     label: 'Terreno — Dia & Noite',
     desc: 'Vista aérea do lote e envolvente em diferentes condições de luz',
   },
   {
     src: '/videos/Projeto-Ad2.mp4',
-    poster: '/Exterior Capa.png',
+    poster: '/Exterior Capa.webp',
     label: 'O Projeto de Arquitetura',
     desc: 'Visualização em vídeo da moradia aprovada em 3D',
   },
   {
     src: '/videos/Planta-Ad3.mp4',
-    poster: '/Planta-tecnica.png',
+    poster: '/Planta-tecnica.webp',
     label: 'Plantas & Implantação',
     desc: 'Tour em vídeo pelas plantas técnicas e distribuição',
   },

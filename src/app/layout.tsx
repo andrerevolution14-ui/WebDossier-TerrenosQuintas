@@ -50,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <meta name="format-detection" content="telephone=no" />
+        <link rel="preload" as="image" href="/Curado/2.webp" type="image/webp" />
 
         {/* ─── Meta Pixel Code ────────────────────────────────────────── */}
         <script
