@@ -857,26 +857,26 @@ main {
   box-sizing: border-box;
 }
 
-/* ── Top Area com Foto e Título ── */
+/* ── Top Area com Foto e Título (Mais Compacto e Puxado para Cima) ── */
 .t-hero-photo-wrap {
   position: relative;
   width: 100%;
-  height: 42vh;
-  min-height: 310px;
-  max-height: 460px;
+  height: 27vh;
+  min-height: 190px;
+  max-height: 250px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  padding: 16px 20px 8px;
+  padding: 12px 16px 0;
   box-sizing: border-box;
 }
 @media (min-width: 768px) {
   .t-hero-photo-wrap {
-    height: 45vh;
-    min-height: 360px;
-    max-height: 500px;
+    height: 34vh;
+    min-height: 250px;
+    max-height: 330px;
   }
 }
 
@@ -886,140 +886,105 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 20% 35%;
+  object-position: 64% 38%;
   z-index: 0;
 }
 
-/* Gradiente apenas na base rente ao bloco, sem sombra no topo */
+/* Gradiente sutil rente à transição do bloco */
 .t-hero-photo-gradient {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0) 45%,
-    rgba(10, 16, 28, 0.40) 80%,
-    rgba(10, 16, 28, 0.72) 100%
+    rgba(10, 16, 28, 0.05) 0%,
+    rgba(10, 16, 28, 0) 40%,
+    rgba(10, 16, 28, 0.45) 80%,
+    rgba(10, 16, 28, 0.78) 100%
   );
   z-index: 1;
   pointer-events: none;
 }
 
-/* ── Top Navigation Bar: Domaine XXV Dossier bem destacado ── */
-.t-hero-top-bar {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: 520px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 4px 0;
-}
-
-.t-hero-location-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  padding: 6px 14px;
-  border-radius: 9999px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.30);
-}
-.t-hero-chip-dot {
-  width: 7px;
-  height: 7px;
+/* Botão Flutuante Minimalista de Localização */
+.t-hero-floating-map {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  z-index: 3;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: #10B981;
-  box-shadow: 0 0 8px #10B981;
-}
-
-.t-hero-top-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.t-hero-action-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(13, 21, 38, 0.85);
+  background: rgba(13, 21, 38, 0.75);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #FFFFFF;
   text-decoration: none;
   transition: all 0.2s ease;
-  border: 1.5px solid rgba(226, 203, 168, 0.5);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
-.t-hero-action-icon:hover {
-  background: rgba(197, 168, 128, 0.9);
-  color: #120E0A;
+.t-hero-floating-map:hover {
+  background: rgba(194, 142, 70, 0.9);
   transform: scale(1.06);
 }
 
-/* ── Título Puxado Para Baixo Rente ao Bloco: "QUINTÃS" ── */
+/* ── Título Rente ao Bloco: "QUINTÃS" ── */
 .t-hero-photo-bottom-title {
   position: relative;
   z-index: 2;
   text-align: center;
-  margin-top: auto;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 .t-hero-photo-headline {
   font-family: var(--serif);
   font-style: italic;
   font-weight: 700;
-  font-size: clamp(3.2rem, 9vw, 4.8rem);
+  font-size: clamp(2.3rem, 7vw, 3.4rem);
   letter-spacing: 0.03em;
   color: #FFFFFF;
   line-height: 0.95;
   margin: 0;
-  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.8), 0 1px 4px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 .t-hero-photo-location {
-  font-size: 0.84rem;
+  font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   color: #F8E6C8;
-  margin: 4px 0 0;
+  margin: 3px 0 0;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
-/* ── Card Inferior Ivory / Cream (Puxado para Cima, Sem Bloco de Prédio) ── */
+/* ── Card Inferior Aesthetic & Puxado para Cima (Visível Imediatamente) ── */
 .t-hero-card-wrap {
   width: 100%;
-  max-width: 520px;
-  margin: -24px auto 0;
+  max-width: 480px;
+  margin: -20px auto 0;
   position: relative;
   z-index: 3;
-  padding: 0 14px 28px;
+  padding: 0 12px 18px;
   box-sizing: border-box;
 }
 @media (min-width: 768px) {
   .t-hero-card-wrap {
-    margin: -34px auto 0;
-    padding: 0 20px 36px;
+    margin: -26px auto 0;
+    padding: 0 16px 24px;
+    max-width: 500px;
   }
 }
 
 .t-hero-card {
-  background: #FAF6F0;
-  border-radius: 28px;
-  box-shadow: 0 16px 48px -8px rgba(15, 23, 42, 0.14), 0 4px 12px rgba(15, 23, 42, 0.05);
-  border: 1px solid rgba(226, 219, 209, 0.8);
-  padding: 20px 20px 22px;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 22px;
+  box-shadow: 0 14px 38px -8px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(220, 210, 198, 0.75);
+  padding: 14px 16px 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1029,63 +994,63 @@ main {
 }
 @media (min-width: 480px) {
   .t-hero-card {
-    padding: 24px 24px 24px;
+    padding: 16px 20px 14px;
   }
 }
 
-/* Badge de Oportunidade Direta com Verde Esmeralda Vibrante */
+/* Badge de Confiança Esmeralda */
 .t-hero-badge-pill {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  font-size: 0.74rem;
+  gap: 6px;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: #047857;
   background: #ECFDF5;
-  border: 1.5px solid #10B981;
-  padding: 4px 14px;
+  border: 1px solid #10B981;
+  padding: 3px 10px;
   border-radius: 9999px;
-  margin-bottom: 14px;
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
+  margin-bottom: 8px;
+  box-shadow: 0 1px 4px rgba(16, 185, 129, 0.12);
 }
 .t-hero-badge-dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: #059669;
-  box-shadow: 0 0 8px #10B981;
+  box-shadow: 0 0 6px #10B981;
 }
 
 .t-hero-card-title {
-  margin: 0 0 10px;
+  margin: 0 0 4px;
   text-align: center;
-  line-height: 1.22;
+  line-height: 1.2;
 }
 .t-hero-card-title-sub {
   display: block;
   font-family: var(--sans);
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: #334155;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #475569;
   letter-spacing: -0.01em;
 }
 .t-hero-card-title-main {
   display: block;
   font-family: var(--sans);
-  font-size: clamp(1.28rem, 3.6vw, 1.55rem);
+  font-size: clamp(1.18rem, 3.4vw, 1.40rem);
   font-weight: 800;
   color: #0F172A;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
 }
 
 .t-hero-card-desc {
-  font-size: 0.90rem;
-  color: #334155;
-  line-height: 1.55;
-  max-width: 440px;
-  margin: 0 auto 16px;
+  font-size: 0.80rem;
+  color: #475569;
+  line-height: 1.45;
+  max-width: 390px;
+  margin: 0 auto 8px;
   text-align: center;
 }
 .t-contrast-dark {
@@ -1096,114 +1061,99 @@ main {
   color: #047857;
   background: #DCFCE7;
   border: 1px solid #86EFAC;
-  padding: 1px 7px;
-  border-radius: 6px;
-  font-weight: 800;
+  padding: 0.5px 6px;
+  border-radius: 4px;
+  font-weight: 700;
   display: inline-block;
 }
 
-/* ── Painel Reentrante Champagne com Cores Vivas e Alto Contraste ── */
+/* ── Painel Reentrante Champagne com Especificações Integradas ── */
 .t-hero-price-panel {
-  background: linear-gradient(145deg, #FFFFFF 0%, #F6EEE2 100%);
-  border-radius: 20px;
-  padding: 18px 18px 16px;
+  background: linear-gradient(145deg, #FCFBF8 0%, #F5ECE0 100%);
+  border-radius: 16px;
+  padding: 10px 12px 9px;
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
   text-align: center;
-  border: 1.5px solid #D8C3A5;
-  box-shadow: 0 10px 30px -6px rgba(180, 140, 90, 0.18), inset 0 1px 0 #FFFFFF;
+  border: 1px solid #DECBB1;
+  box-shadow: 0 4px 14px -3px rgba(180, 140, 90, 0.12), inset 0 1px 0 #FFFFFF;
 }
 
 .t-hero-price-header {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-bottom: 12px;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+.t-hero-price-left {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
 }
 .t-hero-price-figure {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(2.3rem, 6vw, 2.9rem);
+  font-size: clamp(1.75rem, 5vw, 2.15rem);
   font-weight: 800;
   color: #0F172A;
   line-height: 1;
   letter-spacing: -0.02em;
 }
 .t-hero-price-status {
-  display: inline-block;
-  font-size: 0.78rem;
+  font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   color: #92400E;
   background: #FEF3C7;
-  border: 1.5px solid #FCD34D;
-  padding: 3px 12px;
+  border: 1px solid #FCD34D;
+  padding: 2px 7px;
   border-radius: 9999px;
-  margin-top: 5px;
-  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.15);
+}
+
+.t-highlight-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.70rem;
+  font-weight: 700;
+  color: #78350F;
+  background: #FEF3C7;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  border: 1px solid #F59E0B;
+  white-space: nowrap;
 }
 
 .t-hero-specs-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
   width: 100%;
-  margin: 14px 0 12px;
-  padding-bottom: 12px;
-  border-bottom: 1.5px solid rgba(216, 195, 165, 0.45);
+  margin: 0;
+  padding-top: 6px;
+  border-top: 1px solid rgba(216, 195, 165, 0.35);
 }
 .t-hero-spec-pill {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 4px;
   background: #FFFFFF;
-  border: 1.5px solid #E2D9CC;
-  border-radius: 12px;
-  padding: 8px 10px;
-  font-size: 0.88rem;
+  border: 1px solid #E5DCD0;
+  border-radius: 8px;
+  padding: 5px 4px;
+  font-size: 0.74rem;
   font-weight: 700;
   color: #0F172A;
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  white-space: nowrap;
 }
 .t-spec-icon-box {
-  font-size: 1.05rem;
+  font-size: 0.82rem;
   line-height: 1;
-}
-
-.t-hero-specs-details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-.t-highlight-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #78350F;
-  background: #FEF3C7;
-  padding: 5px 14px;
-  border-radius: 9999px;
-  border: 1.5px solid #F59E0B;
-  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15);
-}
-.t-specs-subline {
-  font-size: 0.80rem;
-  font-weight: 600;
-  color: #475569;
-  line-height: 1.5;
-  text-align: center;
-  margin-top: 6px;
-}
-.t-hero-dot {
-  color: #D97706;
-  margin: 0 6px;
-  font-weight: 900;
 }
 
 /* ── Botão Ouro Quente / Caramel Otimizado para Venda ── */
@@ -1211,44 +1161,44 @@ main {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 .t-hero-btn-sand {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   background: linear-gradient(135deg, #C28E46 0%, #A87428 100%);
   color: #FFFFFF !important;
   font-family: var(--sans);
-  font-size: 0.98rem;
+  font-size: 0.90rem;
   font-weight: 700;
   letter-spacing: 0.01em;
-  padding: 14px 34px;
+  padding: 11px 26px;
   border-radius: 9999px;
   text-decoration: none;
-  box-shadow: 0 8px 24px -4px rgba(168, 116, 40, 0.50), 0 2px 6px rgba(168, 116, 40, 0.30);
+  box-shadow: 0 6px 20px -3px rgba(168, 116, 40, 0.48), 0 2px 4px rgba(168, 116, 40, 0.25);
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   border: 1px solid rgba(255, 255, 255, 0.35);
   width: 100%;
-  max-width: 320px;
+  max-width: 290px;
 }
 .t-hero-btn-sand:hover {
   background: linear-gradient(135deg, #CF9C52 0%, #B88030 100%);
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px -4px rgba(168, 116, 40, 0.60), 0 4px 10px rgba(168, 116, 40, 0.35);
+  box-shadow: 0 10px 24px -3px rgba(168, 116, 40, 0.58), 0 3px 8px rgba(168, 116, 40, 0.30);
 }
 .t-hero-btn-sand:active {
   transform: translateY(0);
 }
 
-/* ── Incentivo de Scroll com Mais Presença e Vida ── */
+/* ── Incentivo de Scroll Minimalista ── */
 .t-hero-scroll-cue-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   text-decoration: none;
-  margin-top: 4px;
+  margin-top: 0;
   transition: transform 0.2s ease, opacity 0.2s ease;
   cursor: pointer;
 }
@@ -1256,9 +1206,9 @@ main {
   transform: translateY(2px);
 }
 .t-hero-scroll-label {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   color: #64748B;
   transition: color 0.2s;
 }
@@ -1266,16 +1216,16 @@ main {
   color: #0F172A;
 }
 .t-hero-scroll-cue-circle {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: #FEF3C7;
-  border: 1.5px solid #F59E0B;
+  border: 1px solid #F59E0B;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #92400E;
-  font-size: 0.78rem;
+  font-size: 0.70rem;
   font-weight: 800;
   transition: all 0.2s ease;
   animation: t-cue-bounce 1.8s infinite ease-in-out;
