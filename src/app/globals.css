@@ -849,34 +849,38 @@ main {
 .t-hero-v2 {
   position: relative;
   width: 100%;
+  min-height: 100svh;
+  min-height: 100dvh;
+  min-height: 100vh;
   background: #FAF6F0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   overflow: hidden;
   box-sizing: border-box;
 }
 
-/* ── Top Area com Foto e Título (Mais Compacto e Puxado para Cima) ── */
+/* ── Top Area com Foto e Título Cinematográfico ── */
 .t-hero-photo-wrap {
   position: relative;
   width: 100%;
-  height: 27vh;
-  min-height: 190px;
-  max-height: 250px;
+  height: 48vh;
+  min-height: 310px;
+  max-height: 440px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding: 12px 16px 0;
+  padding: 16px 20px 0;
   box-sizing: border-box;
 }
 @media (min-width: 768px) {
   .t-hero-photo-wrap {
-    height: 34vh;
-    min-height: 250px;
-    max-height: 330px;
+    height: 50vh;
+    min-height: 380px;
+    max-height: 520px;
   }
 }
 
@@ -886,20 +890,20 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 64% 38%;
+  object-position: 64% 20%;
   z-index: 0;
 }
 
-/* Gradiente sutil rente à transição do bloco */
+/* Gradiente cinematográfico suave na base */
 .t-hero-photo-gradient {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
     rgba(10, 16, 28, 0.05) 0%,
-    rgba(10, 16, 28, 0) 40%,
-    rgba(10, 16, 28, 0.45) 80%,
-    rgba(10, 16, 28, 0.78) 100%
+    rgba(10, 16, 28, 0) 35%,
+    rgba(10, 16, 28, 0.35) 65%,
+    rgba(10, 16, 28, 0.82) 100%
   );
   z-index: 1;
   pointer-events: none;
@@ -908,11 +912,11 @@ main {
 /* Botão Flutuante Minimalista de Localização */
 .t-hero-floating-map {
   position: absolute;
-  top: 12px;
-  right: 14px;
+  top: 14px;
+  right: 16px;
   z-index: 3;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: rgba(13, 21, 38, 0.75);
   backdrop-filter: blur(8px);
@@ -927,7 +931,7 @@ main {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 .t-hero-floating-map:hover {
-  background: rgba(194, 142, 70, 0.9);
+  background: rgba(184, 146, 100, 0.9);
   transform: scale(1.06);
 }
 
@@ -936,55 +940,53 @@ main {
   position: relative;
   z-index: 2;
   text-align: center;
-  margin-bottom: 22px;
+  margin-bottom: 34px;
 }
 .t-hero-photo-headline {
   font-family: var(--serif);
   font-style: italic;
-  font-weight: 700;
-  font-size: clamp(2.3rem, 7vw, 3.4rem);
-  letter-spacing: 0.03em;
+  font-weight: 500;
+  font-size: clamp(2.8rem, 8vw, 4.2rem);
+  letter-spacing: 0.04em;
   color: #FFFFFF;
   line-height: 0.95;
   margin: 0;
-  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.75), 0 1px 3px rgba(0, 0, 0, 0.9);
 }
 .t-hero-photo-location {
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   font-weight: 800;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: #F8E6C8;
-  margin: 3px 0 0;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+  margin: 4px 0 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
 }
 
 /* ── Card Inferior Aesthetic & Puxado para Cima (Visível Imediatamente) ── */
 .t-hero-card-wrap {
   width: 100%;
-  max-width: 480px;
-  margin: -20px auto 0;
+  max-width: 500px;
+  margin: -32px auto 0;
   position: relative;
   z-index: 3;
-  padding: 0 12px 18px;
+  padding: 0 14px 22px;
   box-sizing: border-box;
 }
 @media (min-width: 768px) {
   .t-hero-card-wrap {
-    margin: -26px auto 0;
-    padding: 0 16px 24px;
-    max-width: 500px;
+    margin: -40px auto 0;
+    padding: 0 20px 28px;
+    max-width: 520px;
   }
 }
 
 .t-hero-card {
-  background: rgba(255, 255, 255, 0.97);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-radius: 22px;
-  box-shadow: 0 14px 38px -8px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(15, 23, 42, 0.04);
-  border: 1px solid rgba(220, 210, 198, 0.75);
-  padding: 14px 16px 12px;
+  background: #FFFFFF;
+  border-radius: 28px;
+  box-shadow: 0 18px 48px -12px rgba(15, 23, 42, 0.14), 0 2px 8px rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(226, 219, 209, 0.85);
+  padding: 18px 20px 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -994,26 +996,27 @@ main {
 }
 @media (min-width: 480px) {
   .t-hero-card {
-    padding: 16px 20px 14px;
+    padding: 22px 24px 20px;
   }
 }
 
-/* Badge de Confiança Esmeralda */
+/* Badge de Confiança Esmeralda (Linha Única) */
 .t-hero-badge-pill {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.68rem;
+  gap: 7px;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: #047857;
   background: #ECFDF5;
   border: 1px solid #10B981;
-  padding: 3px 10px;
+  padding: 4px 14px;
   border-radius: 9999px;
-  margin-bottom: 8px;
-  box-shadow: 0 1px 4px rgba(16, 185, 129, 0.12);
+  margin-bottom: 10px;
+  box-shadow: 0 1px 4px rgba(16, 185, 129, 0.10);
+  white-space: nowrap;
 }
 .t-hero-badge-dot {
   width: 6px;
@@ -1024,14 +1027,14 @@ main {
 }
 
 .t-hero-card-title {
-  margin: 0 0 4px;
+  margin: 0 0 6px;
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.22;
 }
 .t-hero-card-title-sub {
   display: block;
   font-family: var(--sans);
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   font-weight: 500;
   color: #475569;
   letter-spacing: -0.01em;
@@ -1039,18 +1042,18 @@ main {
 .t-hero-card-title-main {
   display: block;
   font-family: var(--sans);
-  font-size: clamp(1.18rem, 3.4vw, 1.40rem);
-  font-weight: 800;
+  font-size: clamp(1.24rem, 3.8vw, 1.48rem);
+  font-weight: 700;
   color: #0F172A;
   letter-spacing: -0.02em;
 }
 
 .t-hero-card-desc {
-  font-size: 0.80rem;
+  font-size: 0.84rem;
   color: #475569;
-  line-height: 1.45;
-  max-width: 390px;
-  margin: 0 auto 8px;
+  line-height: 1.5;
+  max-width: 420px;
+  margin: 0 auto 12px;
   text-align: center;
 }
 .t-contrast-dark {
@@ -1067,138 +1070,148 @@ main {
   display: inline-block;
 }
 
-/* ── Painel Reentrante Champagne com Especificações Integradas ── */
+/* ── Painel Reentrante Sand / Oatmeal (Idêntico à Imagem de Referência) ── */
 .t-hero-price-panel {
-  background: linear-gradient(145deg, #FCFBF8 0%, #F5ECE0 100%);
-  border-radius: 16px;
-  padding: 10px 12px 9px;
+  background: #EAE3D6;
+  border-radius: 20px;
+  padding: 16px 16px 14px;
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   text-align: center;
-  border: 1px solid #DECBB1;
-  box-shadow: 0 4px 14px -3px rgba(180, 140, 90, 0.12), inset 0 1px 0 #FFFFFF;
+  border: 1px solid rgba(197, 180, 160, 0.55);
 }
 
-.t-hero-price-header {
+.t-hero-price-center {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  width: 100%;
-  margin-bottom: 8px;
-}
-.t-hero-price-left {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
+  margin-bottom: 12px;
 }
 .t-hero-price-figure {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(1.75rem, 5vw, 2.15rem);
-  font-weight: 800;
-  color: #0F172A;
+  font-size: clamp(2.3rem, 6.5vw, 2.7rem);
+  font-weight: 600;
+  color: #1E293B;
   line-height: 1;
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 .t-hero-price-status {
-  font-size: 0.68rem;
-  font-weight: 700;
+  font-size: 0.78rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #92400E;
-  background: #FEF3C7;
-  border: 1px solid #FCD34D;
-  padding: 2px 7px;
-  border-radius: 9999px;
-}
-
-.t-highlight-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 0.70rem;
-  font-weight: 700;
-  color: #78350F;
-  background: #FEF3C7;
-  padding: 3px 8px;
-  border-radius: 9999px;
-  border: 1px solid #F59E0B;
-  white-space: nowrap;
+  letter-spacing: 0.08em;
+  color: #64748B;
+  margin-top: 4px;
 }
 
 .t-hero-specs-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
   width: 100%;
-  margin: 0;
-  padding-top: 6px;
-  border-top: 1px solid rgba(216, 195, 165, 0.35);
+  margin-bottom: 12px;
 }
 .t-hero-spec-pill {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 8px;
   background: #FFFFFF;
-  border: 1px solid #E5DCD0;
-  border-radius: 8px;
-  padding: 5px 4px;
-  font-size: 0.74rem;
+  border: 1px solid rgba(220, 210, 198, 0.9);
+  border-radius: 12px;
+  padding: 8px 10px;
+  font-size: 0.84rem;
   font-weight: 700;
   color: #0F172A;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
   white-space: nowrap;
 }
 .t-spec-icon-box {
-  font-size: 0.82rem;
+  font-size: 1.05rem;
   line-height: 1;
 }
 
-/* ── Botão Ouro Quente / Caramel Otimizado para Venda ── */
+.t-hero-specs-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.t-highlight-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #78350F;
+  background: #FEF3C7;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  border: 1px solid #F59E0B;
+  max-width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+.t-specs-subline {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #475569;
+  line-height: 1.4;
+  text-align: center;
+}
+.t-hero-dot {
+  color: #B45309;
+  margin: 0 5px;
+  font-weight: 900;
+}
+
+/* ── Botão Sand/Caramel de Prestígio ── */
 .t-hero-cta-area {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .t-hero-btn-sand {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  background: linear-gradient(135deg, #C28E46 0%, #A87428 100%);
+  gap: 10px;
+  background: linear-gradient(135deg, #B89264 0%, #A07B4F 100%);
   color: #FFFFFF !important;
   font-family: var(--sans);
-  font-size: 0.90rem;
+  font-size: 0.94rem;
   font-weight: 700;
   letter-spacing: 0.01em;
-  padding: 11px 26px;
+  padding: 13px 32px;
   border-radius: 9999px;
   text-decoration: none;
-  box-shadow: 0 6px 20px -3px rgba(168, 116, 40, 0.48), 0 2px 4px rgba(168, 116, 40, 0.25);
+  box-shadow: 0 8px 24px -4px rgba(160, 123, 79, 0.45);
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   border: 1px solid rgba(255, 255, 255, 0.35);
   width: 100%;
-  max-width: 290px;
+  max-width: 320px;
 }
 .t-hero-btn-sand:hover {
-  background: linear-gradient(135deg, #CF9C52 0%, #B88030 100%);
+  background: linear-gradient(135deg, #C29B6D 0%, #AA8457 100%);
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px -3px rgba(168, 116, 40, 0.58), 0 3px 8px rgba(168, 116, 40, 0.30);
+  box-shadow: 0 12px 28px -4px rgba(160, 123, 79, 0.55);
 }
 .t-hero-btn-sand:active {
   transform: translateY(0);
 }
 
-/* ── Incentivo de Scroll Minimalista ── */
+/* ── Incentivo de Scroll Delicado ── */
 .t-hero-scroll-cue-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   text-decoration: none;
-  margin-top: 0;
+  margin-top: 2px;
   transition: transform 0.2s ease, opacity 0.2s ease;
   cursor: pointer;
 }
@@ -1206,32 +1219,32 @@ main {
   transform: translateY(2px);
 }
 .t-hero-scroll-label {
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: #64748B;
+  color: #78716C;
   transition: color 0.2s;
 }
 .t-hero-scroll-cue-link:hover .t-hero-scroll-label {
-  color: #0F172A;
+  color: #1E293B;
 }
 .t-hero-scroll-cue-circle {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #FEF3C7;
-  border: 1px solid #F59E0B;
+  background: #EAE3D6;
+  border: 1px solid rgba(197, 180, 160, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #92400E;
-  font-size: 0.70rem;
+  color: #78716C;
+  font-size: 0.72rem;
   font-weight: 800;
   transition: all 0.2s ease;
   animation: t-cue-bounce 1.8s infinite ease-in-out;
 }
 .t-hero-scroll-cue-link:hover .t-hero-scroll-cue-circle {
-  background: #F59E0B;
+  background: #A07B4F;
   color: #FFFFFF;
 }
 @keyframes t-cue-bounce {
