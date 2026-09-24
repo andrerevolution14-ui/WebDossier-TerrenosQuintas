@@ -12,7 +12,7 @@ export default function TerrenosHero() {
           alt="Lote de Terreno em Quintãs, Oliveirinha, Aveiro"
           fill
           priority
-          quality={92}
+          quality={90}
           sizes="100vw"
           className="t-hero-photo-img"
           style={{ objectFit: 'cover', objectPosition: '64% 20%' }}
@@ -63,7 +63,7 @@ export default function TerrenosHero() {
               <span className="t-hero-price-status">Negociável</span>
             </div>
 
-            {/* Grelha de 2 Colunas com Espaço Confortável (Sem Cortes) */}
+            {/* Grelha de 2 Colunas Perfeitamente Centrada e Segura (Sem Cortes nem Transbordos) */}
             <div className="t-hero-specs-grid">
               <div className="t-hero-spec-pill">
                 <span className="t-spec-icon-box">📐</span>
@@ -78,15 +78,15 @@ export default function TerrenosHero() {
             {/* Destaque Financeiro & Especificações Perfeitamente Centradas */}
             <div className="t-hero-specs-details">
               <div className="t-highlight-chip">
-                <span>💰</span>
-                <span>Poupança estimada ~40.000€ com IVA a 6%</span>
+                <span className="t-highlight-icon">💰</span>
+                <span>Poupança estimada ~40.000€ com&nbsp;IVA&nbsp;a&nbsp;6%</span>
               </div>
               <div className="t-specs-subline">
-                <span>7 min de Aveiro</span>
+                <span className="t-subline-item">7 min de Aveiro</span>
                 <span className="t-hero-dot">•</span>
-                <span>Infraestruturas Prontas</span>
+                <span className="t-subline-item">Infraestruturas Prontas</span>
                 <span className="t-hero-dot">•</span>
-                <span>Venda Direta</span>
+                <span className="t-subline-item">Venda Direta</span>
               </div>
             </div>
           </div>

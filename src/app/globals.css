@@ -970,8 +970,13 @@ main {
   margin: -32px auto 0;
   position: relative;
   z-index: 3;
-  padding: 0 14px 22px;
+  padding: 0 12px 20px;
   box-sizing: border-box;
+}
+@media (min-width: 480px) {
+  .t-hero-card-wrap {
+    padding: 0 16px 24px;
+  }
 }
 @media (min-width: 768px) {
   .t-hero-card-wrap {
@@ -986,13 +991,14 @@ main {
   border-radius: 28px;
   box-shadow: 0 18px 48px -12px rgba(15, 23, 42, 0.14), 0 2px 8px rgba(15, 23, 42, 0.04);
   border: 1px solid rgba(226, 219, 209, 0.85);
-  padding: 18px 20px 18px;
+  padding: 18px 14px 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   box-sizing: border-box;
   width: 100%;
+  overflow: hidden;
 }
 @media (min-width: 480px) {
   .t-hero-card {
@@ -1070,22 +1076,32 @@ main {
   display: inline-block;
 }
 
-/* ── Painel Reentrante Sand / Oatmeal (Idêntico à Imagem de Referência) ── */
+/* ── Painel Reentrante Sand / Oatmeal (Perfeitamente Centrado e Sem Fugas) ── */
 .t-hero-price-panel {
   background: #EAE3D6;
   border-radius: 20px;
-  padding: 16px 16px 14px;
+  padding: 15px 12px 13px;
   width: 100%;
+  max-width: 100%;
   box-sizing: border-box;
-  margin-bottom: 14px;
+  margin: 0 auto 14px;
   text-align: center;
   border: 1px solid rgba(197, 180, 160, 0.55);
+  overflow: hidden;
+  position: relative;
+}
+@media (min-width: 480px) {
+  .t-hero-price-panel {
+    padding: 16px 16px 14px;
+  }
 }
 
 .t-hero-price-center {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   margin-bottom: 12px;
 }
 .t-hero-price-figure {
@@ -1109,70 +1125,117 @@ main {
 
 .t-hero-specs-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
   width: 100%;
   margin-bottom: 12px;
+  box-sizing: border-box;
 }
+@media (max-width: 360px) {
+  .t-hero-specs-grid {
+    gap: 6px;
+  }
+}
+
 .t-hero-spec-pill {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 5px;
   background: #FFFFFF;
   border: 1px solid rgba(220, 210, 198, 0.9);
   border-radius: 12px;
-  padding: 8px 10px;
-  font-size: 0.84rem;
+  padding: 8px 6px;
+  font-size: clamp(0.72rem, 2.4vw, 0.82rem);
   font-weight: 700;
   color: #0F172A;
   box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+  text-align: center;
+}
+.t-hero-spec-pill span:not(.t-spec-icon-box) {
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .t-spec-icon-box {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   line-height: 1;
+  flex-shrink: 0;
+}
+@media (max-width: 360px) {
+  .t-hero-spec-pill {
+    padding: 7px 4px;
+    gap: 4px;
+    font-size: 0.70rem;
+    border-radius: 10px;
+  }
+  .t-spec-icon-box {
+    font-size: 0.88rem;
+  }
 }
 
 .t-hero-specs-details {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
 }
 .t-highlight-chip {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  font-size: 0.75rem;
+  font-size: clamp(0.70rem, 2.4vw, 0.75rem);
   font-weight: 700;
   color: #78350F;
   background: #FEF3C7;
-  padding: 4px 12px;
+  padding: 4px 10px;
   border-radius: 9999px;
   border: 1px solid #F59E0B;
   max-width: 100%;
   box-sizing: border-box;
   text-align: center;
+  line-height: 1.35;
+  margin: 0 auto;
+}
+.t-highlight-icon {
+  flex-shrink: 0;
 }
 .t-specs-subline {
-  font-size: 0.76rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2px 6px;
+  font-size: 0.74rem;
   font-weight: 600;
   color: #475569;
   line-height: 1.4;
   text-align: center;
+  margin: 0 auto;
+}
+.t-subline-item {
+  white-space: nowrap;
 }
 .t-hero-dot {
   color: #B45309;
-  margin: 0 5px;
+  margin: 0 1px;
   font-weight: 900;
+  opacity: 0.7;
 }
 
 /* ── Botão Sand/Caramel de Prestígio ── */
 .t-hero-cta-area {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
   margin-bottom: 10px;
 }
@@ -1181,13 +1244,13 @@ main {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: linear-gradient(135deg, #B89264 0%, #A07B4F 100%);
+  background: linear-gradient(135deg, #B89264 0%, #A07F4F 100%);
   color: #FFFFFF !important;
   font-family: var(--sans);
   font-size: 0.94rem;
   font-weight: 700;
   letter-spacing: 0.01em;
-  padding: 13px 32px;
+  padding: 13px 28px;
   border-radius: 9999px;
   text-decoration: none;
   box-shadow: 0 8px 24px -4px rgba(160, 123, 79, 0.45);
@@ -1195,6 +1258,7 @@ main {
   border: 1px solid rgba(255, 255, 255, 0.35);
   width: 100%;
   max-width: 320px;
+  box-sizing: border-box;
 }
 .t-hero-btn-sand:hover {
   background: linear-gradient(135deg, #C29B6D 0%, #AA8457 100%);
@@ -1209,6 +1273,7 @@ main {
 .t-hero-scroll-cue-link {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   text-decoration: none;
   margin-top: 2px;
