@@ -13,7 +13,7 @@ export default function TerrenosHero() {
           fill
           priority
           quality={90}
-          sizes="100vw"
+          sizes="(max-width: 1024px) 100vw, 54vw"
           className="t-hero-photo-img"
           style={{ objectFit: 'cover', objectPosition: '64% 20%' }}
         />

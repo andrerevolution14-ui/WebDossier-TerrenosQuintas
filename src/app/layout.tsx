@@ -48,6 +48,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        <link rel="dns-prefetch" href="https://connect.facebook.net" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <meta name="format-detection" content="telephone=no" />
         <link rel="preload" as="image" href="/Curado/1.webp" type="image/webp" />
