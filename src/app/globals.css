@@ -2278,14 +2278,28 @@ main {
 }
 
 /* Form card com cantos retos arquitetónicos */
-.t-form-card {
+.t-form-card,
+#formulario {
   background: #0E1422;
   border: 1px solid rgba(197, 168, 128, 0.35);
   border-radius: var(--radius-subtle);
   padding: 36px 32px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+  scroll-margin-top: 85px;
 }
-@media (max-width: 480px) { .t-form-card { padding: 28px 20px; } }
+@media (max-width: 768px) {
+  .t-form-card,
+  #formulario {
+    scroll-margin-top: 75px;
+  }
+}
+@media (max-width: 480px) {
+  .t-form-card,
+  #formulario {
+    padding: 28px 20px;
+    scroll-margin-top: 72px;
+  }
+}
 
 .t-form-title {
   font-family: var(--serif);

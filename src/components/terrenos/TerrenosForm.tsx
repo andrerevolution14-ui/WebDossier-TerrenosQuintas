@@ -59,7 +59,7 @@ export default function TerrenosForm() {
   }
 
   return (
-    <section className="t-section t-section--form" id="formulario">
+    <section className="t-section t-section--form" id="contacto">
       <div className="t-wrap">
         <div className="t-form-container">
           {/* Left: copy */}
@@ -118,7 +118,7 @@ export default function TerrenosForm() {
           </div>
 
           {/* Right: form card */}
-          <div className="t-form-card">
+          <div className="t-form-card" id="formulario">
             {status === 'success' ? (
               <div className="t-form-success">
                 <div className="t-success-icon">✅</div>
