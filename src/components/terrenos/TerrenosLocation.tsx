@@ -1,5 +1,7 @@
 'use client';
 
+import { scrollToForm } from '@/lib/scrollToForm';
+
 const MAPS_EMBED_URL = 'https://maps.google.com/maps?q=40.5829732,-8.6175628&t=m&z=17&output=embed';
 const MAPS_DIRECT_URL =
   'https://www.google.com/maps/place/R.+Ac%C3%A1cio+Sim%C3%B5es+Vieira,+3810-843+Oliveirinha/@40.5829772,-8.6201377,825m/data=!3m2!1e3!4b1!4m6!3m5!1s0xd23a309bf3e3e43:0xf3d6a6bf7615447e!8m2!3d40.5829732!4d-8.6175628!16s%2Fg%2F11q223zjf_?entry=ttu';
@@ -80,6 +82,18 @@ export default function TerrenosLocation() {
               </p>
             </div>
           </div>
+        </div>
+
+        <div className="t-cta-center" style={{ marginTop: '36px' }}>
+          <a
+            href="#formulario"
+            onClick={scrollToForm}
+            id="cta_localizacao_contacto"
+            className="t-btn t-btn-cta t-cta-scroll"
+          >
+            <span>Agendar Visita ao Terreno no Local</span>
+            <span className="t-btn-arrow">→</span>
+          </a>
         </div>
       </div>
     </section>

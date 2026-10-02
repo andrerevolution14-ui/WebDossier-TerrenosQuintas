@@ -1,5 +1,7 @@
 'use client';
 
+import { scrollToForm } from '@/lib/scrollToForm';
+
 const rows = [
   {
     common: { icon: '❌', text: '12 a 24 meses de espera na Câmara — projeto incerto' },
@@ -79,7 +81,12 @@ export default function TerrenosComparison() {
         </div>
 
         <div className="t-cta-center">
-          <a href="#formulario" id="cta4_contacto_comparativo" className="t-btn t-btn-cta t-cta-scroll">
+          <a
+            href="#formulario"
+            onClick={scrollToForm}
+            id="cta4_contacto_comparativo"
+            className="t-btn t-btn-cta t-cta-scroll"
+          >
             <span>Quero Ser Contactado</span>
             <span className="t-btn-arrow">→</span>
           </a>

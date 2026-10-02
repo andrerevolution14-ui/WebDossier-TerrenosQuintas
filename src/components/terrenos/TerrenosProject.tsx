@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import TerrenosLightbox, { LightboxImage } from './TerrenosLightbox';
+import { scrollToForm } from '@/lib/scrollToForm';
 
 const projectGallery: LightboxImage[] = [
   { src: '/Exterior Capa.webp', alt: 'Render fachada exterior frontal', label: 'Fachada Principal' },
@@ -205,7 +206,12 @@ export default function TerrenosProject() {
         </div>
 
         <div className="t-cta-center">
-          <a href="#formulario" className="t-btn t-btn-cta t-cta-scroll" id="cta_project_contacto">
+          <a
+            href="#formulario"
+            onClick={scrollToForm}
+            className="t-btn t-btn-cta t-cta-scroll"
+            id="cta_project_contacto"
+          >
             <span>Tenho Interesse no Projeto — Contactar</span>
             <span className="t-btn-arrow">→</span>
           </a>

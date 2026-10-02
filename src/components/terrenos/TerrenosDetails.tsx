@@ -1,5 +1,7 @@
 'use client';
 
+import { scrollToForm } from '@/lib/scrollToForm';
+
 const specs = [
   {
     icon: '📐',
@@ -139,7 +141,12 @@ export default function TerrenosDetails() {
         </div>
 
         <div className="t-cta-center">
-          <a href="#formulario" id="cta2_contacto_specs" className="t-btn t-btn-cta t-cta-scroll">
+          <a
+            href="#formulario"
+            onClick={scrollToForm}
+            id="cta2_contacto_specs"
+            className="t-btn t-btn-cta t-cta-scroll"
+          >
             <span>Quero Ser Contactado</span>
             <span className="t-btn-arrow">→</span>
           </a>

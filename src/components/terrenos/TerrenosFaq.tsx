@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { scrollToForm } from '@/lib/scrollToForm';
 
 const faqs = [
   {
@@ -82,7 +83,12 @@ export default function TerrenosFaq() {
         </div>
 
         <div className="t-cta-center">
-          <a href="#formulario" id="cta_faq_contacto" className="t-btn t-btn-cta t-cta-scroll">
+          <a
+            href="#formulario"
+            onClick={scrollToForm}
+            id="cta_faq_contacto"
+            className="t-btn t-btn-cta t-cta-scroll"
+          >
             <span>Falar com o Proprietário</span>
             <span className="t-btn-arrow">→</span>
           </a>

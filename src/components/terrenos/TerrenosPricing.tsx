@@ -1,5 +1,7 @@
 'use client';
 
+import { scrollToForm } from '@/lib/scrollToForm';
+
 // Tabela detalhada de preços que justifica o valor de 55.000€
 const pricingRows = [
   {
@@ -182,7 +184,12 @@ export default function TerrenosPricing() {
 
         {/* Botão de Contacto */}
         <div className="t-cta-center">
-          <a href="#formulario" id="cta_pricing_contacto" className="t-btn t-btn-cta t-cta-scroll">
+          <a
+            href="#formulario"
+            onClick={scrollToForm}
+            id="cta_pricing_contacto"
+            className="t-btn t-btn-cta t-cta-scroll"
+          >
             <span>Tenho Interesse — Quero Ser Contactado</span>
             <span className="t-btn-arrow">→</span>
           </a>

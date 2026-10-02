@@ -2285,20 +2285,41 @@ main {
   border-radius: var(--radius-subtle);
   padding: 36px 32px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.45);
-  scroll-margin-top: 85px;
+  scroll-margin-top: 32px;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 @media (max-width: 768px) {
   .t-form-card,
   #formulario {
-    scroll-margin-top: 75px;
+    scroll-margin-top: 20px;
   }
 }
 @media (max-width: 480px) {
   .t-form-card,
   #formulario {
     padding: 28px 20px;
-    scroll-margin-top: 72px;
+    scroll-margin-top: 16px;
   }
+}
+
+/* Pulso luminoso dourado quando o utilizador clica em qualquer botão de CTA */
+@keyframes formGlowPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(197, 168, 128, 0.75), 0 20px 60px rgba(0,0,0,0.45);
+    border-color: rgba(197, 168, 128, 0.95);
+  }
+  40% {
+    box-shadow: 0 0 0 10px rgba(197, 168, 128, 0.3), 0 24px 70px rgba(197, 168, 128, 0.25);
+    border-color: #E6C89C;
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(197, 168, 128, 0), 0 20px 60px rgba(0,0,0,0.45);
+    border-color: rgba(197, 168, 128, 0.35);
+  }
+}
+
+.t-form-highlight {
+  animation: formGlowPulse 1.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .t-form-title {
@@ -2339,6 +2360,21 @@ main {
   background: rgba(197, 168, 128, 0.05);
 }
 
+.t-phone-hint {
+  font-size: 0.76rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+  transition: color 0.2s;
+}
+.t-phone-hint--valid {
+  color: #10B981;
+}
+.t-phone-hint--error {
+  color: #F87171;
+}
+
 .t-form-error {
   font-size: 0.84rem;
   color: var(--t-red-text);
@@ -2360,29 +2396,153 @@ main {
   padding-top: 16px;
 }
 
-/* Success state */
+/* Success state & Confirmação de Número */
 .t-form-success {
   text-align: center;
-  padding: 24px 0;
+  padding: 12px 0 6px;
   animation: t-fade-up 0.4s ease;
 }
 @keyframes t-fade-up {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.t-success-icon { font-size: 3rem; margin-bottom: 16px; }
-.t-form-success h3 {
+.t-success-badge-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.t-success-icon-animated {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.15);
+  border: 2px solid #10B981;
+  color: #10B981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  box-shadow: 0 0 24px rgba(16, 185, 129, 0.35);
+}
+.t-success-title {
   font-family: var(--serif);
-  font-size: 1.4rem;
-  color: var(--t-green);
+  font-size: 1.45rem;
+  color: #FFFFFF;
+  margin: 4px 0 16px;
+  font-weight: 700;
+}
+
+/* Cartão com o Número Confirmado */
+.t-confirmed-box {
+  background: rgba(8, 12, 22, 0.85);
+  border: 1.5px solid rgba(197, 168, 128, 0.45);
+  border-radius: var(--radius-card);
+  padding: 22px 20px;
+  margin: 18px 0 22px;
+  text-align: left;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+.t-confirmed-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.t-confirmed-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--t-beige);
+  text-transform: uppercase;
+}
+.t-confirmed-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.14);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.t-confirmed-phone-val {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--sans);
+  font-size: 1.42rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: 0.04em;
+  margin: 6px 0 12px;
+}
+.t-confirmed-phone-val .t-confirmed-icon {
+  font-size: 1.25rem;
+}
+.t-confirmed-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.84rem;
+  color: var(--t-text-muted-light);
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   margin-bottom: 12px;
 }
-.t-form-success p {
-  font-size: 0.95rem;
-  color: var(--t-text-muted-light);
-  line-height: 1.6;
+.t-confirmed-meta strong {
+  color: #FFFFFF;
 }
-.t-success-sub { margin-top: 8px; font-size: 0.85rem !important; }
+.t-confirmed-notice {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: rgba(232, 234, 246, 0.92);
+  background: rgba(197, 168, 128, 0.08);
+  border-left: 3px solid var(--t-beige);
+  padding: 10px 12px;
+  border-radius: 4px;
+  margin-bottom: 14px;
+}
+.t-confirmed-notice-icon {
+  font-size: 1.05rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.t-confirmed-edit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: var(--t-text-muted-light);
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 6px 0 2px;
+  width: 100%;
+  transition: color 0.2s;
+}
+.t-confirmed-edit-btn strong {
+  color: var(--t-beige);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.t-confirmed-edit-btn:hover strong {
+  color: #FFFFFF;
+}
+.t-success-footer-note {
+  font-size: 0.78rem;
+  color: var(--t-text-muted-light);
+  margin-top: 14px;
+  line-height: 1.4;
+}
 
 /* ═══════════════════════════════════════════════════════════════════════
    STICKY BAR (Mobile Ultra Compacto)

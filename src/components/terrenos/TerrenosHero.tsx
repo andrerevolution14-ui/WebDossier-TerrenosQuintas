@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { scrollToForm } from '@/lib/scrollToForm';
 
 export default function TerrenosHero() {
   return (
@@ -93,7 +94,7 @@ export default function TerrenosHero() {
 
           {/* Botão de Contacto Dourado Acetinado de Alta Conversão */}
           <div className="t-hero-cta-area">
-            <a href="#formulario" className="t-hero-btn-sand" id="cta_hero_contacto">
+            <a href="#formulario" onClick={scrollToForm} className="t-hero-btn-sand" id="cta_hero_contacto">
               <span>Quero Ser Contactado</span>
               <span className="t-btn-arrow">→</span>
             </a>

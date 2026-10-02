@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import TerrenosLightbox, { LightboxImage } from './TerrenosLightbox';
+import { scrollToForm } from '@/lib/scrollToForm';
 
 const curadoPhotos: LightboxImage[] = [
   { src: '/Curado/1.webp', alt: 'Vista frontal delimitada do lote urbano de 233m²', label: 'Foto Frontal com Delimitação' },
@@ -59,7 +60,12 @@ export default function TerrenosGallery() {
         </div>
 
         <div className="t-cta-center">
-          <a href="#formulario" className="t-btn t-btn-cta t-cta-scroll" id="cta_galeria_contacto">
+          <a
+            href="#formulario"
+            onClick={scrollToForm}
+            className="t-btn t-btn-cta t-cta-scroll"
+            id="cta_galeria_contacto"
+          >
             <span>Pedir Mais Informações</span>
             <span className="t-btn-arrow">→</span>
           </a>

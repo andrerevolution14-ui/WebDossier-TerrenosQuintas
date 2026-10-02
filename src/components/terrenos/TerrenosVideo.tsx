@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { scrollToForm } from '@/lib/scrollToForm';
 
 // Apenas os 3 vídeos curados da pasta /public/videos/
 const videos = [
@@ -78,7 +79,12 @@ export default function TerrenosVideo() {
         </div>
 
         <div className="t-cta-center">
-          <a href="#formulario" id="cta_videos_contacto" className="t-btn t-btn-cta t-cta-scroll">
+          <a
+            href="#formulario"
+            onClick={scrollToForm}
+            id="cta_videos_contacto"
+            className="t-btn t-btn-cta t-cta-scroll"
+          >
             <span>Quero Ser Contactado</span>
             <span className="t-btn-arrow">→</span>
           </a>
