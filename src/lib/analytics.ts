@@ -1,9 +1,9 @@
 /**
- * Telemetria, rastreio de conversões e integração com o Meta Pixel
- * Meta Pixel ID: 26022738390737044
+ * Telemetria, rastreio de conversões e integração com o Meta Pixel & Conversions API
+ * Meta Pixel ID: 979841341182458
  */
 
-export const META_PIXEL_ID = '26022738390737044';
+export const META_PIXEL_ID = '979841341182458';
 
 export interface TrackingEvent {
   event: string;
@@ -37,17 +37,17 @@ export function trackEvent(eventName: string, payload: Record<string, unknown> =
 
 /**
  * DISPARO DO OBJETIVO MAIS ALTO: Formulário Preenchido como LEAD no Meta Pixel.
- * Regista o evento padrão "Lead" e "CompleteRegistration" com os parâmetros otimizados para Meta Ads.
+ * Regista o evento padrão "Lead" com valor de 55.000€ e deduplicação CAPI através de eventId.
  */
-export function trackFormSubmissionLead(leadData: { nome?: string; telemovel?: string }) {
+export function trackFormSubmissionLead(leadData: { nome?: string; telemovel?: string; eventId?: string }) {
   if (typeof window === 'undefined') return;
 
-  const eventId = `lead_form_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`;
+  const eventId = leadData.eventId || `lead_form_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`;
 
   try {
     const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
     if (typeof fbq === 'function') {
-      // 1. Objetivo mais alto no Meta Ads: LEAD
+      // 1. Objetivo mais alto no Meta Ads: LEAD (55.000€)
       fbq(
         'track',
         'Lead',

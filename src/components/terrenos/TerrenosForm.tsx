@@ -24,10 +24,10 @@ interface SubmittedLead {
   timestamp: string;
 }
 
-function fireMetaPixelLead() {
-  if (typeof window !== 'undefined' && window.fbq) {
-    window.fbq('track', 'Lead');
-  }
+function getCookie(name: string): string | undefined {
+  if (typeof document === 'undefined') return undefined;
+  const match = document.cookie.match(new RegExp(`(?:^|;\\s*)${name}=([^;]*)`));
+  return match ? decodeURIComponent(match[1]) : undefined;
 }
 
 /**
@@ -132,6 +132,9 @@ export default function TerrenosForm() {
 
     const formattedDisplay = getDisplayConfirmedPhone(telemovel);
     const nowTime = new Date().toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit' });
+    const eventId = `lead_form_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`;
+    const fbp = getCookie('_fbp');
+    const fbc = getCookie('_fbc');
 
     try {
       const res = await fetch('/api/lead', {
@@ -141,15 +144,21 @@ export default function TerrenosForm() {
           nome: nome.trim(),
           telemovel: formattedDisplay,
           origem: 'Formulário — Dossier Terreno Quintãs, Aveiro',
+          eventId,
+          fbp,
+          fbc,
+          url: typeof window !== 'undefined' ? window.location.href : undefined,
         }),
       });
 
       if (!res.ok) throw new Error('Falha ao enviar o formulário.');
 
-      // Disparo para o Meta Pixel como LEAD (Objetivo Mais Alto - ID: 26022738390737044)
+      // Disparo para o Meta Pixel como LEAD (Objetivo Mais Alto - 55.000€ - Pixel: 979841341182458)
+      // Deduplicação automática com Meta Conversions API via eventId partilhado
       trackFormSubmissionLead({
         nome: nome.trim(),
         telemovel: formattedDisplay,
+        eventId,
       });
 
       setSubmittedData({
