@@ -7,6 +7,21 @@ function parseCookie(cookieHeader: string, key: string): string | undefined {
   return match ? decodeURIComponent(match[1]) : undefined;
 }
 
+// Cache em memória para deduplicação absoluta de pedidos (elimina duplicações de rede)
+const recentEventsCache = new Map<string, number>();
+
+function isDuplicate(key: string): boolean {
+  const now = Date.now();
+  for (const [k, time] of recentEventsCache.entries()) {
+    if (now - time > 120000) recentEventsCache.delete(k);
+  }
+  if (recentEventsCache.has(key)) {
+    return true;
+  }
+  recentEventsCache.set(key, now);
+  return false;
+}
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -44,12 +59,23 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Telemóvel é obrigatório.' }, { status: 400 });
     }
 
-    const timestamp = new Date().toLocaleString('pt-PT', { timeZone: 'Europe/Lisbon' });
-
     // Deduplication Event ID partilhado com o Meta Pixel do browser
     const eventId =
       clientEventId ||
       `${isWhatsAppLead ? 'wa_lead' : 'lead_srv'}_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`;
+
+    // Se já processámos este exato eventId nos últimos 2 minutos, retornar sucesso sem duplicar
+    if (isDuplicate(eventId)) {
+      console.log(`[Lead API] Pedido duplicado ignorado (eventId: ${eventId})`);
+      return NextResponse.json({
+        success: true,
+        message: 'Lead já processada anteriormente (deduplicada).',
+        eventId,
+        deduplicated: true,
+      });
+    }
+
+    const timestamp = new Date().toLocaleString('pt-PT', { timeZone: 'Europe/Lisbon' });
 
     // Headers & cookies para enriquecimento de Event Match Quality (EMQ) na Meta
     const cookieHeader = req.headers.get('cookie') || '';

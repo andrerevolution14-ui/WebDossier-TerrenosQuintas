@@ -4081,3 +4081,264 @@ main {
   backface-visibility: hidden;
   will-change: transform;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   EXIT-INTENT POPUP (Recuperação de Leads)
+   ═══════════════════════════════════════════════════════════════════════ */
+.t-exit-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(5, 8, 15, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  animation: t-exit-fade-in 0.25s ease-out;
+}
+
+@keyframes t-exit-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.t-exit-modal {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  background: #0E1424;
+  border: 1.5px solid rgba(197, 168, 128, 0.45);
+  border-radius: 16px;
+  padding: 38px 32px 32px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.75), 0 0 40px rgba(197, 168, 128, 0.15);
+  animation: t-exit-scale-in 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #fff;
+}
+
+@keyframes t-exit-scale-in {
+  from { opacity: 0; transform: scale(0.92) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.t-exit-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  color: #c5a880;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.t-exit-close-btn:hover {
+  background: rgba(230, 57, 70, 0.2);
+  border-color: #E63946;
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.t-exit-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(230, 57, 70, 0.14);
+  border: 1px solid rgba(230, 57, 70, 0.45);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #FF5A5F;
+  margin-bottom: 14px;
+}
+
+.t-exit-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #FF5A5F;
+  box-shadow: 0 0 8px #FF5A5F;
+  animation: pulseDot 1.5s infinite;
+}
+
+.t-exit-title {
+  font-family: var(--serif);
+  font-size: 1.65rem;
+  line-height: 1.25;
+  font-weight: 900;
+  color: #FF4D4D;
+  text-shadow: 0 2px 10px rgba(255, 77, 77, 0.25);
+  margin-bottom: 14px;
+}
+
+.t-exit-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #D1D5DB;
+  margin-bottom: 20px;
+}
+.t-exit-desc strong {
+  color: #FFFFFF;
+}
+
+.t-exit-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.t-exit-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #E2E8F0;
+}
+.t-exit-check-icon {
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.t-exit-cta-trigger-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+}
+.t-exit-cta-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #C5A880;
+}
+.t-exit-primary-btn {
+  font-size: 1.05rem;
+  padding: 16px 24px;
+}
+
+.t-exit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: t-exit-fade-in 0.2s ease-out;
+}
+.t-exit-form-instructions {
+  font-size: 0.88rem;
+  color: #C5A880;
+  margin-bottom: 2px;
+  font-weight: 600;
+}
+
+.t-exit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.t-exit-field-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #94A3B8;
+  letter-spacing: 0.03em;
+}
+.t-exit-input {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1.5px solid rgba(197, 168, 128, 0.35);
+  border-radius: var(--radius-subtle);
+  padding: 13px 16px;
+  font-size: 0.95rem;
+  color: #fff;
+  outline: none;
+  transition: all 0.2s;
+  width: 100%;
+}
+.t-exit-input:focus {
+  border-color: #E6C89C;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.2);
+}
+.t-exit-input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.t-exit-error-msg {
+  background: rgba(230, 57, 70, 0.15);
+  border: 1px solid rgba(230, 57, 70, 0.4);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  color: #FF858A;
+}
+
+.t-exit-privacy-note {
+  font-size: 0.74rem;
+  color: #64748B;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.t-exit-success {
+  text-align: center;
+  padding: 12px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.t-exit-success-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.15);
+  border: 2px solid #10B981;
+  color: #10B981;
+  font-size: 1.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.t-exit-success-title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+.t-exit-success-text {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #CBD5E1;
+  margin-bottom: 8px;
+}
+.t-exit-success-text strong {
+  color: #C5A880;
+}
+
+@media (max-width: 480px) {
+  .t-exit-modal {
+    padding: 30px 20px 24px;
+    border-radius: 12px;
+  }
+  .t-exit-title {
+    font-size: 1.35rem;
+  }
+  .t-exit-desc {
+    font-size: 0.88rem;
+  }
+}
+

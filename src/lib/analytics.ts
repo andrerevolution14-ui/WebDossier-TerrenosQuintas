@@ -141,14 +141,14 @@ let lastClickTime = 0;
 
 /**
  * Disparado ao clicar em qualquer botão do WhatsApp ou mensagem direta.
- * REGISTA O VALOR MÁXIMO (55.000€) COMO LEAD NO META ADS, CONTACT E COMPLETEREGISTRATION,
- * ALÉM DE GRAVAR IMEDIATAMENTE NO SUPABASE E META CONVERSIONS API.
+ * REGISTA EXATAMENTE 1 EVENTO "LEAD" NO META ADS COM VALOR MÁXIMO DE 55.000€,
+ * COM DEDUPLICAÇÃO PERFEITA VIA EVENTID (SEM DUPLICAR EVENTOS NEM LINHAS NO SUPABASE).
  */
 export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<string, unknown> = {}) {
   if (typeof window === 'undefined') return;
 
   const now = Date.now();
-  if (now - lastClickTime < 1500) {
+  if (now - lastClickTime < 2500) {
     return;
   }
   lastClickTime = now;
@@ -157,11 +157,11 @@ export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<stri
     (extra.eventId as string) ||
     `wa_lead_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
 
-  // 1. DISPARAR EVENTO PADRÃO "LEAD" NO META PIXEL (Objetivo Máximo de Campanha - 55.000€)
+  // 1. DISPARAR EXATAMENTE 1 ÚNICO EVENTO "LEAD" NO META PIXEL (55.000€)
+  // Sem eventos paralelos como Contact ou CompleteRegistration que duplicam a contagem no Meta Ads!
   try {
     const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
     if (typeof fbq === 'function') {
-      // 1.1 LEAD (Principal evento de otimização em campanhas imobiliárias)
       fbq(
         'track',
         'Lead',
@@ -174,73 +174,29 @@ export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<stri
           value: 55000,
           lead_source: `WhatsApp (${source})`,
           status: 'Lead WhatsApp Confirmada',
-          ...extra,
         },
         { eventID: eventId }
       );
 
-      // 1.2 CONTACT (Valor Máximo 55.000€)
-      fbq(
-        'track',
-        'Contact',
-        {
-          content_name: 'Contacto WhatsApp — Lote Quintãs 55.000€',
-          content_category: 'Terrenos Aveiro',
-          currency: 'EUR',
-          value: 55000,
-          source,
-          ...extra,
-        },
-        { eventID: `${eventId}_contact` }
-      );
-
-      // 1.3 COMPLETE REGISTRATION (Valor Máximo 55.000€)
-      fbq(
-        'track',
-        'CompleteRegistration',
-        {
-          content_name: 'Contacto Direto WhatsApp Confirmado',
-          currency: 'EUR',
-          value: 55000,
-          status: 'Sucesso',
-        },
-        { eventID: `${eventId}_reg` }
-      );
-
-      // 1.4 Custom Event WhatsAppLead para conversões personalizadas
-      fbq(
-        'trackCustom',
-        'WhatsAppLead',
-        {
-          content_name: 'Lead WhatsApp Valor Máximo 55.000€',
-          currency: 'EUR',
-          value: 55000,
-          source,
-        },
-        { eventID: `${eventId}_custom` }
-      );
-
-      console.log(`🎯 [Meta Pixel ${META_PIXEL_ID}] LEAD WhatsApp registado com VALOR MÁXIMO (55.000€):`, {
+      console.log(`🎯 [Meta Pixel ${META_PIXEL_ID}] 1 LEAD Único WhatsApp registado (55.000€):`, {
         eventId,
         source,
         value: 55000,
         currency: 'EUR',
       });
-    } else {
-      console.warn('[Meta Pixel] fbq ainda não disponível para disparo de WhatsApp Lead.');
     }
   } catch (err) {
     console.error('Erro ao disparar Lead WhatsApp no Meta Pixel:', err);
   }
 
-  // 2. Tentar recuperar nome ou telemóvel já inseridos no formulário (caso tenha começado a preencher)
+  // 2. Tentar recuperar nome ou telemóvel apenas se já tiverem sido escritos no formulário
   const inputNome = (document.getElementById('t-nome') as HTMLInputElement | null)?.value?.trim();
   const inputTel = (document.getElementById('t-telemovel') as HTMLInputElement | null)?.value?.trim();
 
   const nome = (extra.nome as string) || inputNome || `Interessado WhatsApp (${source})`;
-  const telemovel = (extra.telemovel as string) || inputTel || 'Contacto direto WhatsApp (+351 920 601 070)';
+  const telemovel = (extra.telemovel as string) || inputTel || 'Contacto direto WhatsApp';
 
-  // 3. PERSISTIR NO SUPABASE + META CAPI VIA /api/lead (com Beacon + Fetch keepalive)
+  // 3. ENVIAR PARA /api/lead VIA 1 ÚNICO PEDIDO FETCH KEEPALIVE (sem duplicar com sendBeacon!)
   const fbp = getOrCreateFbp();
   const fbc = getOrCreateFbc();
 
@@ -248,7 +204,7 @@ export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<stri
     nome,
     telemovel,
     origem: `WhatsApp — ${source}`,
-    mensagem: `Interessado enviou mensagem direta pelo WhatsApp (${source}) — Valor Máximo 55.000€.`,
+    mensagem: `Interessado clicou no botão WhatsApp (${source}) — Valor 55.000€.`,
     eventId,
     fbp,
     fbc,
@@ -256,35 +212,14 @@ export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<stri
     isWhatsAppLead: true,
   };
 
-  // Envio garantido via navigator.sendBeacon (não é interrompido pela abertura da app do WhatsApp)
-  try {
-    if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
-      const blob = new Blob([JSON.stringify(leadPayload)], { type: 'application/json' });
-      navigator.sendBeacon('/api/lead', blob);
-    }
-  } catch {}
-
-  // Envio paralelo via fetch keepalive
   try {
     fetch('/api/lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(leadPayload),
       keepalive: true,
-    })
-      .then((res) => {
-        if (res.ok) {
-          console.log(`✅ [Supabase & CAPI] Lead WhatsApp (${source}) gravada com sucesso!`);
-        } else {
-          console.warn(`⚠️ [API Lead] Resposta não-200 para WhatsApp Lead:`, res.status);
-        }
-      })
-      .catch((err) => {
-        console.error('[API Lead] Erro na rede ao enviar Lead WhatsApp:', err);
-      });
-  } catch (err) {
-    console.error('[API Lead] Falha ao despachar pedido de Lead WhatsApp:', err);
-  }
+    }).catch(() => {});
+  } catch {}
 
   trackEvent('whatsapp_click_contact', { source, eventId, nome, telemovel, value: 55000, ...extra });
 }

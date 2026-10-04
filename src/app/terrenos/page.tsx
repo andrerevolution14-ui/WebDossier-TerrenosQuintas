@@ -11,6 +11,7 @@ import TerrenosFaq from '@/components/terrenos/TerrenosFaq';
 import TerrenosForm from '@/components/terrenos/TerrenosForm';
 import TerrenosStickyBar from '@/components/terrenos/TerrenosStickyBar';
 import TerrenosWhatsAppButton from '@/components/terrenos/TerrenosWhatsAppButton';
+import TerrenosExitIntent from '@/components/terrenos/TerrenosExitIntent';
 
 export const metadata: Metadata = {
   title: 'Lote de Terreno c/ Projeto Aprovado e IVA a 6% na Construção | Quintãs, Oliveirinha, Aveiro | 55.000€',
@@ -211,6 +212,9 @@ export default function TerrenosPage() {
 
       {/* ─── BOTÃO WHATSAPP FLUTUANTE ──── */}
       <TerrenosWhatsAppButton />
+
+      {/* ─── POPUP DE INTENÇÃO DE SAÍDA (EXIT-INTENT) ──── */}
+      <TerrenosExitIntent />
     </>
   );
 }

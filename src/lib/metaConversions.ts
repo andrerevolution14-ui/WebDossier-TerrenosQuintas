@@ -104,21 +104,11 @@ export async function sendMetaLeadConversion(data: MetaLeadPayload) {
 
     const eventPayload = {
       data: [
-        // 1. Objetivo Máximo: LEAD (55.000€)
+        // 1 Único Objetivo: LEAD (55.000€) com deduplicação perfeita com o Pixel
         {
           event_name: 'Lead',
           event_time: Math.floor(Date.now() / 1000),
           event_id: eventId,
-          event_source_url: sourceUrl || 'https://terrenosaveiro.pt/terrenos',
-          action_source: 'website',
-          user_data: userData,
-          custom_data: leadCustomData,
-        },
-        // 2. Evento Contact paralelo (55.000€) para compatibilidade de otimização de campanhas
-        {
-          event_name: 'Contact',
-          event_time: Math.floor(Date.now() / 1000),
-          event_id: `${eventId}_contact`,
           event_source_url: sourceUrl || 'https://terrenosaveiro.pt/terrenos',
           action_source: 'website',
           user_data: userData,
