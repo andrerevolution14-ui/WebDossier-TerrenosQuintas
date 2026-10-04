@@ -94,26 +94,53 @@ export function trackFormSubmissionLead(leadData: { nome?: string; telemovel?: s
   });
 }
 
+function getCookie(name: string): string | undefined {
+  if (typeof document === 'undefined') return undefined;
+  const match = document.cookie.match(new RegExp(`(?:^|;\\s*)${name}=([^;]*)`));
+  return match ? decodeURIComponent(match[1]) : undefined;
+}
+
 // In-memory debounce timestamp to prevent rapid double-taps
 let lastClickTime = 0;
 
 /**
- * Disparado ao clicar em botão do WhatsApp
+ * Disparado ao clicar em botão do WhatsApp.
+ * DISPARA LEAD NO META PIXEL (55.000€) E GRAVA AUTOMATICAMENTE NO SUPABASE + META CAPI.
  */
 export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<string, unknown> = {}) {
   if (typeof window === 'undefined') return;
 
   const now = Date.now();
-  if (now - lastClickTime < 2000) {
+  if (now - lastClickTime < 1500) {
     return;
   }
   lastClickTime = now;
 
-  const eventId = `wa_contact_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+  const eventId =
+    (extra.eventId as string) ||
+    `wa_lead_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
 
+  // 1. DISPARAR EVENTO PADRÃO "LEAD" NO META PIXEL (Objetivo Máximo de Campanha)
   try {
     const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
     if (typeof fbq === 'function') {
+      // Evento LEAD primordial
+      fbq(
+        'track',
+        'Lead',
+        {
+          content_name: 'Lead WhatsApp — Lote Quintãs 55.000€',
+          content_category: 'Terrenos Aveiro',
+          currency: 'EUR',
+          value: 55000,
+          lead_source: `WhatsApp (${source})`,
+          status: 'Lead WhatsApp Iniciada',
+          ...extra,
+        },
+        { eventID: eventId }
+      );
+
+      // Evento secundário Contact para telemetria paralela
       fbq(
         'track',
         'Contact',
@@ -125,16 +152,66 @@ export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<stri
           source,
           ...extra,
         },
-        { eventID: eventId }
+        { eventID: `${eventId}_contact` }
       );
 
-      console.log(`💬 [Meta Pixel] Contacto WhatsApp registado (Source: ${source})`);
+      console.log(`🎯 [Meta Pixel ${META_PIXEL_ID}] LEAD WhatsApp registado como Objetivo Principal:`, {
+        eventId,
+        source,
+        value: 55000,
+      });
+    } else {
+      console.warn('[Meta Pixel] fbq ainda não disponível para disparo de WhatsApp Lead.');
     }
   } catch (err) {
-    console.error('Erro ao disparar Contact no Meta Pixel:', err);
+    console.error('Erro ao disparar Lead WhatsApp no Meta Pixel:', err);
   }
 
-  trackEvent('whatsapp_click_contact', { source, ...extra });
+  // 2. Tentar recuperar nome ou telemóvel já inseridos no formulário (caso tenha começado a preencher)
+  const inputNome = (document.getElementById('t-nome') as HTMLInputElement | null)?.value?.trim();
+  const inputTel = (document.getElementById('t-telemovel') as HTMLInputElement | null)?.value?.trim();
+
+  const nome = (extra.nome as string) || inputNome || `Interessado WhatsApp (${source})`;
+  const telemovel = (extra.telemovel as string) || inputTel || 'Contacto direto WhatsApp';
+
+  // 3. PERSISTIR NO SUPABASE + META CAPI VIA /api/lead (com keepalive: true garantido)
+  const fbp = getCookie('_fbp');
+  const fbc = getCookie('_fbc');
+
+  const leadPayload = {
+    nome,
+    telemovel,
+    origem: `WhatsApp — ${source}`,
+    mensagem: `Interessado clicou no botão WhatsApp (${source}) para falar diretamente com o proprietário.`,
+    eventId,
+    fbp,
+    fbc,
+    url: window.location.href,
+    isWhatsAppLead: true,
+  };
+
+  try {
+    fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(leadPayload),
+      keepalive: true,
+    })
+      .then((res) => {
+        if (res.ok) {
+          console.log(`✅ [Supabase & CAPI] Lead WhatsApp (${source}) gravada com sucesso!`);
+        } else {
+          console.warn(`⚠️ [API Lead] Resposta não-200 para WhatsApp Lead:`, res.status);
+        }
+      })
+      .catch((err) => {
+        console.error('[API Lead] Erro na rede ao enviar Lead WhatsApp:', err);
+      });
+  } catch (err) {
+    console.error('[API Lead] Falha ao despachar pedido de Lead WhatsApp:', err);
+  }
+
+  trackEvent('whatsapp_click_contact', { source, eventId, nome, telemovel, ...extra });
 }
 
 // Inicializar listener global para captar links do WhatsApp

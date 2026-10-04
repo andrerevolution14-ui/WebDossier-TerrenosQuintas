@@ -32,10 +32,19 @@ export async function saveLeadToSupabase(lead: LeadRecord) {
     };
 
     // Não usar .select() após o insert para não violar a política RLS (a chave pública só tem permissão de INSERT)
-    const { error, status } = await supabase.from('leads').insert([payload]);
+    let { error, status } = await supabase.from('leads').insert([payload]);
 
     if (error) {
-      console.error('[Supabase] Erro ao inserir lead na tabela leads:', error.message, error.code);
+      console.warn('[Supabase] Tentativa 1 falhou, a retentar...', error.message);
+      // Aguardar 400ms e retentar
+      await new Promise((r) => setTimeout(r, 400));
+      const retry = await supabase.from('leads').insert([payload]);
+      error = retry.error;
+      status = retry.status;
+    }
+
+    if (error) {
+      console.error('[Supabase] Erro ao inserir lead na tabela leads após retry:', error.message, error.code);
       return { success: false, error: error.message };
     }
 

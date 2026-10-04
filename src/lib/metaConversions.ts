@@ -44,15 +44,35 @@ export async function sendMetaLeadConversion(data: MetaLeadPayload) {
   try {
     const { eventId, nome, telemovel, sourceUrl, clientIp, clientUserAgent, fbp, fbc } = data;
 
-    const normalizedPhone = normalizePhone(telemovel);
-    const firstName = nome.trim().split(' ')[0] || nome.trim();
+    const cleanPhone = (telemovel || '').trim();
+    const isGenericPhone =
+      !cleanPhone ||
+      cleanPhone.toLowerCase().includes('whatsapp') ||
+      cleanPhone.toLowerCase().includes('direto');
 
-    const userData: Record<string, unknown> = {
-      ph: [sha256(normalizedPhone)],
-      fn: [sha256(firstName)],
-    };
+    const cleanName = (nome || '').trim();
+    const isGenericName =
+      !cleanName ||
+      cleanName.toLowerCase().includes('whatsapp') ||
+      cleanName.toLowerCase().includes('interessado');
 
-    if (clientIp) {
+    const userData: Record<string, unknown> = {};
+
+    if (!isGenericPhone) {
+      const normalizedPhone = normalizePhone(cleanPhone);
+      if (normalizedPhone.length >= 9) {
+        userData.ph = [sha256(normalizedPhone)];
+      }
+    }
+
+    if (!isGenericName) {
+      const firstName = cleanName.split(' ')[0] || cleanName;
+      if (firstName.length >= 2) {
+        userData.fn = [sha256(firstName)];
+      }
+    }
+
+    if (clientIp && clientIp !== '::1' && clientIp !== '127.0.0.1' && !clientIp.startsWith('192.168.') && !clientIp.startsWith('10.')) {
       userData.client_ip_address = clientIp;
     }
     if (clientUserAgent) {
@@ -64,6 +84,20 @@ export async function sendMetaLeadConversion(data: MetaLeadPayload) {
     if (fbc) {
       userData.fbc = fbc;
     }
+
+    // A Meta CAPI exige que haja parâmetros de correspondência válidos
+    const hasMatchParams = Boolean(
+      (userData.ph && (userData.ph as string[]).length > 0) ||
+      userData.fbp ||
+      (userData.client_ip_address && userData.client_user_agent)
+    );
+
+    if (!hasMatchParams) {
+      console.warn('[Meta CAPI ⚠️] Parâmetros de correspondência insuficientes para enviar via CAPI neste ambiente (o Pixel do browser já registou o evento).');
+      return { success: false, skipped: true, reason: 'insufficient_match_keys' };
+    }
+
+    const isWhatsAppLead = isGenericPhone || (data.sourceUrl && data.sourceUrl.includes('whatsapp'));
 
     const eventPayload = {
       data: [
@@ -77,10 +111,12 @@ export async function sendMetaLeadConversion(data: MetaLeadPayload) {
           custom_data: {
             currency: 'EUR',
             value: 55000,
-            content_name: 'Lote de Terreno c/ Projeto Aprovado e IVA a 6% — Quintãs Aveiro',
+            content_name: isWhatsAppLead
+              ? 'Lead WhatsApp — Lote Quintãs 55.000€'
+              : 'Lote de Terreno c/ Projeto Aprovado e IVA a 6% — Quintãs Aveiro',
             content_category: 'Terrenos e Moradias Aveiro',
-            status: 'Lead Confirmada com Número',
-            lead_source: 'Formulário Web Principal',
+            status: isWhatsAppLead ? 'Lead WhatsApp Direto' : 'Lead Confirmada com Número',
+            lead_source: isWhatsAppLead ? 'WhatsApp Direto' : 'Formulário Web Principal',
           },
         },
       ],

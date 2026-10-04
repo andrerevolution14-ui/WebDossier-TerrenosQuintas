@@ -2,7 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { scrollToForm } from '@/lib/scrollToForm';
-import { trackFormSubmissionLead } from '@/lib/analytics';
+import { trackFormSubmissionLead, trackWhatsAppContact } from '@/lib/analytics';
+import { saveLeadToSupabase } from '@/lib/supabase';
 
 const WA_PHONE = '351920601070';
 const WA_DIRECT_URL = `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(
@@ -136,6 +137,8 @@ export default function TerrenosForm() {
     const fbp = getCookie('_fbp');
     const fbc = getCookie('_fbc');
 
+    let savedOk = false;
+
     try {
       const res = await fetch('/api/lead', {
         method: 'POST',
@@ -151,34 +154,59 @@ export default function TerrenosForm() {
         }),
       });
 
-      if (!res.ok) throw new Error('Falha ao enviar o formulário.');
+      if (res.ok) {
+        savedOk = true;
+      }
+    } catch (err) {
+      console.warn('⚠️ [/api/lead] Falha de rede/servidor, tentando fallback direto ao Supabase...', err);
+    }
 
-      // Disparo para o Meta Pixel como LEAD (Objetivo Mais Alto - 55.000€ - Pixel: 979841341182458)
-      // Deduplicação automática com Meta Conversions API via eventId partilhado
-      trackFormSubmissionLead({
-        nome: nome.trim(),
-        telemovel: formattedDisplay,
-        eventId,
-      });
-
-      setSubmittedData({
-        nome: nome.trim(),
-        telemovel: telemovel.trim(),
-        formattedPhone: formattedDisplay,
-        timestamp: nowTime,
-      });
-      setStatus('success');
-
-      // Garante que o ecrã desliza exatamente para o cartão de confirmação do número
-      setTimeout(() => {
-        if (formCardRef.current) {
-          formCardRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Se o endpoint da API falhou por qualquer motivo, tenta gravação direta cliente -> Supabase
+    if (!savedOk) {
+      try {
+        const directRes = await saveLeadToSupabase({
+          nome: nome.trim(),
+          telemovel: formattedDisplay,
+          origem: 'Formulário (Fallback Cliente Supabase)',
+          mensagem: 'Registo guardado diretamente no Supabase após falha de endpoint.',
+          status: 'nova',
+        });
+        if (directRes.success) {
+          savedOk = true;
         }
-      }, 100);
-    } catch {
+      } catch (clientErr) {
+        console.error('Falha também no fallback direto do Supabase:', clientErr);
+      }
+    }
+
+    if (!savedOk) {
       setStatus('error');
       setErrorMessage('Não foi possível enviar de momento. Pode contactar-nos diretamente pelo WhatsApp.');
+      return;
     }
+
+    // Disparo para o Meta Pixel como LEAD (Objetivo Mais Alto - 55.000€ - Pixel: 979841341182458)
+    // Deduplicação automática com Meta Conversions API via eventId partilhado
+    trackFormSubmissionLead({
+      nome: nome.trim(),
+      telemovel: formattedDisplay,
+      eventId,
+    });
+
+    setSubmittedData({
+      nome: nome.trim(),
+      telemovel: telemovel.trim(),
+      formattedPhone: formattedDisplay,
+      timestamp: nowTime,
+    });
+    setStatus('success');
+
+    // Garante que o ecrã desliza suavemente para o cartão de confirmação
+    setTimeout(() => {
+      if (formCardRef.current) {
+        scrollToForm();
+      }
+    }, 100);
   }
 
   function handleEditNumber() {
@@ -251,6 +279,12 @@ export default function TerrenosForm() {
                 rel="noopener noreferrer"
                 className="t-direct-wa-btn"
                 id="cta_form_direct_wa"
+                onClick={() =>
+                  trackWhatsAppContact('formulario_whatsapp_direto', {
+                    nome: nome.trim() || undefined,
+                    telemovel: telemovel.trim() || undefined,
+                  })
+                }
               >
                 <span className="t-wa-icon-svg">💬</span>
                 <span>WhatsApp Direto: <strong>920 601 070</strong></span>
@@ -315,6 +349,12 @@ export default function TerrenosForm() {
                     rel="noopener noreferrer"
                     className="t-btn t-btn-cta t-btn-full"
                     id="cta_form_success_wa"
+                    onClick={() =>
+                      trackWhatsAppContact('formulario_sucesso_whatsapp', {
+                        nome: submittedData.nome,
+                        telemovel: submittedData.formattedPhone,
+                      })
+                    }
                   >
                     <span className="t-wa-icon-svg">💬</span>
                     <span>Falar Agora no WhatsApp</span>
@@ -399,6 +439,12 @@ export default function TerrenosForm() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="t-form-error-wa"
+                      onClick={() =>
+                        trackWhatsAppContact('formulario_erro_whatsapp', {
+                          nome: nome.trim() || undefined,
+                          telemovel: telemovel.trim() || undefined,
+                        })
+                      }
                     >
                       Falar pelo WhatsApp →
                     </a>

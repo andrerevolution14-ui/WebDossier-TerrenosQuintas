@@ -1,5 +1,7 @@
 'use client';
 
+import { trackWhatsAppContact } from '@/lib/analytics';
+
 const WA_PHONE = '351920601070';
 const WA_URL = `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(
   'Olá André! Tenho interesse no Lote de Terreno em Quintãs (Aveiro) por 55.000€ e gostaria de tirar algumas dúvidas.'
@@ -15,6 +17,7 @@ export default function TerrenosWhatsAppButton() {
         className="t-wa-floating-btn"
         id="cta_floating_whatsapp"
         title="Falar diretamente com André Queirós no WhatsApp"
+        onClick={() => trackWhatsAppContact('botao_flutuante_whatsapp')}
       >
         {/* Sem animação de pulso */}
         <svg

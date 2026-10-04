@@ -2285,20 +2285,20 @@ main {
   border-radius: var(--radius-subtle);
   padding: 36px 32px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.45);
-  scroll-margin-top: 32px;
+  scroll-margin-top: 96px;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 @media (max-width: 768px) {
   .t-form-card,
   #formulario {
-    scroll-margin-top: 20px;
+    scroll-margin-top: 84px;
   }
 }
 @media (max-width: 480px) {
   .t-form-card,
   #formulario {
     padding: 28px 20px;
-    scroll-margin-top: 16px;
+    scroll-margin-top: 78px;
   }
 }
 
