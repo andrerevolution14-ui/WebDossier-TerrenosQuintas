@@ -67,17 +67,41 @@ export async function POST(req: Request) {
     const fbc = clientFbc || parseCookie(cookieHeader, '_fbc');
     const sourceUrl = url || req.headers.get('referer') || 'https://terrenosaveiro.pt/terrenos';
 
-    // 1. Gravar no Supabase (Project ID: zxwkviggbftqiqwnigjn)
-    const supabaseRes = await saveLeadToSupabase({
-      nome: cleanNome,
-      telemovel: cleanTelemovel,
-      origem: origem || (isWhatsAppLead ? 'WhatsApp Direto' : 'Dossier Terreno Quintãs, Aveiro'),
-      mensagem: mensagem || (isWhatsAppLead ? 'Interessado iniciou contacto através do WhatsApp.' : ''),
-      status: isWhatsAppLead ? 'whatsapp' : 'nova',
-    });
+    // Verificar se possui contacto real e válido (número com pelo menos 9 dígitos e nome preenchido)
+    const isRealPhone =
+      cleanTelemovel &&
+      cleanTelemovel.replace(/\D/g, '').length >= 9 &&
+      !cleanTelemovel.toLowerCase().includes('whatsapp') &&
+      !cleanTelemovel.toLowerCase().includes('contacto direto');
 
-    if (!supabaseRes.success) {
-      console.warn('[Lead API] Supabase erro/aviso:', supabaseRes.error);
+    const isRealName =
+      cleanNome &&
+      cleanNome.trim().length >= 2 &&
+      !cleanNome.toLowerCase().includes('interessado whatsapp') &&
+      !cleanNome.toLowerCase().includes('lead whatsapp');
+
+    const hasRealContactInfo = Boolean(isRealPhone && isRealName);
+
+    // 1. Gravar no Supabase APENAS se tiver informação real de contacto
+    // (não grava linhas vazias/genéricas quando o utilizador apenas clica no WhatsApp sem preencher dados)
+    let supabaseRes: { success: boolean; error?: string; status?: number; skipped?: boolean } = {
+      success: false,
+      skipped: true,
+    };
+    if (hasRealContactInfo) {
+      supabaseRes = await saveLeadToSupabase({
+        nome: cleanNome,
+        telemovel: cleanTelemovel,
+        origem: origem || (isWhatsAppLead ? 'WhatsApp (com dados preenchidos)' : 'Dossier Terreno Quintãs, Aveiro'),
+        mensagem: mensagem || null,
+        status: isWhatsAppLead ? 'whatsapp_com_dados' : 'nova',
+      });
+
+      if (!supabaseRes.success) {
+        console.warn('[Lead API] Supabase erro/aviso:', supabaseRes.error);
+      }
+    } else {
+      console.log('[Lead API] Supabase: Inserção ignorada por não conter contacto real (clique WhatsApp direto sem dados no formulário).');
     }
 
     // 2. Disparo Meta Conversions API (CAPI) — Evento LEAD com o valor mais alto (55.000€)
@@ -97,14 +121,14 @@ export async function POST(req: Request) {
       console.error('[Lead API] Erro ao enviar para Meta CAPI:', metaErr);
     }
 
-    // 3. Telegram Bot (Server-side env vars ou fallback)
+    // 3. Telegram Bot (Apenas quando há contacto real e válido para retorno)
     const token = process.env.TELEGRAM_BOT_TOKEN || process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID || process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID;
 
     const isTokenValid = token && token !== 'SEU_BOT_TOKEN_AQUI' && token.length > 10;
     const isChatIdValid = chatId && chatId !== 'SEU_CHAT_ID_AQUI' && chatId.length > 3;
 
-    if (isTokenValid && isChatIdValid) {
+    if (hasRealContactInfo && isTokenValid && isChatIdValid) {
       const headerTitle = isWhatsAppLead
         ? '💬 <b>NOVA LEAD WHATSAPP TERRENO AVEIRO</b> 💬'
         : '🚨 <b>NOVA LEAD FORMULÁRIO TERRENO AVEIRO</b> 🚨';
