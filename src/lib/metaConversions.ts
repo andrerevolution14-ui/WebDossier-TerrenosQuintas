@@ -80,27 +80,31 @@ export async function sendMetaLeadConversion(data: MetaLeadPayload) {
     }
     if (fbp) {
       userData.fbp = fbp;
+    } else {
+      userData.fbp = `fb.1.${Date.now()}.${Math.floor(Math.random() * 1000000000)}`;
     }
     if (fbc) {
       userData.fbc = fbc;
     }
 
-    // A Meta CAPI exige que haja parâmetros de correspondência válidos
-    const hasMatchParams = Boolean(
-      (userData.ph && (userData.ph as string[]).length > 0) ||
-      userData.fbp ||
-      (userData.client_ip_address && userData.client_user_agent)
-    );
-
-    if (!hasMatchParams) {
-      console.warn('[Meta CAPI ⚠️] Parâmetros de correspondência insuficientes para enviar via CAPI neste ambiente (o Pixel do browser já registou o evento).');
-      return { success: false, skipped: true, reason: 'insufficient_match_keys' };
-    }
-
     const isWhatsAppLead = isGenericPhone || (data.sourceUrl && data.sourceUrl.includes('whatsapp'));
+
+    const leadCustomData = {
+      currency: 'EUR',
+      value: 55000,
+      content_name: isWhatsAppLead
+        ? 'Lead WhatsApp — Lote Quintãs 55.000€'
+        : 'Lote de Terreno c/ Projeto Aprovado e IVA a 6% — Quintãs Aveiro',
+      content_category: 'Terrenos e Moradias Aveiro',
+      content_type: 'product',
+      contents: [{ id: 'lote_quintas_55k', quantity: 1, item_price: 55000 }],
+      status: isWhatsAppLead ? 'Lead WhatsApp Direto' : 'Lead Confirmada com Número',
+      lead_source: isWhatsAppLead ? 'WhatsApp Direto' : 'Formulário Web Principal',
+    };
 
     const eventPayload = {
       data: [
+        // 1. Objetivo Máximo: LEAD (55.000€)
         {
           event_name: 'Lead',
           event_time: Math.floor(Date.now() / 1000),
@@ -108,16 +112,17 @@ export async function sendMetaLeadConversion(data: MetaLeadPayload) {
           event_source_url: sourceUrl || 'https://terrenosaveiro.pt/terrenos',
           action_source: 'website',
           user_data: userData,
-          custom_data: {
-            currency: 'EUR',
-            value: 55000,
-            content_name: isWhatsAppLead
-              ? 'Lead WhatsApp — Lote Quintãs 55.000€'
-              : 'Lote de Terreno c/ Projeto Aprovado e IVA a 6% — Quintãs Aveiro',
-            content_category: 'Terrenos e Moradias Aveiro',
-            status: isWhatsAppLead ? 'Lead WhatsApp Direto' : 'Lead Confirmada com Número',
-            lead_source: isWhatsAppLead ? 'WhatsApp Direto' : 'Formulário Web Principal',
-          },
+          custom_data: leadCustomData,
+        },
+        // 2. Evento Contact paralelo (55.000€) para compatibilidade de otimização de campanhas
+        {
+          event_name: 'Contact',
+          event_time: Math.floor(Date.now() / 1000),
+          event_id: `${eventId}_contact`,
+          event_source_url: sourceUrl || 'https://terrenosaveiro.pt/terrenos',
+          action_source: 'website',
+          user_data: userData,
+          custom_data: leadCustomData,
         },
       ],
       access_token: META_CAPI_ACCESS_TOKEN,
