@@ -16,29 +16,16 @@ export function scrollToForm(e?: React.MouseEvent | Event) {
   if (!formElement) return;
 
   const isMobile = window.innerWidth < 768;
-  const header = document.querySelector('.t-header') as HTMLElement | null;
-  const headerHeight = header ? header.offsetHeight : 68;
-
-  const rect = formElement.getBoundingClientRect();
-  const viewportHeight = window.innerHeight;
-  const availableHeight = viewportHeight - headerHeight;
-
-  // Em desktop, se o cartão couber com folga no ecrã abaixo do cabeçalho,
-  // centra-o perfeitamente no espaço visível.
-  // Em mobile ou ecrãs pequenos, dá um respiro de 22px abaixo do header fixo.
-  let offsetFromHeader = isMobile ? 22 : 36;
-  if (!isMobile && rect.height > 0 && rect.height < availableHeight - 60) {
-    offsetFromHeader = Math.max(36, Math.floor((availableHeight - rect.height) / 2));
-  }
-
-  const targetY = window.pageYOffset + rect.top - headerHeight - offsetFromHeader;
+  // Margem superior limpa e milimétrica para o formulário ficar perfeitamente enquadrado no ecrã
+  const topPadding = isMobile ? 18 : 28;
+  const targetY = window.pageYOffset + formElement.getBoundingClientRect().top - topPadding;
 
   window.scrollTo({
-    top: Math.max(0, targetY),
+    top: Math.max(0, Math.round(targetY)),
     behavior: 'smooth',
   });
 
-  // Animação de pulso luminoso dourado para indicar exatamente onde preencher
+  // Animação de pulso luminoso dourado para destacar imediatamente os campos
   formElement.classList.remove('t-form-highlight');
   void formElement.offsetWidth; // Forçar reflow
   formElement.classList.add('t-form-highlight');
@@ -49,5 +36,5 @@ export function scrollToForm(e?: React.MouseEvent | Event) {
     if (input) {
       input.focus({ preventScroll: true });
     }
-  }, 480);
+  }, 400);
 }

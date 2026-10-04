@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { trackFormSubmissionLead, trackWhatsAppContact } from '@/lib/analytics';
 import { saveLeadToSupabase } from '@/lib/supabase';
+import { scrollToForm } from '@/lib/scrollToForm';
 
 const WA_PHONE = '351920601070';
 
@@ -104,6 +105,13 @@ export default function TerrenosExitIntent() {
 
   const handleClose = () => {
     setIsOpen(false);
+  };
+
+  const handleGoToForm = () => {
+    setIsOpen(false);
+    setTimeout(() => {
+      scrollToForm();
+    }, 120);
   };
 
   const handleRevealFields = () => {
@@ -237,7 +245,7 @@ export default function TerrenosExitIntent() {
 
             {/* Título a Vermelho / Negrito conforme pedido */}
             <h3 id="exit-popup-title" className="t-exit-title">
-              Vai mesmo esperar o preço subir na próxima semana?
+              Vai mesmo esperar o preço subir a próxima semana?
             </h3>
 
             {/* Texto Descritivo */}
@@ -275,6 +283,13 @@ export default function TerrenosExitIntent() {
                 >
                   <span>Quero Ser Contactado e Saber Mais</span>
                   <span className="t-btn-arrow">→</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={handleGoToForm}
+                  className="t-exit-skip-to-form"
+                >
+                  ou ver e preencher no formulário da página ↓
                 </button>
               </div>
             ) : (
@@ -348,6 +363,14 @@ export default function TerrenosExitIntent() {
                 <p className="t-exit-privacy-note">
                   🔒 Contacto 100% privado · Conversa direta com André Queirós
                 </p>
+
+                <button
+                  type="button"
+                  onClick={handleGoToForm}
+                  className="t-exit-skip-to-form"
+                >
+                  ou ir diretamente para o formulário na página ↓
+                </button>
               </form>
             )}
           </div>
