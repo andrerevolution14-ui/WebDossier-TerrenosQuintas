@@ -2139,6 +2139,11 @@ strong, b {
   animation: formGlowPulse 1.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Salto nativo (antes do JS carregar) também aterra com margem no cartão do formulário */
+#formulario {
+  scroll-margin-top: 16px;
+}
+
 .t-form-title {
   font-family: var(--sans);
   font-size: 1.18rem;

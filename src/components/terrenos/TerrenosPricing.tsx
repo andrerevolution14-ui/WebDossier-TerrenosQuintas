@@ -192,13 +192,13 @@ export default function TerrenosPricing() {
           </p>
           <div style={{ alignSelf: 'flex-start', marginTop: '4px' }}>
             <a
-              href="https://www.verdemont.eu/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#formulario"
+              onClick={scrollToForm}
+              id="cta_pricing_moradia_pronta"
               className="t-btn t-btn-outline"
               style={{ color: 'var(--text-primary)', borderColor: '#10B981' }}
             >
-              <span>Ver Moradia Terminada em Verdemont.eu ↗</span>
+              <span>Quero Saber Mais Sobre a Moradia Pronta →</span>
             </a>
           </div>
         </div>

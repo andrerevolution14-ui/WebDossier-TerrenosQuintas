@@ -194,13 +194,13 @@ export default function TerrenosProject() {
           </p>
           <div style={{ alignSelf: 'flex-start', marginTop: '4px' }}>
             <a
-              href="https://www.verdemont.eu/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#formulario"
+              onClick={scrollToForm}
+              id="cta_project_moradia_pronta"
               className="t-btn t-btn-outline"
               style={{ padding: '8px 18px', fontSize: '0.84rem', borderColor: '#10B981', color: '#0F172A' }}
             >
-              <span>Ver Moradia Pronta em Verdemont.eu ↗</span>
+              <span>Quero Saber Mais Sobre a Moradia Pronta →</span>
             </a>
           </div>
         </div>
