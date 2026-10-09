@@ -219,7 +219,7 @@ export default function TerrenosExitIntent() {
             </p>
             <a
               href={`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(
-                `Olá André! Deixei o meu contacto no popup (${nome} - ${telemovel}) sobre o terreno em Quintãs por 55.000€ e gostaria de falar agora.`
+                `Olá André! Deixei o meu contacto no popup (${nome} - ${telemovel}) sobre a promoção de -4.000€ no terreno em Quintãs (51.000€ negociável) e gostaria de falar agora.`
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -237,36 +237,37 @@ export default function TerrenosExitIntent() {
           </div>
         ) : (
           <div className="t-exit-content">
-            {/* Tag / Badge de Urgência */}
+            {/* Tag de Urgência Promo */}
             <div className="t-exit-badge-pill">
               <span className="t-exit-badge-dot" />
-              <span>Oportunidade Limitada · Quintãs, Aveiro</span>
+              <span>✨ Desconto de Interesse -4.000€ · Até 16 de Outubro</span>
             </div>
 
-            {/* Título a Vermelho / Negrito conforme pedido */}
+            {/* Título que vende o sonho */}
             <h3 id="exit-popup-title" className="t-exit-title">
-              Vai mesmo esperar o preço subir a próxima semana?
+              🏡 A sua moradia de sonho a 7 min de Aveiro — com desconto esta semana
             </h3>
 
             {/* Texto Descritivo */}
             <p className="t-exit-desc">
-              Terreno urbano de 233m² por <strong>55.000€ (negociável)</strong>, a apenas{' '}
-              <strong>7 min de Aveiro</strong> e <strong>5 min da A25</strong>. Com projeto de moradia moderna pago e aprovado.
+              Imagine acordar numa moradia moderna, com jardim privado e os seus filhos a brincar lá fora — tudo isto
+              a <strong>7 min do Glicínias</strong>. O projeto já está aprovado. E esta semana, o terreno sai com
+              <strong> -4.000€ de desconto</strong>: de 55.000€ por <strong>51.000€ (ainda negociável)</strong>.
             </p>
 
             {/* Checklist de Benefícios Visíveis */}
             <ul className="t-exit-checklist">
               <li>
-                <span className="t-exit-check-icon">✅</span>
-                <span><strong>Poupe até 40.000€</strong> em impostos (IVA a 6%).</span>
+                <span className="t-exit-check-icon">✨</span>
+                <span><strong>-4.000€</strong> de desconto de interesse para reservas até 16 de Outubro.</span>
               </li>
               <li>
-                <span className="t-exit-check-icon">✅</span>
-                <span><strong>Zero anos de espera</strong> na Câmara (Projeto T3 incluído no preço de 55.000€).</span>
+                <span className="t-exit-check-icon">💶</span>
+                <span><strong>Poupe ~40.000€</strong> em impostos com IVA a 6% na construção.</span>
               </li>
               <li>
-                <span className="t-exit-check-icon">✅</span>
-                <span><strong>Melhor terreno</strong> da zona!</span>
+                <span className="t-exit-check-icon">🏡</span>
+                <span>Projeto T3 aprovado incluído — <strong>comece a construir já</strong>.</span>
               </li>
             </ul>
 
@@ -281,7 +282,7 @@ export default function TerrenosExitIntent() {
                   className="t-btn t-btn-cta t-btn-full t-exit-primary-btn"
                   onClick={handleRevealFields}
                 >
-                  <span>Quero Ser Contactado e Saber Mais</span>
+                  <span>📅 Quero Garantir o Desconto de -4.000€</span>
                   <span className="t-btn-arrow">→</span>
                 </button>
                 <button
@@ -354,7 +355,7 @@ export default function TerrenosExitIntent() {
                     <span>A registar contacto...</span>
                   ) : (
                     <>
-                      <span>Quero ser contactado</span>
+                      <span>📅 Quero ser contactado</span>
                       <span className="t-btn-arrow">→</span>
                     </>
                   )}

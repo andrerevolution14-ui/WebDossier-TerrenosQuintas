@@ -4,7 +4,7 @@ import { trackWhatsAppContact } from '@/lib/analytics';
 
 const WA_PHONE = '351920601070';
 const WA_URL = `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(
-  'Olá André! Tenho interesse no Lote de Terreno em Quintãs (Aveiro) por 55.000€ e gostaria de tirar algumas dúvidas.'
+  'Olá André! Gostaria de agendar uma visita ao terreno em Quintãs (a 7 min do Glicínias) e aproveitar o desconto de -4.000€ desta semana (51.000€ negociável). Quando teria disponibilidade?'
 )}`;
 
 export default function TerrenosWhatsAppButton() {
@@ -16,7 +16,7 @@ export default function TerrenosWhatsAppButton() {
         rel="noopener noreferrer"
         className="t-wa-floating-btn"
         id="cta_floating_whatsapp"
-        title="Falar diretamente com André Queirós no WhatsApp"
+        title="Agendar Visita com André Queirós no WhatsApp"
         onClick={() => trackWhatsAppContact('botao_flutuante_whatsapp')}
       >
         {/* Sem animação de pulso */}

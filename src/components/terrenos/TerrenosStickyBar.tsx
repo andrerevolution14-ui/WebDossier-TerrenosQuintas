@@ -33,7 +33,7 @@ export default function TerrenosStickyBar() {
     <div
       className={`t-sticky-bar ${scrolled ? 't-sticky-bar--visible' : 't-sticky-bar--hidden'}`}
       role="complementary"
-      aria-label="Ação rápida"
+      aria-label="Ação rápida para agendar visita"
     >
       <div className="t-sticky-bar-inner">
         <a
@@ -42,7 +42,7 @@ export default function TerrenosStickyBar() {
           id="cta_sticky_bar"
           className="t-btn t-btn-cta t-sticky-btn t-cta-scroll"
         >
-          <span>Quero Ser Contactado</span>
+          <span>✨ -4.000€ Desconto · Agendar Visita</span>
           <span className="t-btn-arrow">→</span>
         </a>
       </div>

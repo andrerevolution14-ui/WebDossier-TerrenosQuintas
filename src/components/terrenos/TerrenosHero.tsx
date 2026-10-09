@@ -5,108 +5,138 @@ import { scrollToForm } from '@/lib/scrollToForm';
 
 export default function TerrenosHero() {
   return (
-    <section className="t-hero-v2" id="inicio">
-      {/* ── TOP AREA: FOTO REAL DE QUINTÃS COM ENQUADRAMENTO CINEMATOGRÁFICO ── */}
-      <div className="t-hero-photo-wrap">
-        <Image
-          src="/Curado/1.webp"
-          alt="Lote de Terreno em Quintãs, Oliveirinha, Aveiro"
-          fill
-          priority
-          quality={90}
-          sizes="(max-width: 1024px) 100vw, 54vw"
-          className="t-hero-photo-img"
-          style={{ objectFit: 'cover', objectPosition: '64% 20%' }}
-        />
-        {/* Gradiente cinematográfico suave na base */}
-        <div className="t-hero-photo-gradient" />
-
-        {/* Botão flutuante minimalista de localização no topo direito */}
-        <a href="#localizacao" className="t-hero-floating-map" title="Ver Localização no Mapa" aria-label="Localização">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-            <circle cx="12" cy="10" r="3" />
-          </svg>
-        </a>
-
-        {/* ── Quintãs & Oliveirinha: Tipografia Editorial Pura sobre o Asfalto/Gradiente ── */}
-        <div className="t-hero-photo-bottom-title">
-          <h1 className="t-hero-photo-headline">QUINTÃS</h1>
-          <p className="t-hero-photo-location">OLIVEIRINHA · AVEIRO</p>
+    <section className="inst-hero" id="inicio">
+      <div className="inst-hero-container">
+        {/* ── 1. KICKER NO TOPO (SEM NADA EM CIMA) ── */}
+        <div className="inst-kicker-center">
+          <span className="inst-kicker">🏡 / LOTE URBANO COM PROJETO APROVADO</span>
         </div>
-      </div>
 
-      {/* ── BOTTOM CARD: LUXURY IVORY CARD INTEGRADO ── */}
-      <div className="t-hero-card-wrap">
-        <div className="t-hero-card">
-          {/* Badge de Confiança Esmeralda (Linha Única Sem Quebras) */}
-          <div className="t-hero-badge-pill">
-            <span className="t-hero-badge-dot" />
-            <span>Venda Direta · Sem Comissões</span>
-          </div>
+        {/* ── 2. HEADLINE SOLICITADA ── */}
+        <h1 className="inst-hero-h1-center">
+          O lote para a sua nova Moradia a menos de (total) 240.000€
+        </h1>
 
-          {/* Título Principal Arquitetónico */}
-          <h2 className="t-hero-card-title">
-            <span className="t-hero-card-title-sub">Lote de Terreno com</span>
-            <span className="t-hero-card-title-main">Projeto de Arquitetura Aprovado</span>
-          </h2>
+        {/* ── 3. A 7 MINUTOS DE TUDO (CENTRADO) ── */}
+        <div className="inst-hero-highlight-center">
+          <span className="inst-hero-highlight">
+            🚗 A 7 minutos de tudo em Aveiro
+          </span>
+        </div>
 
-          {/* Subtítulo Sucinto e Fluido */}
-          <p className="t-hero-card-desc">
-            Lote urbano de 233m² com todas as infraestruturas concluídas, a <strong className="t-contrast-dark">7 minutos do centro de Aveiro</strong> e com benefício legal de <strong className="t-tax-accent">IVA a 6% na construção</strong>.
-          </p>
+        {/* ── 4. SUBTÍTULO CONCISO & DIRETO ── */}
+        <p className="inst-hero-desc-center">
+          Lote de <strong>233 m²</strong> c/ <strong>projeto T3 aprovado</strong> e benefício de <strong>IVA a 6%</strong> na construção.
+        </p>
 
-          {/* Painel Inset Sand/Champagne de Alto Prestígio (Layout Centrado Perfeito) */}
-          <div className="t-hero-price-panel">
-            {/* Preço e Status em Bloco Centrado (Nunca Quebra o Símbolo €) */}
-            <div className="t-hero-price-center">
-              <span className="t-hero-price-figure">55.000 €</span>
-              <span className="t-hero-price-status">Negociável</span>
-            </div>
-
-            {/* Grelha de 2 Colunas Perfeitamente Centrada e Segura (Sem Cortes nem Transbordos) */}
-            <div className="t-hero-specs-grid">
-              <div className="t-hero-spec-pill">
-                <span className="t-spec-icon-box">📐</span>
-                <span>233 m² Planos</span>
-              </div>
-              <div className="t-hero-spec-pill">
-                <span className="t-spec-icon-box">🏛️</span>
-                <span>Projeto Aprovado</span>
-              </div>
-            </div>
-
-            {/* Destaque Financeiro & Especificações Perfeitamente Centradas */}
-            <div className="t-hero-specs-details">
-              <div className="t-highlight-chip">
-                <span className="t-highlight-icon">💰</span>
-                <span>Poupança estimada ~40.000€ com&nbsp;IVA&nbsp;a&nbsp;6%</span>
-              </div>
-              <div className="t-specs-subline">
-                <span className="t-subline-item">7 min de Aveiro</span>
-                <span className="t-hero-dot">•</span>
-                <span className="t-subline-item">Infraestruturas Prontas</span>
-                <span className="t-hero-dot">•</span>
-                <span className="t-subline-item">Venda Direta</span>
-              </div>
+        {/* ── 5. A IMAGEM COMO ESTÁ (ENTRE SUBTÍTULO E BLOCO DO PREÇO) ── */}
+        <div className="inst-visual-feature">
+          <div className="inst-visual-pane inst-visual-pane--house">
+            <Image
+              src="/Moradia-Noturna.jpg"
+              alt="Projeto de Arquitetura Aprovado T3 em Quintãs"
+              fill
+              priority
+              quality={92}
+              sizes="(max-width: 768px) 50vw, 50vw"
+              className="inst-visual-img"
+              style={{ objectFit: 'cover', objectPosition: 'center 42%' }}
+            />
+            <div className="inst-visual-label inst-visual-label--house">
+              <span>🏡 / 01 · PROJETO APROVADO T3</span>
             </div>
           </div>
 
-          {/* Botão de Contacto Dourado Acetinado de Alta Conversão */}
-          <div className="t-hero-cta-area">
-            <a href="#formulario" onClick={scrollToForm} className="t-hero-btn-sand" id="cta_hero_contacto">
-              <span>Quero Ser Contactado</span>
-              <span className="t-btn-arrow">→</span>
+          <div className="inst-visual-divider" aria-hidden="true" />
+
+          <div className="inst-visual-pane inst-visual-pane--land">
+            <Image
+              src="/Curado/1.webp"
+              alt="Lote Real de 233m² em Quintãs, Aveiro"
+              fill
+              priority
+              quality={92}
+              sizes="(max-width: 768px) 50vw, 50vw"
+              className="inst-visual-img"
+              style={{ objectFit: 'cover', objectPosition: '72% 38%' }}
+            />
+            <div className="inst-visual-label inst-visual-label--land">
+              <span>📐 / 02 · LOTE REAL 233 M²</span>
+            </div>
+          </div>
+        </div>
+
+        {/* ── 6. BLOCO DO PREÇO (DESCONTO DE INTERESSE NESTA SEMANA) ── */}
+        <div className="inst-hero-pricing-box inst-hero-pricing-box--center">
+          <div className="inst-pricing-header">
+            <span className="inst-pricing-kicker">✨ Desconto de interesse nesta semana</span>
+            <span className="inst-pricing-saving">🏷️ -4.000 € na reserva</span>
+          </div>
+          <div className="inst-pricing-row">
+            <div className="inst-price-main">
+              <span className="inst-price-label">Esta semana:</span>
+              <span className="inst-price-val">51.000 €</span>
+            </div>
+            <div className="inst-price-official">
+              <span className="inst-price-off-label">Valor oficial:</span>
+              <span className="inst-price-strike">55.000 €</span>
+              <span className="inst-price-neg">Negociável</span>
+            </div>
+          </div>
+
+          <div className="inst-cta-wrap">
+            <a
+              href="#formulario"
+              onClick={scrollToForm}
+              className="inst-btn-pill-main"
+              id="cta_hero_visita"
+              title="Agendar Visita ao Terreno"
+            >
+              📅 Agendar Visita ao Terreno →
             </a>
           </div>
+        </div>
 
-          {/* Incentivo ao Scroll Elegante e Suave */}
-          <a href="#galeria" className="t-hero-scroll-cue-link" aria-label="Deslize para ver fotos e plantas">
-            <span className="t-hero-scroll-label">Deslize para ver fotos e plantas</span>
-            <div className="t-hero-scroll-cue-circle">
-              <span className="t-hero-scroll-arrow">↓</span>
+        {/* ── 7. OS 4 PONTOS EM GRELHA DE 2X2 (DIRETOS E SEM BLOCOS DE TEXTO) ── */}
+        <div className="inst-specs-section">
+          <div className="inst-specs-intro-center">
+            <span className="inst-kicker">🏛️ / ESPECIFICAÇÕES PRINCIPAIS</span>
+            <h2 className="inst-specs-h2">Construção Imediata Sem Burocracias</h2>
+          </div>
+
+          <div className="inst-specs-grid-2x2">
+            <div className="inst-spec-col inst-spec-col--loc">
+              <span className="inst-spec-idx">📍 01 / LOCALIZAÇÃO</span>
+              <h3 className="inst-spec-title">7 Min do Glicínias</h3>
+              <p className="inst-spec-text">
+                A <strong>7 min</strong> de Aveiro e nós da A17/EN109.
+              </p>
             </div>
-          </a>
+
+            <div className="inst-spec-col inst-spec-col--area">
+              <span className="inst-spec-idx">📐 02 / ÁREA & LOTE</span>
+              <h3 className="inst-spec-title">233 m² Plano</h3>
+              <p className="inst-spec-text">
+                Pronto c/ <strong>água, luz, saneamento e fibra</strong>.
+              </p>
+            </div>
+
+            <div className="inst-spec-col inst-spec-col--arch">
+              <span className="inst-spec-idx">🏛️ 03 / ARQUITETURA</span>
+              <h3 className="inst-spec-title">Projeto T3 Aprovado</h3>
+              <p className="inst-spec-text">
+                Aprovado na <strong>Câmara de Aveiro</strong>. Sem esperas.
+              </p>
+            </div>
+
+            <div className="inst-spec-col inst-spec-col--tax">
+              <span className="inst-spec-idx">💶 04 / FISCALIDADE</span>
+              <h3 className="inst-spec-title">IVA a 6% na Obra</h3>
+              <p className="inst-spec-text">
+                Poupança até <strong>40.000€</strong> c/ <strong>taxa reduzida de IVA</strong>.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

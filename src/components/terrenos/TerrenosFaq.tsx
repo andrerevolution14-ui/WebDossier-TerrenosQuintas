@@ -33,8 +33,8 @@ const faqs = [
     a: 'O processo é 100% seguro e transparente. Celebra-se um Contrato Promessa de Compra e Venda (CPCV) com prazo para escritura em Cartório ou Casa Pronta. O lote tem caderneta predial urbana e registo predial limpo, sem ónus nem encargos.',
   },
   {
-    q: 'O valor de 55.000€ é realmente negociável?',
-    a: 'Sim. Estamos abertos a analisar propostas sérias de compradores com perfil validado ou disponibilidade para escritura rápida. Peça-nos contacto e conversamos sem compromisso.',
+    q: 'O valor é realmente negociável? E como funciona o desconto de -4.000€ desta semana?',
+    a: 'Sim! Para quem reservar durante a nossa campanha desta semana (12 a 16 de Outubro), garantimos de antemão um acerto de preço obrigatório de -4.000€, ficando o lote por 51.000€. E mesmo após esse desconto imediato, o valor continua aberto a negociação e propostas sérias de quem tiver disponibilidade para avançar.',
   },
 ];
 
@@ -49,8 +49,8 @@ export default function TerrenosFaq() {
     <section className="t-section t-section--alt" id="faq">
       <div className="t-wrap">
         <div className="t-section-header">
-          <p className="t-label">Esclarecimento Total</p>
-          <h2 className="t-heading">Perguntas Frequentes</h2>
+          <p className="t-label">💡 / ESCLARECIMENTO TOTAL</p>
+          <h2 className="t-heading">❓ Perguntas Frequentes</h2>
           <p className="t-section-sub">
             Respostas diretas e honestas às principais dúvidas sobre este terreno, o projeto e o processo de compra.
           </p>
@@ -89,7 +89,7 @@ export default function TerrenosFaq() {
             id="cta_faq_contacto"
             className="t-btn t-btn-cta t-cta-scroll"
           >
-            <span>Falar com o Proprietário</span>
+            <span>📅 Agendar Visita e Falar com o Proprietário</span>
             <span className="t-btn-arrow">→</span>
           </a>
         </div>

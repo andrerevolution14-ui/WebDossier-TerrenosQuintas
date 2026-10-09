@@ -33,3 +33,4 @@ next-env.d.ts
 # local duplicates
 /videos/
 /public/Cru/
+temp_chrome/

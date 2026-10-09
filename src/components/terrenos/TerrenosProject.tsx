@@ -23,27 +23,26 @@ export default function TerrenosProject() {
     <section className="t-section t-section--dark" id="projeto">
       <div className="t-wrap">
         <div className="t-section-header">
-          <p className="t-label t-label-accent-light">O Projeto de Arquitetura</p>
-          <h2 className="t-heading t-heading--light">
-            O Projeto Já Está Feito<br />
-            <span className="t-heading-accent">e Aprovado pela Câmara de Aveiro</span>
+          <p className="t-label">📐 / O PROJETO DE ARQUITETURA APROVADO</p>
+          <h2 className="t-heading">
+            🏡 O Projeto Já Está Feito<br />
+            <span style={{ color: '#059669' }}>e Aprovado pela Câmara de Aveiro</span>
           </h2>
-          <p className="t-section-sub t-section-sub--light">
-            Renders finais, plantas 2D e 3D de arquitetura — tudo incluído nos 55.000€ do lote.
-            Toque em qualquer imagem para ampliar e navegar.
+          <p className="t-section-sub">
+            Renders, plantas 2D e 3D — incluídos no lote c/ <strong>desconto de 4.000€</strong> nesta semana (51.000€ negociável).
           </p>
         </div>
 
         {/* Banner de destaque */}
-        <div className="t-approved-banner" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '10px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div className="t-approved-banner" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <span className="t-approved-check">✅</span>
             <span>
-              <strong>PROJETO 100% APROVADO</strong> — Poupa 12 a 24 meses de burocracia camarária
+              <strong>PROJETO 100% APROVADO</strong> — Poupa 12 a 24 meses de aprovações camarárias
             </span>
           </div>
-          <p style={{ fontSize: '0.85rem', color: 'var(--t-beige-light)', margin: 0, lineHeight: 1.6, opacity: 0.9 }}>
-            ℹ️ <em>Nota: O projeto está formalmente aprovado. Falta apenas realizar um <strong>Aditamento ao Processo</strong> para levantamento das licenças de construção — formalidade simples e rápida decorrente do prazo de 2 anos sem início de obra.</em>
+          <p style={{ fontSize: '0.82rem', color: '#065F46', margin: 0, lineHeight: 1.45 }}>
+            ℹ️ <em>Nota: Projeto formalmente aprovado. Apenas requer <strong>Aditamento ao Processo</strong> para levantamento de licenças.</em>
           </p>
         </div>
 
@@ -171,34 +170,35 @@ export default function TerrenosProject() {
         <div
           style={{
             marginTop: '28px',
-            background: 'rgba(197, 168, 128, 0.08)',
-            border: '1px solid rgba(197, 168, 128, 0.35)',
+            background: '#FFFFFF',
+            border: '1.5px solid #D1E7DD',
             borderRadius: '16px',
             padding: '24px 28px',
             display: 'flex',
             flexDirection: 'column',
             gap: '12px',
+            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.03)',
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
-            <span style={{ fontSize: '0.74rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--t-beige-light)' }}>
+            <span style={{ fontSize: '0.74rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#059669' }}>
               🏡 Projeto Concluído &bull; Chave na Mão
             </span>
-            <span style={{ fontSize: '1.05rem', fontWeight: 700, color: '#fff' }}>
+            <span style={{ fontSize: '1.05rem', fontWeight: 700, color: '#0F172A' }}>
               335.000€ Chave na Mão
             </span>
           </div>
-          <p style={{ fontSize: '0.88rem', color: '#E2E8F0', lineHeight: 1.6, margin: 0 }}>
+          <p style={{ fontSize: '0.88rem', color: '#334155', lineHeight: 1.6, margin: 0 }}>
             Quer ver este projeto de moradia totalmente construído e pronto a habitar? Visite o site oficial do empreendimento{' '}
-            <strong style={{ color: '#fff' }}>Domaine XXV</strong> em Oliveirinha (Aveiro), com jardim privativo, garagem e acabamentos de luxo.
+            <strong style={{ color: '#0F172A' }}>Domaine XXV</strong> em Oliveirinha (Aveiro), com jardim privativo, garagem e acabamentos de luxo.
           </p>
           <div style={{ alignSelf: 'flex-start', marginTop: '4px' }}>
             <a
               href="https://www.verdemont.eu/"
               target="_blank"
               rel="noopener noreferrer"
-              className="t-btn t-btn-accent"
-              style={{ padding: '8px 18px', fontSize: '0.84rem' }}
+              className="t-btn t-btn-outline"
+              style={{ padding: '8px 18px', fontSize: '0.84rem', borderColor: '#10B981', color: '#0F172A' }}
             >
               <span>Ver Moradia Pronta em Verdemont.eu ↗</span>
             </a>
@@ -212,7 +212,7 @@ export default function TerrenosProject() {
             className="t-btn t-btn-cta t-cta-scroll"
             id="cta_project_contacto"
           >
-            <span>Tenho Interesse no Projeto — Contactar</span>
+            <span>📅 Quero Visitar e Conhecer o Projeto</span>
             <span className="t-btn-arrow">→</span>
           </a>
         </div>

@@ -20,9 +20,9 @@ export default function TerrenosGallery() {
     <section className="t-section t-section--alt" id="galeria">
       <div className="t-wrap">
         <div className="t-section-header">
-          <p className="t-label">Localização Vista de Cima</p>
+          <p className="t-label">📸 / LOCALIZAÇÃO VISTA DE CIMA</p>
           <h2 className="t-heading">
-            O Terreno, os Acessos e a Envolvente
+            🌳 O Terreno, os Acessos e a Envolvente
           </h2>
           <p className="t-section-sub">
             Fotografias reais do lote e da vizinhança em Quintãs, Oliveirinha.
@@ -66,7 +66,7 @@ export default function TerrenosGallery() {
             className="t-btn t-btn-cta t-cta-scroll"
             id="cta_galeria_contacto"
           >
-            <span>Pedir Mais Informações</span>
+            <span>📅 Agendar Visita ao Terreno</span>
             <span className="t-btn-arrow">→</span>
           </a>
         </div>

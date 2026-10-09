@@ -7,55 +7,55 @@ const specs = [
     icon: '📐',
     label: 'Área Total do Lote',
     value: '233 m²',
-    detail: 'Área útil plana, 100% aproveitável para implantação da moradia e logradouro exterior.',
+    detail: 'Terreno plano, 100% aproveitável para moradia e logradouro.',
   },
   {
     icon: '🏠',
     label: 'Tipologia Projetada',
-    value: 'Moradia T3 / T3+1',
-    detail: 'R/C, 1º Andar e Piso Recuado com suites, varandas panorâmicas e garagem privativa.',
+    value: 'Moradia T3 Contemporânea',
+    detail: 'R/C, 1º Piso e Recuado com suites, varandas e garagem.',
   },
   {
     icon: '💶',
     label: 'Enquadramento Fiscal',
     value: 'IVA a 6% na Construção',
-    detail: 'A empreitada de construção qualifica-se para a taxa reduzida de IVA a 6% para habitação própria permanente.',
+    detail: 'Taxa reduzida de IVA na empreitada (poupança até 40.000€).',
   },
   {
     icon: '🔌',
     label: 'Infraestruturas',
     value: '100% Concluídas à Porta',
-    detail: 'Água da rede, saneamento, eletricidade, iluminação pública e fibra ótica prontas a ligar.',
+    detail: 'Água, eletricidade, saneamento e fibra ótica prontas a ligar.',
   },
   {
     icon: '🏗️',
     label: 'Sistema Construtivo',
     value: 'Betão Armado ou LSF',
-    detail: 'Liberdade total para construir em alvenaria tradicional ou em estrutura de aço leve (LSF).',
+    detail: 'Opção de construir em alvenaria tradicional ou aço leve.',
   },
   {
     icon: '📏',
     label: 'Topografia do Solo',
     value: 'Terreno 100% Plano',
-    detail: 'Reduz substancialmente custos de escavação, aterro e muros de suporte — poupança direta em obra.',
+    detail: 'Poupança direta em escavações, aterro e muros de suporte.',
   },
   {
     icon: '☀️',
     label: 'Exposição Solar',
-    value: 'Orientação Nascente / Poente',
-    detail: 'Excelente luminosidade natural durante todo o dia e elevada eficiência energética para a habitação.',
+    value: 'Nascente / Poente',
+    detail: 'Luz natural o dia todo e máxima eficiência energética.',
   },
   {
     icon: '📍',
     label: 'Localização Estratégica',
     value: 'Quintãs, Oliveirinha',
-    detail: 'Zona residencial calma e segura · A25/N109 a 5 minutos · 7 minutos do centro de Aveiro.',
+    detail: 'A 7 min de Aveiro e a 5 min do nó da A25 / N109.',
   },
   {
     icon: '📄',
     label: 'Licenciamento & Registo',
-    value: 'Projeto Aprovado · Registo Limpo',
-    detail: 'Aprovação camarária garantida (poupa 12 a 24 meses). Requer apenas aditamento simples para licença.',
+    value: 'Projeto Aprovado na Câmara',
+    detail: 'Aprovado formalmente. Poupa 12 a 24 meses de burocracias.',
   },
 ];
 
@@ -64,14 +64,12 @@ export default function TerrenosDetails() {
     <section className="t-section" id="especificacoes">
       <div className="t-wrap">
         <div className="t-section-header">
-          <p className="t-label">Ficha Técnica & Enquadramento</p>
+          <p className="t-label">📑 / FICHA TÉCNICA & ENQUADRAMENTO</p>
           <h2 className="t-heading">
-            Especificações Técnicas da Construção e do Lote
+            🏛️ Especificações Técnicas da Construção e do Lote
           </h2>
           <p className="t-section-sub">
-            Todos os parâmetros técnicos, urbanísticos e fiscais do terreno e da futura moradia — lote
-            com projeto aprovado por{' '}
-            <strong style={{ color: 'var(--t-beige-dark)' }}>55.000€ (Negociável)</strong>.
+            Parâmetros do lote com projeto aprovado — <strong>51.000€</strong> nesta semana c/ <strong>desconto de 4.000€</strong> (negociável).
           </p>
         </div>
 
@@ -81,7 +79,7 @@ export default function TerrenosDetails() {
           <div className="t-address-body">
             <span className="t-address-label">Morada Exata:</span>
             <span className="t-address-val">Rua Acácio Simões Vieira (Lote 25), Quintãs, 3810-843 Oliveirinha, Aveiro</span>
-            <span className="t-address-hint">(A apenas 7 minutos do centro de Aveiro)</span>
+            <span className="t-address-hint">(A apenas 7 minutos do Glicínias Plaza e centro de Aveiro)</span>
           </div>
         </div>
 
@@ -147,7 +145,7 @@ export default function TerrenosDetails() {
             id="cta2_contacto_specs"
             className="t-btn t-btn-cta t-cta-scroll"
           >
-            <span>Quero Ser Contactado</span>
+            <span>📅 Agendar Visita ao Terreno</span>
             <span className="t-btn-arrow">→</span>
           </a>
         </div>

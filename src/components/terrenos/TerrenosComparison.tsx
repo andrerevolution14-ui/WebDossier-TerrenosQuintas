@@ -25,7 +25,7 @@ const rows = [
   },
   {
     common: { icon: '❌', text: 'Localização distante ou preços acima de 60.000–80.000€' },
-    ours: { icon: '✅', text: 'A 7 min de Aveiro por 55.000€ — negociável' },
+    ours: { icon: '✅', text: 'A 7 min do Glicínias · 51.000€ esta semana (-4.000€) — ainda negociável' },
   },
 ];
 
@@ -34,9 +34,9 @@ export default function TerrenosComparison() {
     <section className="t-section" id="comparativo">
       <div className="t-wrap">
         <div className="t-section-header">
-          <p className="t-label">Análise Comparativa</p>
+          <p className="t-label">⚖️ / ANÁLISE COMPARATIVA</p>
           <h2 className="t-heading">
-            Porquê Este Lote e Não Outro em Aveiro?
+            🏆 Porquê Este Lote e Não Outro em Aveiro?
           </h2>
           <p className="t-section-sub">
             Há terrenos no mercado. Este diferencia-se pelo que inclui — não apenas pela localização.
@@ -51,8 +51,8 @@ export default function TerrenosComparison() {
               <span>Terreno Comum no Mercado</span>
             </div>
             <div className="t-compare-col t-compare-col--good">
-              <span className="t-compare-col-icon">🏆</span>
-              <span>Este Lote — 55.000€</span>
+              <span className="t-compare-col-icon">🌟</span>
+              <span>Este Lote — Desconto 51.000€</span>
             </div>
           </div>
 
@@ -73,10 +73,10 @@ export default function TerrenosComparison() {
 
         {/* Urgência */}
         <div className="t-compare-urgency">
-          <span>🔥</span>
+          <span>✨</span>
           <p>
-            <strong>Disponibilidade Limitada.</strong> Publicado Hoje · Apenas 2 lotes disponíveis
-            nesta localização. Visitas disponíveis <strong>esta semana</strong>.
+            <strong>Desconto de Interesse Nesta Semana.</strong> Desconto de 4.000€ para quem reservar entre
+            12 e 16 de Outubro (51.000€, ainda negociável). Apenas 2 lotes disponíveis. Visitas abertas esta semana.
           </p>
         </div>
 
@@ -87,7 +87,7 @@ export default function TerrenosComparison() {
             id="cta4_contacto_comparativo"
             className="t-btn t-btn-cta t-cta-scroll"
           >
-            <span>Quero Ser Contactado</span>
+            <span>📅 Agendar Visita ao Terreno</span>
             <span className="t-btn-arrow">→</span>
           </a>
         </div>

@@ -33,11 +33,11 @@ export default function TerrenosVideo() {
     <section className="t-section t-section--dark" id="videos">
       <div className="t-wrap">
         <div className="t-section-header">
-          <p className="t-label t-label-accent-light">Vídeos do Projeto</p>
-          <h2 className="t-heading t-heading--light">
-            Veja o Terreno e o Projeto em Vídeo
+          <p className="t-label">🎬 / VÍDEOS DO PROJETO & ENVOLVENTE</p>
+          <h2 className="t-heading">
+            🎥 Veja o Terreno e o Projeto em Vídeo
           </h2>
-          <p className="t-section-sub t-section-sub--light">
+          <p className="t-section-sub">
             Clique em qualquer vídeo para assistir em ecrã ampliado com total detalhe.
           </p>
         </div>
@@ -85,7 +85,7 @@ export default function TerrenosVideo() {
             id="cta_videos_contacto"
             className="t-btn t-btn-cta t-cta-scroll"
           >
-            <span>Quero Ser Contactado</span>
+            <span>📅 Agendar Visita ao Lote</span>
             <span className="t-btn-arrow">→</span>
           </a>
         </div>
