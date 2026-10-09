@@ -90,6 +90,7 @@ export default function TerrenosForm() {
   // Escuta cliques em links para #formulario em toda a página e interceta com navegação suave
   useEffect(() => {
     const handleAnchorClick = (e: MouseEvent) => {
+      if (e.defaultPrevented) return;
       const target = (e.target as HTMLElement)?.closest('a');
       if (target && target.getAttribute('href') === '#formulario') {
         e.preventDefault();
@@ -393,12 +394,6 @@ export default function TerrenosForm() {
               </div>
             ) : (
               <form ref={formRef} onSubmit={handleSubmit} className="t-form" noValidate>
-                {/* Badge de Destaque Máximo no Topo do Formulário */}
-                <div className="t-form-badge-strip">
-                  <span className="t-form-badge-tag">✨ OPORTUNIDADE SEMANAL</span>
-                  <span className="t-form-badge-discount">🏷️ -4.000€ na Reserva</span>
-                </div>
-
                 <h3 className="t-form-title">Agendar Visita ao Terreno</h3>
                 <p className="t-form-intro">
                   Garanta <strong>51.000€</strong> (de 55.000€). Deixe os seus dados e combinamos a visita.

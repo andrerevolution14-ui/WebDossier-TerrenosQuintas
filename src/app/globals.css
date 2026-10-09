@@ -2247,15 +2247,20 @@ strong, b {
   border-color: #10B981;
 }
 .t-choice-pill--active {
-  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-  border-color: #059669;
-  color: #FFFFFF;
-  box-shadow: 0 3px 10px rgba(16, 185, 129, 0.3);
-  font-weight: 700;
+  background: linear-gradient(135deg, #ECFDF5 0%, #DCFCE7 100%) !important;
+  border-color: #10B981 !important;
+  color: #064E3B !important;
+  box-shadow: 0 0 0 1.5px #10B981, 0 3px 8px rgba(16, 185, 129, 0.2) !important;
+  font-weight: 700 !important;
+}
+.t-choice-pill--active span {
+  color: #064E3B !important;
+  font-weight: 800 !important;
 }
 .t-choice-pill--active small {
-  opacity: 1;
-  color: #D1FAE5;
+  opacity: 1 !important;
+  color: #059669 !important;
+  font-weight: 700 !important;
 }
 
 .t-form-error {
