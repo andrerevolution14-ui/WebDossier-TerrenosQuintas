@@ -581,7 +581,7 @@ export default function TerrenosForm() {
                     </>
                   ) : (
                     <>
-                      <span>📅 Garantir -4.000€ e Agendar Visita</span>
+                      <span>📅 Garantir Desconto e Agendar Visita</span>
                       <span className="t-btn-arrow">→</span>
                     </>
                   )}
