@@ -28,6 +28,8 @@ export async function POST(req: Request) {
     const {
       nome,
       telemovel,
+      quandoLigar,
+      quandoVisitar,
       mensagem,
       origem,
       eventId: clientEventId,
@@ -118,8 +120,10 @@ export async function POST(req: Request) {
       supabaseRes = await saveLeadToSupabase({
         nome: cleanNome,
         telemovel: cleanTelemovel,
-        origem: origem || (isWhatsAppLead ? 'WhatsApp (com dados preenchidos)' : 'Dossier Terreno Quintãs, Aveiro'),
+        quando_ligar: typeof quandoLigar === 'string' && quandoLigar.trim() ? quandoLigar.trim() : null,
+        quando_visitar: typeof quandoVisitar === 'string' && quandoVisitar.trim() ? quandoVisitar.trim() : null,
         mensagem: mensagem || null,
+        origem: origem || (isWhatsAppLead ? 'WhatsApp (com dados preenchidos)' : 'Dossier Terreno Quintãs, Aveiro'),
         status: isWhatsAppLead ? 'whatsapp_com_dados' : 'nova',
       });
 
@@ -163,6 +167,8 @@ export async function POST(req: Request) {
         `${headerTitle}\n\n` +
         `👤 <b>Nome:</b> ${cleanNome}\n` +
         `📞 <b>Contacto:</b> ${cleanTelemovel}\n` +
+        (quandoLigar ? `⏰ <b>Quando ligar:</b> ${quandoLigar}\n` : '') +
+        (quandoVisitar ? `🏡 <b>Quando visitar:</b> ${quandoVisitar}\n` : '') +
         `📅 <b>Data/Hora:</b> ${timestamp}\n` +
         (origem ? `📍 <b>Origem:</b> ${origem}\n` : '') +
         (mensagem ? `💬 <b>Mensagem:</b> ${mensagem}\n` : '') +

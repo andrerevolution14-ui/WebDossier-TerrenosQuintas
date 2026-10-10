@@ -192,6 +192,8 @@ export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<stri
   // 2. Tentar recuperar nome ou telemóvel apenas se já tiverem sido escritos no formulário
   const inputNome = (document.getElementById('t-nome') as HTMLInputElement | null)?.value?.trim();
   const inputTel = (document.getElementById('t-telemovel') as HTMLInputElement | null)?.value?.trim();
+  const quandoLigar = (document.getElementById('t-quando-ligar') as HTMLInputElement | null)?.value?.trim() || undefined;
+  const quandoVisitar = (document.getElementById('t-quando-visitar') as HTMLInputElement | null)?.value?.trim() || undefined;
 
   const nome = (extra.nome as string) || inputNome || `Interessado WhatsApp (${source})`;
   const telemovel = (extra.telemovel as string) || inputTel || 'Contacto direto WhatsApp';
@@ -203,8 +205,10 @@ export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<stri
   const leadPayload = {
     nome,
     telemovel,
-    origem: `WhatsApp — ${source}`,
+    quandoLigar,
+    quandoVisitar,
     mensagem: `Interessado clicou no botão WhatsApp (${source}) — Valor 55.000€.`,
+    origem: `WhatsApp — ${source}`,
     eventId,
     fbp,
     fbc,

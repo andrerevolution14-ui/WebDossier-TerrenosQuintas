@@ -18,6 +18,21 @@ declare global {
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
+/** Texto gravado na coluna `quando_ligar` do Supabase */
+const LABEL_HORARIO = {
+  manha: 'Manhã (9h–13h)',
+  tarde: 'Tarde (14h–19h)',
+  noite: 'Noite (19h–21h)',
+  qualquer: 'Qualquer hora / O mais breve possível',
+} as const;
+
+/** Texto gravado na coluna `quando_visitar` do Supabase */
+const LABEL_VISITA = {
+  semana: 'Dias úteis (Seg–Sex)',
+  'fim-semana': 'Fim de semana (Sáb–Dom)',
+  qualquer: 'Qualquer dia / Flexível',
+} as const;
+
 interface SubmittedLead {
   nome: string;
   telemovel: string;
@@ -142,23 +157,10 @@ export default function TerrenosForm() {
     const fbp = getCookie('_fbp');
     const fbc = getCookie('_fbc');
 
-    const labelHorario =
-      horarioContacto === 'manha'
-        ? 'Manhã (9h–13h)'
-        : horarioContacto === 'tarde'
-        ? 'Tarde (14h–19h)'
-        : horarioContacto === 'noite'
-        ? 'Noite (19h–21h)'
-        : 'Qualquer hora / O mais breve possível';
+    const labelHorario = LABEL_HORARIO[horarioContacto];
+    const labelPreferencia = LABEL_VISITA[preferenciaVisita];
 
-    const labelPreferencia =
-      preferenciaVisita === 'semana'
-        ? 'Dias úteis (Seg–Sex)'
-        : preferenciaVisita === 'fim-semana'
-        ? 'Fim de semana (Sáb–Dom)'
-        : 'Qualquer dia / Flexível';
-
-    const payloadMensagem = `Preferência de Visita: ${labelPreferencia} | Melhor Hora para Contactar: ${labelHorario} | Campanha: -4.000€ (51.000€)`;
+    const payloadMensagem = 'Campanha: -4.000€ (51.000€)';
 
     let savedOk = false;
 
@@ -169,8 +171,10 @@ export default function TerrenosForm() {
         body: JSON.stringify({
           nome: nome.trim(),
           telemovel: formattedDisplay,
-          origem: 'Agendamento de Visita — Terreno Quintãs (7 min Glicínias)',
+          quandoLigar: labelHorario,
+          quandoVisitar: labelPreferencia,
           mensagem: payloadMensagem,
+          origem: 'Agendamento de Visita — Terreno Quintãs (7 min Glicínias)',
           eventId,
           fbp,
           fbc,
@@ -191,8 +195,10 @@ export default function TerrenosForm() {
         const directRes = await saveLeadToSupabase({
           nome: nome.trim(),
           telemovel: formattedDisplay,
-          origem: 'Agendamento de Visita (Fallback Cliente Supabase)',
+          quando_ligar: labelHorario,
+          quando_visitar: labelPreferencia,
           mensagem: payloadMensagem,
+          origem: 'Agendamento de Visita (Fallback Cliente Supabase)',
           status: 'nova',
         });
         if (directRes.success) {
@@ -395,6 +401,9 @@ export default function TerrenosForm() {
             ) : (
               <form ref={formRef} onSubmit={handleSubmit} className="t-form" noValidate>
                 <h3 className="t-form-title">Agendar Visita ao Terreno</h3>
+                {/* Espelho das escolhas para o rastreio do WhatsApp (analytics.ts) gravar também estes campos */}
+                <input type="hidden" id="t-quando-ligar" value={LABEL_HORARIO[horarioContacto]} readOnly />
+                <input type="hidden" id="t-quando-visitar" value={LABEL_VISITA[preferenciaVisita]} readOnly />
                 <p className="t-form-intro">
                   Garanta <strong>51.000€</strong> (de 55.000€). Deixe os seus dados e combinamos a visita.
                 </p>
