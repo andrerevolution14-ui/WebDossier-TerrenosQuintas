@@ -9,7 +9,7 @@ export default function TerrenosHero() {
       <div className="inst-hero-container">
         {/* ── 1. KICKER NO TOPO ── */}
         <div className="inst-kicker-center">
-          <span className="inst-kicker">QUINTÃS, AVEIRO · 51.000 € NEGOCIÁVEL · VENDA DIRETA</span>
+          <span className="inst-kicker">QUINTÃS, AVEIRO · VENDA DIRETA · 51.000 €</span>
         </div>
 
         {/* ── 2. HEADLINE DIRETA E SEM RUÍDO ── */}
@@ -81,21 +81,15 @@ export default function TerrenosHero() {
           </div>
         </div>
 
-        {/* ── 6. BLOCO DO PREÇO (PREÇO SIMPLES E VERDADEIRO: 51.000€ NEGOCIÁVEL) ── */}
+        {/* ── 6. BLOCO DO PREÇO CONCISO (51.000 €) ── */}
         <div className="inst-hero-pricing-box inst-hero-pricing-box--center">
-          <div className="inst-pricing-header">
+          <div className="inst-pricing-header" style={{ justifyContent: 'center' }}>
             <span className="inst-pricing-kicker">Venda Direta com o Proprietário</span>
-            <span className="inst-pricing-saving">Sem comissões de agência</span>
           </div>
-          <div className="inst-pricing-row">
+          <div className="inst-pricing-row" style={{ justifyContent: 'center' }}>
             <div className="inst-price-main">
               <span className="inst-price-label">Valor do Lote:</span>
               <span className="inst-price-val">51.000 €</span>
-            </div>
-            <div className="inst-price-official">
-              <span className="inst-price-neg" style={{ fontSize: '0.82rem', padding: '4px 10px' }}>
-                Negociável
-              </span>
             </div>
           </div>
 
