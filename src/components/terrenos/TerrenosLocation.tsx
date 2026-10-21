@@ -6,12 +6,12 @@ const MAPS_EMBED_URL = 'https://maps.google.com/maps?q=40.5829732,-8.6175628&t=m
 
 
 const distances = [
-  { icon: '🛒', label: 'Glicínias Plaza', value: '7 min', detail: 'Principal centro comercial de Aveiro (N109 s/ portagens)' },
-  { icon: '🏙️', label: 'Centro de Aveiro', value: '7 min', detail: 'Acesso rápido e direto sem trânsito urbano' },
-  { icon: '🛣️', label: 'Acesso A25 & A17', value: '5 min', detail: 'Ligação direta e desimpedida à autoestrada' },
-  { icon: '🎓', label: 'Universidade de Aveiro', value: '8 min', detail: 'Polo universitário e centros tecnológicos' },
-  { icon: '🏥', label: 'Hospital de Aveiro', value: '8 min', detail: 'Infraestruturas de saúde e clínicas' },
-  { icon: '🏖️', label: 'Praias da Barra e Costa Nova', value: '18 min', detail: 'Acesso rápido à marginal e oceano' },
+  { icon: '🛒', label: 'Glicínias Plaza', value: '7 min', detail: 'N109 sem portagens' },
+  { icon: '🏙️', label: 'Centro de Aveiro', value: '7 min', detail: 'Acesso direto' },
+  { icon: '🛣️', label: 'Acesso A25 & A17', value: '5 min', detail: 'Ligação direta' },
+  { icon: '🎓', label: 'Universidade de Aveiro', value: '8 min', detail: 'Campus Santiago' },
+  { icon: '🏥', label: 'Hospital de Aveiro', value: '8 min', detail: 'Centro hospitalar' },
+  { icon: '🏖️', label: 'Praias Barra e Costa Nova', value: '18 min', detail: 'Acesso marginal' },
 ];
 
 export default function TerrenosLocation() {
@@ -25,7 +25,7 @@ export default function TerrenosLocation() {
             <span style={{ color: '#059669' }}>no Sossego de Quintãs</span>
           </h2>
           <p className="t-section-sub">
-            A <strong>7 minutos</strong> do Glicínias Plaza e dos principais eixos de Aveiro, com a privacidade de uma zona residencial tranquila de moradias.
+            A <strong>7 minutos</strong> do Glicínias Plaza e dos principais eixos de Aveiro, numa zona residencial tranquila de moradias.
           </p>
         </div>
 
@@ -73,20 +73,20 @@ export default function TerrenosLocation() {
             <div className="t-location-note">
               <span>🏡</span>
               <p>
-                Rua Acácio Simões Vieira — zona tranquila de moradias, <strong>rua asfaltada</strong> e <strong>todas as infraestruturas</strong> prontas à porta.
+                Rua asfaltada com passeios, iluminação pública e <strong>todas as infraestruturas</strong> prontas à porta.
               </p>
             </div>
           </div>
         </div>
 
-        <div className="t-cta-center" style={{ marginTop: '36px' }}>
+        <div className="t-cta-center" style={{ marginTop: '28px' }}>
           <a
             href="#formulario"
             onClick={scrollToForm}
             id="cta_localizacao_contacto"
             className="t-btn t-btn-cta t-cta-scroll"
           >
-            <span>📅 Agendar Visita ao Terreno no Local</span>
+            <span>Agendar Visita ao Terreno</span>
             <span className="t-btn-arrow">→</span>
           </a>
         </div>

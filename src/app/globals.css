@@ -2690,12 +2690,15 @@ strong, b {
 
 .t-map-iframe {
   width: 100%;
-  height: 380px;
+  height: 270px;
   border: none;
   display: block;
 }
-@media (min-width: 768px) {
-  .t-map-iframe { height: 440px; }
+@media (min-width: 640px) {
+  .t-map-iframe { height: 360px; }
+}
+@media (min-width: 900px) {
+  .t-map-iframe { height: 420px; }
 }
 
 .t-map-link {
@@ -2703,10 +2706,10 @@ strong, b {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 14px;
+  padding: 12px;
   background: var(--t-dark);
   color: var(--t-green);
-  font-size: 0.86rem;
+  font-size: 0.84rem;
   font-weight: 600;
   text-decoration: none;
   transition: background 0.2s;
@@ -2722,25 +2725,29 @@ strong, b {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .t-distances-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 32px;
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
 .t-distance-item {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 14px 18px;
+  gap: 12px;
+  padding: 10px 14px;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius-card-sm);
   transition: box-shadow 0.2s, border-color 0.2s;
+}
+@media (min-width: 640px) {
+  .t-distances-list { gap: 12px; margin-bottom: 32px; }
+  .t-distance-item { padding: 13px 18px; gap: 16px; }
 }
 .t-distance-item:hover {
   box-shadow: var(--shadow-hover);

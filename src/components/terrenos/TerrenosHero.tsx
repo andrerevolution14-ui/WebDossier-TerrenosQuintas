@@ -26,7 +26,7 @@ export default function TerrenosHero() {
 
         {/* ── 4. SUBTÍTULO CONCISO & DIRETO COM DESTAQUE AO IVA A 6% ── */}
         <p className="inst-hero-desc-center">
-          Terreno plano pronto a construir com <strong>benefício fiscal de IVA a 6%</strong> na construção para habitação própria permanente — poupança real de dezenas de milhares de euros no orçamento da sua moradia.
+          Terreno plano com infraestruturas prontas à porta. Poupança de até <strong>40.000€ com IVA a 6%</strong> na construção para habitação própria permanente.
         </p>
 
         {/* ── 5. A IMAGEM DIVIDIDA: PROJETO APROVADO + LOTE REAL ── */}

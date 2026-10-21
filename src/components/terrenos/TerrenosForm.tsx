@@ -267,53 +267,36 @@ export default function TerrenosForm() {
         <div className="t-form-container">
           {/* Left: copy focado na transparência e benefícios reais */}
           <div className="t-form-copy">
-            <p className="t-label t-label-accent">PRIMEIRO PASSO PARA A SUA MORADIA</p>
+            <p className="t-label t-label-accent">PRIMEIRO PASSO</p>
             <h2 className="t-heading t-heading--light">
-              Venha Conhecer o Lugar Onde<br />Vai Construir a Sua Moradia
+              Agende a Sua Visita ao Terreno
             </h2>
             <p className="t-form-sub">
-              Pise o terreno, sinta a tranquilidade da zona residencial, imagine o seu jardim privativo — e confirme que o Glicínias Plaza e o centro estão <strong>a apenas 7 minutos</strong>.
-              A visita é gratuita, sem qualquer compromisso, e acompanhada pelo proprietário.
+              Visita gratuita e sem qualquer compromisso, acompanhada pelo proprietário André Queirós. A <strong>7 minutos do Glicínias Plaza</strong> e centro de Aveiro.
             </p>
-
-            {/* Destaque do Lote no formulário */}
-            <div className="t-form-promo-banner">
-              <div className="t-form-promo-text">
-                <strong>Lote de 233 m² por 51.000 € (Negociável)</strong>
-                <span>Venda direta com o proprietário · Apoio em financiamento bancário e construção</span>
-              </div>
-            </div>
 
             <ul className="t-form-bullets">
               <li>
                 <span className="t-bullet-icon" style={{ color: '#059669', fontWeight: 'bold' }}>✓</span>
-                <span>Terreno plano com todas as infraestruturas prontas à porta</span>
+                <span>Lote plano de 233 m² com infraestruturas prontas à porta</span>
               </li>
               <li>
                 <span className="t-bullet-icon" style={{ color: '#059669', fontWeight: 'bold' }}>✓</span>
-                <span>A <strong>7 min do centro de Aveiro</strong> e dos nós da A17/EN109</span>
+                <span>Projeto de arquitetura deferido na Câmara de Aveiro</span>
               </li>
               <li>
                 <span className="t-bullet-icon" style={{ color: '#059669', fontWeight: 'bold' }}>✓</span>
-                <span>Benefício fiscal de <strong>IVA a 6%</strong> na construção para habitação própria (~40.000€ poupados)</span>
+                <span>Benefício fiscal de <strong>IVA a 6%</strong> na construção (~40.000€ poupados)</span>
               </li>
               <li>
                 <span className="t-bullet-icon" style={{ color: '#059669', fontWeight: 'bold' }}>✓</span>
-                <span>Projeto de arquitetura aprovado pela Câmara de Aveiro · Aditamento para licença</span>
-              </li>
-              <li>
-                <span className="t-bullet-icon" style={{ color: '#059669', fontWeight: 'bold' }}>✓</span>
-                <span>Opção só lote com projeto (51.000 €) ou <strong>moradia chave na mão (335.000 €)</strong></span>
-              </li>
-              <li>
-                <span className="t-bullet-icon" style={{ color: '#059669', fontWeight: 'bold' }}>✓</span>
-                <span>Conversa direta com André Queirós — <strong>sem intermediários</strong></span>
+                <span>Opção só lote (51.000 € negociável) ou <strong>moradia chave na mão (335.000 €)</strong></span>
               </li>
             </ul>
 
             {/* Direct WhatsApp */}
             <div className="t-direct-wa-box">
-              <p className="t-direct-wa-label">Prefere falar já agora?</p>
+              <p className="t-direct-wa-label">Prefere resposta imediata?</p>
               <a
                 href={WA_DIRECT_URL}
                 target="_blank"

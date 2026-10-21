@@ -6,25 +6,25 @@ import { scrollToForm } from '@/lib/scrollToForm';
 const pricingRows = [
   {
     item: 'Lote Urbano 233 m² em Quintãs',
-    detail: 'Terreno plano com frente de rua e todas as infraestruturas prontas à porta',
+    detail: 'Terreno plano com infraestruturas concluídas à porta',
     marketValue: '50.000€',
     included: true,
   },
   {
     item: 'Projeto de Arquitetura Aprovado',
-    detail: 'Projeto deferido pela Câmara de Aveiro com peças desenhadas e escritas',
+    detail: 'Deferido na Câmara de Aveiro com todas as peças técnicas',
     marketValue: '10.000€',
     included: true,
   },
   {
     item: 'Processo Urbanístico e Implantação',
-    detail: 'Viabilidade e implantação já deferidas (poupa 12 a 24 meses de espera)',
+    detail: 'Implantação e viabilidade deferidas (poupa 12 a 24 meses)',
     marketValue: '2.000€',
     included: true,
   },
   {
-    item: 'Materiais Técnicos, Modelo 3D e Renders',
-    detail: 'Planta técnica cotada 2D, modelo 3D espacial e renders fotorrealistas',
+    item: 'Modelos Técnicos, 3D e Renders',
+    detail: 'Plantas 2D, modelo 3D fotorrealista e renders incluídos',
     marketValue: '3.000€',
     included: true,
   },
@@ -117,83 +117,127 @@ export default function TerrenosPricing() {
           </div>
         </div>
 
-        {/* Benefício Fiscal: IVA a 6% na Construção */}
-        <div
-          style={{
-            background: '#F0FDF4',
-            border: '1.5px solid #10B981',
-            borderRadius: '16px',
-            padding: '22px 26px',
-            marginTop: '24px',
-            marginBottom: '20px',
-            display: 'flex',
-            alignItems: 'flex-start',
-            gap: '14px',
-            boxShadow: '0 4px 16px rgba(16, 185, 129, 0.08)',
-          }}
-        >
-          <div style={{ flex: 1 }}>
-            <span
-              style={{
-                display: 'inline-block',
-                fontSize: '0.70rem',
-                fontWeight: 800,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                background: '#ECFDF5',
-                color: '#065F46',
-                border: '1px solid #10B981',
-                padding: '3px 10px',
-                borderRadius: '9999px',
-                marginBottom: '6px',
-              }}
-            >
-              Benefício Fiscal Maior
-            </span>
-            <span style={{ display: 'block', fontSize: '1.05rem', fontWeight: 700, color: '#064E3B', marginBottom: '6px' }}>
-              IVA a 6% na Construção para Habitação Própria Permanente (~40.000€ de Poupança)
-            </span>
-            <p style={{ fontSize: '0.90rem', color: 'var(--text-body)', lineHeight: 1.55, margin: 0 }}>
-              Ao construir a sua moradia para habitação própria permanente neste lote, a empreitada beneficia legalmente da <strong>taxa reduzida de IVA a 6%</strong> (ao abrigo do Código do IVA), em vez da taxa normal de 23%. Uma diferença substancial de 17 pontos percentuais que representa cerca de <strong>35.000€ a 40.000€ poupados</strong> no custo total de construção.
-            </p>
-          </div>
-        </div>
-
-        {/* Duas Opções de Compra para Este Lote */}
+        {/* ── DUAS MODALIDADES DE COMPRA & BENEFÍCIO FISCAL UNIFICADO ── */}
         <div
           style={{
             background: '#FFFFFF',
-            border: '1.5px solid #D1E7DD',
+            border: '1.5px solid #10B981',
             borderRadius: '16px',
-            padding: '22px 26px',
+            padding: '20px 22px',
+            marginTop: '20px',
             marginBottom: '24px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '10px',
-            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.03)',
+            boxShadow: '0 4px 18px rgba(16, 185, 129, 0.08)',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
-            <span style={{ fontSize: '0.74rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#059669' }}>
-              Duas Formas de Comprar Este Lote
-            </span>
-            <span style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-              51.000 € (Só Lote) ou 335.000 € (Chave na Mão)
-            </span>
-          </div>
-          <p style={{ fontSize: '0.90rem', color: 'var(--text-body)', lineHeight: 1.6, margin: 0 }}>
-            Este lote pode ser comprado só com o projeto (<strong>51.000 € negociável</strong>), ou com a moradia construída chave na mão (<strong>335.000 €</strong>). Se prefere não gerir a obra e receber a casa pronta a habitar com acabamentos contemporâneos, garagem e jardim, apresentamos a solução chave na mão com construtores parceiros.
-          </p>
-          <div style={{ alignSelf: 'flex-start', marginTop: '4px' }}>
-            <a
-              href="#formulario"
-              onClick={scrollToForm}
-              id="cta_pricing_moradia_pronta"
-              className="t-btn t-btn-outline"
-              style={{ color: 'var(--text-primary)', borderColor: '#10B981' }}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gap: '16px',
+              marginBottom: '16px',
+            }}
+          >
+            {/* Opção 1: Só Lote */}
+            <div
+              style={{
+                background: '#F6FAF7',
+                border: '1px solid #D1E7DD',
+                borderRadius: '12px',
+                padding: '16px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '6px',
+              }}
             >
-              <span>Consultar Opções (Lote ou Chave na Mão) →</span>
-            </a>
+              <span
+                style={{
+                  fontSize: '0.68rem',
+                  fontWeight: 800,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  color: '#059669',
+                }}
+              >
+                Opção 1 · Venda Direta
+              </span>
+              <div style={{ fontSize: '1rem', fontWeight: 800, color: '#0F172A' }}>
+                Só Lote c/ Projeto Aprovado
+              </div>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
+                <span style={{ fontSize: '1.45rem', fontWeight: 900, color: '#064E3B' }}>51.000 €</span>
+                <span
+                  style={{
+                    fontSize: '0.72rem',
+                    fontWeight: 700,
+                    color: '#065F46',
+                    background: '#ECFDF5',
+                    border: '1px solid #10B981',
+                    padding: '2px 8px',
+                    borderRadius: '4px',
+                  }}
+                >
+                  Negociável
+                </span>
+              </div>
+              <p style={{ fontSize: '0.80rem', color: '#475569', margin: 0, lineHeight: 1.45 }}>
+                Lote plano de 233 m² + projeto de arquitetura deferido pela Câmara de Aveiro. Construa ao seu ritmo ou com o seu próprio empreiteiro.
+              </p>
+            </div>
+
+            {/* Opção 2: Chave na Mão */}
+            <div
+              style={{
+                background: 'linear-gradient(145deg, #F0FDF4 0%, #FFFFFF 100%)',
+                border: '1.5px solid #10B981',
+                borderRadius: '12px',
+                padding: '16px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '6px',
+              }}
+            >
+              <span
+                style={{
+                  fontSize: '0.68rem',
+                  fontWeight: 800,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  color: '#047857',
+                }}
+              >
+                Opção 2 · Chave na Mão
+              </span>
+              <div style={{ fontSize: '1rem', fontWeight: 800, color: '#0F172A' }}>
+                Moradia T3 Construída
+              </div>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
+                <span style={{ fontSize: '1.45rem', fontWeight: 900, color: '#064E3B' }}>335.000 €</span>
+                <span style={{ fontSize: '0.74rem', color: '#059669', fontWeight: 700 }}>Pronta a habitar</span>
+              </div>
+              <p style={{ fontSize: '0.80rem', color: '#475569', margin: 0, lineHeight: 1.45 }}>
+                Construção completa com construtores parceiros qualificados. Moradia acabada com garagem, jardim e eficiência energética.
+              </p>
+            </div>
+          </div>
+
+          {/* Faixa IVA a 6% */}
+          <div
+            style={{
+              background: '#ECFDF5',
+              border: '1px solid #A7F3D0',
+              borderRadius: '8px',
+              padding: '10px 14px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              fontSize: '0.82rem',
+              color: '#065F46',
+            }}
+          >
+            <span style={{ fontSize: '1rem' }}>💶</span>
+            <span>
+              <strong>Benefício Fiscal:</strong> IVA a 6% na construção para habitação própria permanente (~40.000€ de poupança direta em impostos).
+            </span>
           </div>
         </div>
 

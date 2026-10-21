@@ -34,34 +34,34 @@ export default function TerrenosProject() {
         </div>
 
         {/* Banner de destaque */}
-        <div className="t-approved-banner" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div className="t-approved-banner" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '6px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span className="t-approved-check" style={{ color: '#059669', fontWeight: 'bold' }}>✓</span>
             <span>
-              <strong>PROJETO DE ARQUITETURA APROVADO</strong> — Poupa 12 a 24 meses de prazos de aprovação
+              <strong>PROJETO DE ARQUITETURA APROVADO</strong> — Poupa 12 a 24 meses de aprovações
             </span>
           </div>
-          <p style={{ fontSize: '0.82rem', color: '#065F46', margin: 0, lineHeight: 1.45 }}>
-            <em>Nota técnica: Projeto formalmente deferido pela Câmara de Aveiro. Requer aditamento administrativo para emissão da licença de construção com os termos de responsabilidade das especialidades (Simplex Urbanístico).</em>
+          <p style={{ fontSize: '0.80rem', color: '#065F46', margin: 0, lineHeight: 1.4 }}>
+            <em>Projeto deferido pela Câmara de Aveiro. Requer aditamento administrativo das especialidades para emissão da licença (Simplex).</em>
           </p>
         </div>
 
         {/* Estrutura: Betão ou LSF */}
         <div className="t-structure-options">
-          <p className="t-structure-title">Liberdade Total na Escolha do Sistema Construtivo:</p>
+          <p className="t-structure-title">Liberdade de Escolha do Sistema Construtivo:</p>
           <div className="t-structure-grid">
             <div className="t-structure-card">
               <span className="t-structure-icon">🏗️</span>
               <div>
                 <span className="t-structure-name">Betão Armado</span>
-                <span className="t-structure-desc">Construção tradicional consolidada, robusta e com durabilidade comprovada.</span>
+                <span className="t-structure-desc">Construção tradicional consolidada e duradoura.</span>
               </div>
             </div>
             <div className="t-structure-card">
               <span className="t-structure-icon">⚡</span>
               <div>
                 <span className="t-structure-name">LSF (Light Steel Framing)</span>
-                <span className="t-structure-desc">Estrutura em aço leve galvanizado, rapidez de execução e alta eficiência térmica.</span>
+                <span className="t-structure-desc">Aço leve, rapidez de execução e alta eficiência energética.</span>
               </div>
             </div>
           </div>
@@ -164,44 +164,39 @@ export default function TerrenosProject() {
           </p>
         </div>
 
-        {/* Duas Opções de Compra para Este Lote */}
+        {/* Duas Opções de Aquisição */}
         <div
           style={{
-            marginTop: '28px',
+            marginTop: '24px',
             background: '#FFFFFF',
-            border: '1.5px solid #D1E7DD',
-            borderRadius: '16px',
-            padding: '24px 28px',
+            border: '1.5px solid #A7F3D0',
+            borderRadius: '12px',
+            padding: '16px 20px',
             display: 'flex',
-            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
             gap: '12px',
-            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.03)',
+            boxShadow: '0 2px 10px rgba(0, 0, 0, 0.03)',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
-            <span style={{ fontSize: '0.74rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#059669' }}>
-              Duas Opções de Aquisição
-            </span>
-            <span style={{ fontSize: '1.05rem', fontWeight: 700, color: '#0F172A' }}>
-              51.000 € (Só Lote c/ Projeto) ou 335.000 € (Chave na Mão)
-            </span>
+          <div>
+            <div style={{ fontSize: '0.98rem', fontWeight: 800, color: '#0F172A', marginBottom: '3px' }}>
+              Opções: 51.000 € (Só Lote c/ Projeto) ou 335.000 € (Chave na Mão)
+            </div>
+            <p style={{ fontSize: '0.82rem', color: '#475569', margin: 0, lineHeight: 1.4 }}>
+              Construa com o seu próprio empreiteiro ou receba a moradia pronta a habitar com construtores parceiros.
+            </p>
           </div>
-          <p style={{ fontSize: '0.90rem', color: '#334155', lineHeight: 1.6, margin: 0 }}>
-            Este lote pode ser comprado só com o projeto de arquitetura aprovado (<strong>51.000 € negociável</strong>),
-            ou com a moradia construída chave na mão (<strong>335.000 €</strong>). Caso prefira que cuidemos da construção de início ao fim,
-            o projeto <strong>Domaine XXV</strong> está estruturado com empreiteiros parceiros qualificados para execução rigorosa neste mesmo lote.
-          </p>
-          <div style={{ alignSelf: 'flex-start', marginTop: '4px' }}>
-            <a
-              href="#formulario"
-              onClick={scrollToForm}
-              id="cta_project_moradia_pronta"
-              className="t-btn t-btn-outline"
-              style={{ padding: '8px 18px', fontSize: '0.84rem', borderColor: '#10B981', color: '#0F172A' }}
-            >
-              <span>Consultar Opções de Aquisição (Lote ou Chave na Mão) →</span>
-            </a>
-          </div>
+          <a
+            href="#formulario"
+            onClick={scrollToForm}
+            id="cta_project_moradia_pronta"
+            className="t-btn t-btn-outline"
+            style={{ padding: '8px 16px', fontSize: '0.82rem', borderColor: '#10B981', color: '#0F172A', whiteSpace: 'nowrap' }}
+          >
+            <span>Consultar Opções →</span>
+          </a>
         </div>
 
         <div className="t-cta-center">

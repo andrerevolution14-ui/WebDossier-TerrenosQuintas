@@ -5,40 +5,24 @@ import { scrollToForm } from '@/lib/scrollToForm';
 
 const faqs = [
   {
-    q: 'Qual é a situação exata da aprovação do projeto de arquitetura?',
-    a: 'O projeto de arquitetura foi formalmente deferido e aprovado pela Câmara Municipal de Aveiro. Uma vez que decorreram mais de 2 anos sem o início físico da obra, é necessário efetuar um aditamento administrativo para a emissão da licença de construção com os termos de responsabilidade dos técnicos autores das especialidades (conforme estabelecido no regime Simplex Urbanístico). A volumetria e implantação estão seguras, não havendo risco de indeferimento de arquitetura.',
+    q: 'Qual é o estado da aprovação do projeto de arquitetura?',
+    a: 'O projeto foi formalmente aprovado pela Câmara Municipal de Aveiro. Requer apenas o aditamento administrativo das especialidades para emissão da licença de construção (regime Simplex). A volumetria e implantação estão seguras.',
   },
   {
-    q: 'Como funciona o benefício do IVA a 6% para construção de habitação própria?',
-    a: 'A empreitada de construção de moradia destinada a habitação própria permanente qualifica-se legalmente para a taxa reduzida de IVA a 6% ao abrigo do Código do IVA. Comparativamente à taxa normal de 23%, isto representa uma poupança fiscal direta de 17 pontos percentuais — o que se traduz em cerca de 35.000€ a 40.000€ que não saem do seu bolso durante a obra.',
+    q: 'Como funciona a poupança do IVA a 6% na construção?',
+    a: 'A construção de moradia para habitação própria permanente beneficia legalmente da taxa reduzida de IVA a 6% (Código do IVA), em vez dos 23% habituais. Isto representa uma poupança direta de cerca de 35.000€ a 40.000€ no custo da obra.',
   },
   {
-    q: 'Este lote pode ser comprado com a moradia construída chave na mão?',
-    a: 'Sim! Tem duas opções: comprar apenas o lote com o projeto de arquitetura aprovado por 51.000 € (negociável) para construir ao seu ritmo ou com o seu próprio empreiteiro, ou optar pela moradia construída chave na mão por 335.000 €, através do projeto Domaine XXV estruturado com construtores parceiros qualificados.',
+    q: 'Posso comprar apenas o lote ou também a moradia pronta (chave na mão)?',
+    a: 'Tem as duas opções: comprar apenas o lote com projeto por 51.000 € (negociável) para construir com o seu empreiteiro, ou a moradia chave na mão por 335.000 € com construtores parceiros qualificados.',
   },
   {
-    q: 'Posso escolher o meu próprio construtor? Ou sou obrigado a usar o vosso?',
-    a: 'Tem total liberdade de escolha do construtor. O projeto pertence a si após a escritura — adjudica a obra a quem quiser. Se precisar, podemos apresentar parceiros de confiança (nomeadamente o Grupo Freitas Renovações) com orçamentos detalhados para Betão Armado ou LSF.',
+    q: 'As infraestruturas estão concluídas à porta do lote?',
+    a: 'Sim. A rua está asfaltada com passeio e iluminação pública. As ligações de água, saneamento, eletricidade e fibra ótica estão prontas à porta, sem custos adicionais de extensão de redes.',
   },
   {
-    q: 'Qual a diferença entre construir em Betão Armado e em LSF?',
-    a: 'Betão Armado é a construção tradicional — sólida, muito duradoura, amplamente testada. LSF (Light Steel Framing) usa estrutura de aço galvanizado — construção mais rápida (30–40% menos tempo de obra), menor peso estrutural e excelente desempenho térmico e acústico. A escolha é totalmente sua.',
-  },
-  {
-    q: 'As infraestruturas estão mesmo todas à porta? Não preciso de pagar extensões de redes?',
-    a: 'Confirmado. A rua já está asfaltada com passeio, iluminação pública, e as ligações às redes de água, saneamento, eletricidade e fibra ótica já chegam à extremidade do lote. Não há extensões de redes nem obras de urbanização a pagar.',
-  },
-  {
-    q: 'Têm apoio para financiamento bancário?',
-    a: 'Sim. Auxiliamos no processo de obtenção de crédito bancário, seja para a aquisição do terreno, seja para financiar a construção. Trabalhamos com parceiros financeiros que conhecem bem este tipo de operação imobiliária.',
-  },
-  {
-    q: 'Como funciona a reserva, o CPCV e a escritura? O processo é seguro?',
-    a: 'O processo é 100% seguro e transparente. Celebra-se um Contrato Promessa de Compra e Venda (CPCV) com prazo para escritura em Cartório ou Casa Pronta. O lote tem caderneta predial urbana e registo predial limpo, sem ónus nem encargos.',
-  },
-  {
-    q: 'O valor de 51.000 € é realmente negociável?',
-    a: 'Sim. O valor de 51.000 € está aberto a propostas sérias de compradores com capacidade de decisão e perfil validado. A venda é direta com o proprietário André Queirós, sem qualquer comissão de intermediação imobiliária.',
+    q: 'O valor de 51.000 € é negociável e existe apoio ao crédito bancário?',
+    a: 'Sim, o valor está aberto a propostas sérias em venda direta com o proprietário André Queirós (sem comissões). Prestamos também acompanhamento no processo de crédito bancário para o lote e construção.',
   },
 ];
 
