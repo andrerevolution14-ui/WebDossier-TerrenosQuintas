@@ -9,25 +9,40 @@ export default function TerrenosHero() {
       <div className="inst-hero-container">
         {/* ── 1. KICKER NO TOPO ── */}
         <div className="inst-kicker-center">
-          <span className="inst-kicker">LOTE URBANO · QUINTÃS, OLIVEIRINHA, AVEIRO</span>
+          <span className="inst-kicker">QUINTÃS, AVEIRO · 51.000 € NEGOCIÁVEL · VENDA DIRETA</span>
         </div>
 
-        {/* ── 2. HEADLINE SOLICITADA ── */}
+        {/* ── 2. HEADLINE DIRETA E SEM RUÍDO ── */}
         <h1 className="inst-hero-h1-center">
-          Lote de 233 m² com projeto de moradia T3 aprovado · Quintãs, a 7 min de Aveiro · 51.000 €
+          Lote de 233 m² com Projeto de Moradia Aprovado
         </h1>
 
-        {/* ── 3. ESTADO REAL DO PROJETO & BENEFÍCIO FISCAL (CENTRADO) ── */}
-        <div className="inst-hero-highlight-center">
-          <span className="inst-hero-highlight">
-            Projeto de arquitetura aprovado pela Câmara de Aveiro · Aditamento para emissão da licença
-          </span>
-        </div>
-
-        {/* ── 4. SUBTÍTULO CONCISO & DIRETO COM DESTAQUE AO IVA A 6% ── */}
+        {/* ── 3. SUBTÍTULO CONCISO (1 LINHA) ── */}
         <p className="inst-hero-desc-center">
-          Terreno plano com infraestruturas prontas à porta. Poupança de até <strong>40.000€ com IVA a 6%</strong> na construção para habitação própria permanente.
+          A 7 min de Aveiro · Infraestruturas prontas à porta · Poupança até <strong>40.000€ com IVA a 6%</strong> na construção.
         </p>
+
+        {/* ── 4. BOTÕES DE AÇÃO IMEDIATA (ABOVE THE FOLD) ── */}
+        <div className="inst-hero-cta-group">
+          <a
+            href="https://visita3dmoradia-vvtu.vercel.app/#cozinha"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inst-btn-3d-hero"
+            id="cta_hero_visite_3d_top"
+          >
+            <span>🌐 Visite o Projeto Aqui (3D)</span>
+            <span>→</span>
+          </a>
+          <a
+            href="#formulario"
+            onClick={scrollToForm}
+            className="inst-btn-sec-hero"
+            id="cta_hero_visita_lote_top"
+          >
+            <span>Agendar Visita ao Lote</span>
+          </a>
+        </div>
 
         {/* ── 5. A IMAGEM DIVIDIDA: PROJETO APROVADO + LOTE REAL ── */}
         <div className="inst-visual-feature">
@@ -94,27 +109,6 @@ export default function TerrenosHero() {
             >
               Agendar Visita ao Terreno →
             </a>
-            <div style={{ textAlign: 'center', marginTop: '4px' }}>
-              <a
-                href="https://visita3dmoradia-vvtu.vercel.app/#cozinha"
-                target="_blank"
-                rel="noopener noreferrer"
-                id="cta_hero_visita_3d"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '5px',
-                  fontSize: '0.82rem',
-                  fontWeight: 700,
-                  color: '#065F46',
-                  textDecoration: 'underline',
-                  textUnderlineOffset: '3px',
-                }}
-              >
-                <span>Visite o projeto aqui em 3D interativo</span>
-                <span>↗</span>
-              </a>
-            </div>
           </div>
         </div>
 
