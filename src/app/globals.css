@@ -1056,6 +1056,57 @@ strong, b {
   }
 }
 
+/* ── INCENTIVO AO SCROLL (ABOVE THE FOLD) ── */
+@keyframes inst-bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+.inst-scroll-hint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-family: var(--sans);
+  font-size: 0.80rem;
+  font-weight: 700;
+  color: #065F46;
+  text-decoration: none;
+  margin-top: -6px;
+  margin-bottom: 20px;
+  padding: 5px 14px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.inst-scroll-hint:hover {
+  background: #D1FAE5;
+  border-color: #10B981;
+  color: #064E3B;
+  transform: translateY(1px);
+}
+.inst-scroll-chevron {
+  display: inline-block;
+  animation: inst-bounce-subtle 1.6s infinite ease-in-out;
+  font-weight: 900;
+  font-size: 0.90rem;
+  color: #059669;
+}
+@media (max-width: 580px) {
+  .inst-scroll-hint {
+    font-size: 0.74rem;
+    padding: 4px 12px;
+    margin-top: -8px;
+    margin-bottom: 16px;
+  }
+}
+
 /* ── 5. IMAGEM COMO ESTÁ (ENTRE SUBTÍTULO E BLOCO DO PREÇO) ── */
 .inst-visual-feature {
   position: relative;

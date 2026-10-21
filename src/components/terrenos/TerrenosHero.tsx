@@ -44,6 +44,16 @@ export default function TerrenosHero() {
           </a>
         </div>
 
+        {/* ── INCENTIVO AO SCROLL (ABOVE THE FOLD) ── */}
+        <a
+          href="#galeria"
+          className="inst-scroll-hint"
+          aria-label="Deslize para ver fotos reais e localização"
+        >
+          <span>Deslize para ver fotos reais e localização</span>
+          <span className="inst-scroll-chevron" aria-hidden="true">↓</span>
+        </a>
+
         {/* ── 5. A IMAGEM DIVIDIDA: PROJETO APROVADO + LOTE REAL ── */}
         <div className="inst-visual-feature">
           <div className="inst-visual-pane inst-visual-pane--house">
