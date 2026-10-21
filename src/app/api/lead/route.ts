@@ -30,6 +30,7 @@ export async function POST(req: Request) {
       telemovel,
       quandoLigar,
       quandoVisitar,
+      financiamento,
       mensagem,
       origem,
       eventId: clientEventId,
@@ -93,7 +94,7 @@ export async function POST(req: Request) {
     const clientUserAgent = req.headers.get('user-agent') || undefined;
     const fbp = clientFbp || parseCookie(cookieHeader, '_fbp');
     const fbc = clientFbc || parseCookie(cookieHeader, '_fbc');
-    const sourceUrl = url || req.headers.get('referer') || 'https://terrenosaveiro.pt/terrenos';
+    const sourceUrl = url || req.headers.get('referer') || 'https://terreno.verdemont.eu/terrenos';
 
     // Verificar se possui contacto real e válido (número com pelo menos 9 dígitos e nome preenchido)
     const isRealPhone =
@@ -117,12 +118,17 @@ export async function POST(req: Request) {
       skipped: true,
     };
     if (hasRealContactInfo) {
+      const fullMessage = [
+        financiamento ? `Financiamento/Simulação: ${financiamento}` : '',
+        mensagem || '',
+      ].filter(Boolean).join(' | ');
+
       supabaseRes = await saveLeadToSupabase({
         nome: cleanNome,
         telemovel: cleanTelemovel,
         quando_ligar: typeof quandoLigar === 'string' && quandoLigar.trim() ? quandoLigar.trim() : null,
         quando_visitar: typeof quandoVisitar === 'string' && quandoVisitar.trim() ? quandoVisitar.trim() : null,
-        mensagem: mensagem || null,
+        mensagem: fullMessage || null,
         origem: origem || (isWhatsAppLead ? 'WhatsApp (com dados preenchidos)' : 'Dossier Terreno Quintãs, Aveiro'),
         status: isWhatsAppLead ? 'whatsapp_com_dados' : 'nova',
       });
@@ -134,7 +140,7 @@ export async function POST(req: Request) {
       console.log('[Lead API] Supabase: Inserção ignorada por não conter contacto real (clique WhatsApp direto sem dados no formulário).');
     }
 
-    // 2. Disparo Meta Conversions API (CAPI) — Evento LEAD com o valor mais alto (55.000€)
+    // 2. Disparo Meta Conversions API (CAPI) — Evento LEAD com o valor de 51.000€
     let metaResult = null;
     try {
       metaResult = await sendMetaLeadConversion({
@@ -169,6 +175,7 @@ export async function POST(req: Request) {
         `📞 <b>Contacto:</b> ${cleanTelemovel}\n` +
         (quandoLigar ? `⏰ <b>Quando ligar:</b> ${quandoLigar}\n` : '') +
         (quandoVisitar ? `🏡 <b>Quando visitar:</b> ${quandoVisitar}\n` : '') +
+        (financiamento ? `💶 <b>Financiamento/Simulação:</b> ${financiamento}\n` : '') +
         `📅 <b>Data/Hora:</b> ${timestamp}\n` +
         (origem ? `📍 <b>Origem:</b> ${origem}\n` : '') +
         (mensagem ? `💬 <b>Mensagem:</b> ${mensagem}\n` : '') +

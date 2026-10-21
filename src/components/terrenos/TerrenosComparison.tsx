@@ -4,28 +4,28 @@ import { scrollToForm } from '@/lib/scrollToForm';
 
 const rows = [
   {
-    common: { icon: '❌', text: '12 a 24 meses de espera na Câmara — projeto incerto' },
-    ours: { icon: '✅', text: 'Projeto 100% Aprovado. Avança com obra de imediato.' },
+    common: { icon: '✕', text: '12 a 24 meses de espera na Câmara para aprovar arquitetura' },
+    ours: { icon: '✓', text: 'Projeto de arquitetura aprovado pela Câmara de Aveiro · Aditamento para licença' },
   },
   {
-    common: { icon: '❌', text: 'Paga 5.000€–8.000€ extra em gabinetes de arquitetura' },
-    ours: { icon: '✅', text: 'Projeto de arquitetura completo incluído no preço' },
+    common: { icon: '✕', text: 'Custo adicional de 5.000€ a 10.000€ em gabinetes de arquitetura' },
+    ours: { icon: '✓', text: 'Projeto de arquitetura completo já incluído no valor do lote' },
   },
   {
-    common: { icon: '❌', text: 'Risco real de o projeto ser recusado pela Câmara' },
-    ours: { icon: '✅', text: 'Risco ZERO — viabilidade aprovada e garantida' },
+    common: { icon: '✕', text: 'Incerteza se a implantação e volumetria serão autorizadas' },
+    ours: { icon: '✓', text: 'Volumetria e implantação já deferidas formalmente pela autarquia' },
   },
   {
-    common: { icon: '❌', text: 'Sem plantas 2D, 3D, renders nem materiais técnicos' },
-    ours: { icon: '✅', text: 'Plantas 2D, 3D e renders finais profissionais incluídos' },
+    common: { icon: '✕', text: 'Sem plantas cotadas, modelo 3D nem renders fotorrealistas' },
+    ours: { icon: '✓', text: 'Plantas técnicas 2D, modelo 3D espacial e renders fotorrealistas incluídos' },
   },
   {
-    common: { icon: '❌', text: 'Construção tributada a 23% ou custos fiscais imprevisíveis' },
-    ours: { icon: '💎', text: 'Benefício fiscal comprovado: IVA a 6% na construção (menos por volta de 40.000€ em impostos)' },
+    common: { icon: '✕', text: 'Construção sujeita à taxa normal de 23% de IVA sem enquadramento' },
+    ours: { icon: '✓', text: 'Benefício fiscal de IVA a 6% na construção para habitação própria (~40.000€ poupados)' },
   },
   {
-    common: { icon: '❌', text: 'Localização distante ou preços acima de 60.000–80.000€' },
-    ours: { icon: '✅', text: 'A 7 min do Glicínias · 51.000€ esta semana (-4.000€) — ainda negociável' },
+    common: { icon: '✕', text: 'Valores inflacionados ou comissões de agências imobiliárias' },
+    ours: { icon: '✓', text: 'A 7 min de Aveiro · 51.000 € (negociável) em venda direta com o proprietário' },
   },
 ];
 
@@ -34,12 +34,12 @@ export default function TerrenosComparison() {
     <section className="t-section" id="comparativo">
       <div className="t-wrap">
         <div className="t-section-header">
-          <p className="t-label">⚖️ / ANÁLISE COMPARATIVA</p>
+          <p className="t-label">ANÁLISE COMPARATIVA</p>
           <h2 className="t-heading">
-            🏆 Porquê Este Lote e Não Outro em Aveiro?
+            Porquê Este Lote e Não Outro em Aveiro?
           </h2>
           <p className="t-section-sub">
-            Há terrenos no mercado. Este diferencia-se pelo que inclui — não apenas pela localização.
+            A maioria dos terrenos no mercado exige anos de burocracias e custos acrescidos. Veja a diferença:
           </p>
         </div>
 
@@ -47,36 +47,32 @@ export default function TerrenosComparison() {
         <div className="t-compare-table">
           <div className="t-compare-header">
             <div className="t-compare-col t-compare-col--bad">
-              <span className="t-compare-col-icon">😤</span>
               <span>Terreno Comum no Mercado</span>
             </div>
             <div className="t-compare-col t-compare-col--good">
-              <span className="t-compare-col-icon">🌟</span>
-              <span>Este Lote — Desconto 51.000€</span>
+              <span>Este Lote em Quintãs · 51.000 €</span>
             </div>
           </div>
 
           {rows.map((row, i) => (
             <div key={i} className="t-compare-row">
               <div className="t-compare-cell t-compare-cell--bad">
-                <span className="t-compare-icon">{row.common.icon}</span>
+                <span className="t-compare-icon" style={{ fontWeight: 700, color: '#DC2626' }}>{row.common.icon}</span>
                 <span>{row.common.text}</span>
               </div>
               <div className="t-compare-vs">VS</div>
               <div className="t-compare-cell t-compare-cell--good">
-                <span className="t-compare-icon">{row.ours.icon}</span>
+                <span className="t-compare-icon" style={{ fontWeight: 700, color: '#059669' }}>{row.ours.icon}</span>
                 <span>{row.ours.text}</span>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Urgência */}
-        <div className="t-compare-urgency">
-          <span>✨</span>
-          <p>
-            <strong>Desconto de Interesse Nesta Semana.</strong> Desconto de 4.000€ para quem reservar entre
-            12 e 16 de Outubro (51.000€, ainda negociável). Apenas 2 lotes disponíveis. Visitas abertas esta semana.
+        {/* Transparência e Opções */}
+        <div className="t-compare-urgency" style={{ background: '#F8FAFC', border: '1px solid #E2E8F0', color: '#334155' }}>
+          <p style={{ margin: 0 }}>
+            <strong>Venda Direta com André Queirós:</strong> Valor de 51.000 € (negociável). Possibilidade de aquisição só do lote com o projeto aprovado ou da moradia completa chave na mão (335.000 €).
           </p>
         </div>
 
@@ -87,7 +83,7 @@ export default function TerrenosComparison() {
             id="cta4_contacto_comparativo"
             className="t-btn t-btn-cta t-cta-scroll"
           >
-            <span>📅 Agendar Visita ao Terreno</span>
+            <span>Agendar Visita ao Terreno</span>
             <span className="t-btn-arrow">→</span>
           </a>
         </div>

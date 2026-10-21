@@ -54,8 +54,8 @@ const specs = [
   {
     icon: '📄',
     label: 'Licenciamento & Registo',
-    value: 'Projeto Aprovado na Câmara',
-    detail: 'Aprovado formalmente. Poupa 12 a 24 meses de burocracias.',
+    value: 'Projeto de Arquitetura Aprovado',
+    detail: 'Aprovado pela Câmara de Aveiro · Aditamento para emissão da licença.',
   },
 ];
 
@@ -64,18 +64,17 @@ export default function TerrenosDetails() {
     <section className="t-section" id="especificacoes">
       <div className="t-wrap">
         <div className="t-section-header">
-          <p className="t-label">📑 / FICHA TÉCNICA & ENQUADRAMENTO</p>
+          <p className="t-label">FICHA TÉCNICA & ENQUADRAMENTO</p>
           <h2 className="t-heading">
-            🏛️ Especificações Técnicas da Construção e do Lote
+            Especificações Técnicas da Construção e do Lote
           </h2>
           <p className="t-section-sub">
-            Parâmetros do lote com projeto aprovado — <strong>51.000€</strong> nesta semana c/ <strong>desconto de 4.000€</strong> (negociável).
+            Parâmetros do lote de 233 m² com projeto de arquitetura aprovado — <strong>51.000 €</strong> (negociável).
           </p>
         </div>
 
         {/* Morada em destaque com cantos retos arquitetónicos */}
         <div className="t-address-box">
-          <span className="t-address-icon">📍</span>
           <div className="t-address-body">
             <span className="t-address-label">Morada Exata:</span>
             <span className="t-address-val">Rua Acácio Simões Vieira (Lote 25), Quintãs, 3810-843 Oliveirinha, Aveiro</span>
@@ -145,7 +144,7 @@ export default function TerrenosDetails() {
             id="cta2_contacto_specs"
             className="t-btn t-btn-cta t-cta-scroll"
           >
-            <span>📅 Agendar Visita ao Terreno</span>
+            <span>Agendar Visita ao Terreno</span>
             <span className="t-btn-arrow">→</span>
           </a>
         </div>

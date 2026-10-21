@@ -9,10 +9,10 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://terrenosaveiro.pt'),
-  title: 'Terrenos c/ Projeto Aprovado em Aveiro | Quintãs, Oliveirinha | 55.000€',
+  metadataBase: new URL('https://terreno.verdemont.eu'),
+  title: 'Lote de 233 m² com projeto de moradia T3 aprovado · Quintãs, a 7 min de Aveiro · 51.000 €',
   description:
-    'Lotes urbanos de 233m² em Quintãs, Oliveirinha, a 7 minutos do centro de Aveiro. Projeto de Arquitetura 100% Aprovado pela Câmara. Construa já sem esperar 1 a 2 anos de burocracia. 55.000€ (Negociável).',
+    'Lote de 233 m² com projeto de moradia T3 aprovado · Quintãs, a 7 min de Aveiro · 51.000 € (negociável). Projeto de arquitetura aprovado pela Câmara de Aveiro · Aditamento para emissão da licença. Benefício fiscal de IVA a 6% na construção.',
   keywords: [
     'terreno Aveiro',
     'lote Aveiro',
@@ -25,18 +25,18 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'André Queirós' }],
   openGraph: {
-    title: 'Lote com Projeto Aprovado a 7 min de Aveiro | 55.000€',
+    title: 'Lote de 233 m² com projeto de moradia T3 aprovado · Quintãs, a 7 min de Aveiro · 51.000 €',
     description:
-      'Lote de 233m² em Quintãs, Oliveirinha. Projeto de Arquitetura 100% Aprovado pela Câmara. Construa já, sem esperar 2 anos em burocracia.',
-    images: [{ url: '/Curado/1.png', width: 1200, height: 675, alt: 'Terreno Quintãs Oliveirinha Aveiro' }],
+      'Lote de 233 m² com projeto de moradia T3 aprovado · Quintãs, a 7 min de Aveiro · 51.000 € (negociável). Projeto de arquitetura aprovado pela Câmara de Aveiro · Aditamento para emissão da licença.',
+    images: [{ url: '/Curado/1.webp', width: 1200, height: 675, alt: 'Lote de Terreno em Quintãs, Oliveirinha, Aveiro' }],
     locale: 'pt_PT',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Lote com Projeto Aprovado a 7 min de Aveiro | 55.000€',
-    description: 'Lote de 233m² em Quintãs, Oliveirinha. Projeto 100% Aprovado. 55.000€ Negociável.',
-    images: ['/Curado/1.png'],
+    title: 'Lote de 233 m² com projeto de moradia T3 aprovado · Quintãs, a 7 min de Aveiro · 51.000 €',
+    description: 'Lote de 233 m² em Quintãs, Aveiro. Projeto aprovado pela Câmara. 51.000 € Negociável.',
+    images: ['/Curado/1.webp'],
   },
   icons: {
     icon: '/favicon.svg',

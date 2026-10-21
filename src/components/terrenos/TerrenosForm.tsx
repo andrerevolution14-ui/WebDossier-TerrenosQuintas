@@ -7,7 +7,7 @@ import { saveLeadToSupabase } from '@/lib/supabase';
 
 const WA_PHONE = '351920601070';
 const WA_DIRECT_URL = `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(
-  'Olá André! Vi a promoção de -4.000€ no terreno em Quintãs e quero garantir o preço de 51.000€. Gostaria de agendar uma visita!'
+  'Olá André! Vi o terreno em Quintãs (51.000€ negociável) e gostaria de agendar uma visita!'
 )}`;
 
 declare global {
@@ -23,7 +23,7 @@ const LABEL_HORARIO = {
   manha: 'Manhã (9h–13h)',
   tarde: 'Tarde (14h–19h)',
   noite: 'Noite (19h–21h)',
-  qualquer: 'Qualquer hora / O mais breve possível',
+  qualquer: 'Qualquer hora / Mais breve',
 } as const;
 
 /** Texto gravado na coluna `quando_visitar` do Supabase */
@@ -33,6 +33,15 @@ const LABEL_VISITA = {
   qualquer: 'Qualquer dia / Flexível',
 } as const;
 
+/** Financiamento ou simulação bancária */
+const LABEL_FINANCIAMENTO = {
+  sim_preaprovado: 'Sim, pré-aprovado',
+  simulacao_feita: 'Simulação feita',
+  em_analise: 'Em análise bancária',
+  capitais_proprios: 'Capitais próprios',
+  ainda_nao: 'Ainda não',
+} as const;
+
 interface SubmittedLead {
   nome: string;
   telemovel: string;
@@ -40,6 +49,7 @@ interface SubmittedLead {
   timestamp: string;
   horario: string;
   preferencia: string;
+  financiamento: string;
 }
 
 function getCookie(name: string): string | undefined {
@@ -94,6 +104,7 @@ export default function TerrenosForm() {
   const [telemovel, setTelemovel] = useState('');
   const [horarioContacto, setHorarioContacto] = useState<'manha' | 'tarde' | 'noite' | 'qualquer'>('qualquer');
   const [preferenciaVisita, setPreferenciaVisita] = useState<'semana' | 'fim-semana' | 'qualquer'>('qualquer');
+  const [financiamento, setFinanciamento] = useState<keyof typeof LABEL_FINANCIAMENTO>('simulacao_feita');
   const [status, setStatus] = useState<Status>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [submittedData, setSubmittedData] = useState<SubmittedLead | null>(null);
@@ -159,8 +170,9 @@ export default function TerrenosForm() {
 
     const labelHorario = LABEL_HORARIO[horarioContacto];
     const labelPreferencia = LABEL_VISITA[preferenciaVisita];
+    const labelFinanciamento = LABEL_FINANCIAMENTO[financiamento];
 
-    const payloadMensagem = 'Campanha: -4.000€ (51.000€)';
+    const payloadMensagem = `Financiamento: ${labelFinanciamento} | Lote: 51.000€ (Negociável)`;
 
     let savedOk = false;
 
@@ -173,8 +185,9 @@ export default function TerrenosForm() {
           telemovel: formattedDisplay,
           quandoLigar: labelHorario,
           quandoVisitar: labelPreferencia,
+          financiamento: labelFinanciamento,
           mensagem: payloadMensagem,
-          origem: 'Agendamento de Visita — Terreno Quintãs (7 min Glicínias)',
+          origem: 'Agendamento de Visita — Terreno Quintãs (51.000€)',
           eventId,
           fbp,
           fbc,
@@ -229,6 +242,7 @@ export default function TerrenosForm() {
       timestamp: nowTime,
       horario: labelHorario,
       preferencia: labelPreferencia,
+      financiamento: labelFinanciamento,
     });
     setStatus('success');
   }
@@ -243,7 +257,7 @@ export default function TerrenosForm() {
 
   const customWaSuccessUrl = submittedData
     ? `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(
-        `Olá André! Acabei de agendar uma visita ao terreno em Quintãs com desconto de -4.000€ (${submittedData.nome} - ${submittedData.formattedPhone}). Preferência: ${submittedData.preferencia} | Contacto: ${submittedData.horario}.`
+        `Olá André! Acabei de agendar uma visita ao terreno em Quintãs (${submittedData.nome} - ${submittedData.formattedPhone}). Preferência: ${submittedData.preferencia} | Contacto: ${submittedData.horario} | Financiamento: ${submittedData.financiamento}.`
       )}`
     : WA_DIRECT_URL;
 
@@ -251,45 +265,48 @@ export default function TerrenosForm() {
     <section className="t-section t-section--form" id="contacto">
       <div className="t-wrap">
         <div className="t-form-container">
-          {/* Left: copy aspiracional focado no sonho + promo */}
+          {/* Left: copy focado na transparência e benefícios reais */}
           <div className="t-form-copy">
-            <p className="t-label t-label-accent">🏡 / O PRIMEIRO PASSO PARA A SUA CASA DE SONHO</p>
+            <p className="t-label t-label-accent">PRIMEIRO PASSO PARA A SUA MORADIA</p>
             <h2 className="t-heading t-heading--light">
               Venha Conhecer o Lugar Onde<br />Vai Construir a Sua Moradia
             </h2>
             <p className="t-form-sub">
-              Pise o terreno, sinta a tranquilidade, imagine o seu jardim privativo — e confirme que o Glicínias está <strong>a apenas 7 minutos</strong>.
+              Pise o terreno, sinta a tranquilidade da zona residencial, imagine o seu jardim privativo — e confirme que o Glicínias Plaza e o centro estão <strong>a apenas 7 minutos</strong>.
               A visita é gratuita, sem qualquer compromisso, e acompanhada pelo proprietário.
             </p>
 
-            {/* Banner Promo no formulário */}
+            {/* Destaque do Lote no formulário */}
             <div className="t-form-promo-banner">
-              <div className="t-form-promo-icon">✨</div>
               <div className="t-form-promo-text">
-                <strong>-4.000€ de desconto de interesse nesta semana</strong>
-                <span>De 55.000€ por <strong>51.000€</strong> (ainda negociável) · Até 16 de Outubro</span>
+                <strong>Lote de 233 m² por 51.000 € (Negociável)</strong>
+                <span>Venda direta com o proprietário · Apoio em financiamento bancário e construção</span>
               </div>
             </div>
 
             <ul className="t-form-bullets">
               <li>
-                <span className="t-bullet-icon">🏡</span>
-                <span>Veja onde vai nascer a <strong>moradia contemporânea dos seus sonhos</strong></span>
+                <span className="t-bullet-icon" style={{ color: '#059669', fontWeight: 'bold' }}>✓</span>
+                <span>Terreno plano com todas as infraestruturas prontas à porta</span>
               </li>
               <li>
-                <span className="t-bullet-icon">🚗</span>
-                <span>A <strong>7 min do Glicínias</strong> — o equilíbrio perfeito entre calma e cidade</span>
+                <span className="t-bullet-icon" style={{ color: '#059669', fontWeight: 'bold' }}>✓</span>
+                <span>A <strong>7 min do centro de Aveiro</strong> e dos nós da A17/EN109</span>
               </li>
               <li>
-                <span className="t-bullet-icon">💰</span>
-                <span>Descubra como <strong>poupar ~40.000€</strong> com o IVA a 6%</span>
+                <span className="t-bullet-icon" style={{ color: '#059669', fontWeight: 'bold' }}>✓</span>
+                <span>Benefício fiscal de <strong>IVA a 6%</strong> na construção para habitação própria (~40.000€ poupados)</span>
               </li>
               <li>
-                <span className="t-bullet-icon">📋</span>
-                <span>Receba o <strong>dossiê completo</strong> no local (plantas, renders, aprovações)</span>
+                <span className="t-bullet-icon" style={{ color: '#059669', fontWeight: 'bold' }}>✓</span>
+                <span>Projeto de arquitetura aprovado pela Câmara de Aveiro · Aditamento para licença</span>
               </li>
               <li>
-                <span className="t-bullet-icon">🤝</span>
+                <span className="t-bullet-icon" style={{ color: '#059669', fontWeight: 'bold' }}>✓</span>
+                <span>Opção só lote com projeto (51.000 €) ou <strong>moradia chave na mão (335.000 €)</strong></span>
+              </li>
+              <li>
+                <span className="t-bullet-icon" style={{ color: '#059669', fontWeight: 'bold' }}>✓</span>
                 <span>Conversa direta com André Queirós — <strong>sem intermediários</strong></span>
               </li>
             </ul>
@@ -310,7 +327,6 @@ export default function TerrenosForm() {
                   })
                 }
               >
-                <span className="t-wa-icon-svg">💬</span>
                 <span>WhatsApp Direto: <strong>920 601 070</strong></span>
               </a>
             </div>
@@ -337,7 +353,6 @@ export default function TerrenosForm() {
                   </div>
 
                   <div className="t-confirmed-phone-val">
-                    <span className="t-confirmed-icon">📞</span>
                     <span>{submittedData.formattedPhone}</span>
                   </div>
 
@@ -354,10 +369,13 @@ export default function TerrenosForm() {
                       <span className="t-meta-k">Preferência de Visita:</span>
                       <span className="t-meta-v">{submittedData.preferencia}</span>
                     </div>
+                    <div className="t-confirmed-meta-item">
+                      <span className="t-meta-k">Financiamento:</span>
+                      <span className="t-meta-v">{submittedData.financiamento}</span>
+                    </div>
                   </div>
 
                   <div className="t-confirmed-notice">
-                    <span className="t-confirmed-notice-icon">⚡</span>
                     <span>
                       André Queirós irá contactá-lo(a) para o número indicado na sua melhor hora para combinar a visita.
                     </span>
@@ -369,7 +387,7 @@ export default function TerrenosForm() {
                     onClick={handleEditNumber}
                     className="t-confirmed-edit-btn"
                   >
-                    <span>✏️ Enganou-se no número?</span>
+                    <span>Enganou-se no número?</span>
                     <strong>Clique aqui para corrigir</strong>
                   </button>
                 </div>
@@ -388,7 +406,6 @@ export default function TerrenosForm() {
                       })
                     }
                   >
-                    <span className="t-wa-icon-svg">💬</span>
                     <span>Falar Agora no WhatsApp</span>
                     <span className="t-btn-arrow">→</span>
                   </a>
@@ -404,8 +421,9 @@ export default function TerrenosForm() {
                 {/* Espelho das escolhas para o rastreio do WhatsApp (analytics.ts) gravar também estes campos */}
                 <input type="hidden" id="t-quando-ligar" value={LABEL_HORARIO[horarioContacto]} readOnly />
                 <input type="hidden" id="t-quando-visitar" value={LABEL_VISITA[preferenciaVisita]} readOnly />
+                <input type="hidden" id="t-financiamento" value={LABEL_FINANCIAMENTO[financiamento]} readOnly />
                 <p className="t-form-intro">
-                  Garanta <strong>51.000€</strong> (de 55.000€). Deixe os seus dados e combinamos a visita.
+                  Lote por <strong>51.000 €</strong> (negociável). Deixe os seus dados e combinamos a visita ao terreno sem compromisso.
                 </p>
 
                 {/* 1. Nome Completo */}
@@ -468,7 +486,7 @@ export default function TerrenosForm() {
                   )}
                 </div>
 
-                {/* 3. Melhor Hora para Contactar (Novo!) */}
+                {/* 3. Melhor Hora para Contactar */}
                 <div className="t-field-group">
                   <label className="t-field-label">Qual a melhor hora para contactar?</label>
                   <div className="t-choice-pills-grid t-choice-pills--time" role="radiogroup" aria-label="Melhor hora para contactar">
@@ -479,7 +497,7 @@ export default function TerrenosForm() {
                       className={`t-choice-pill ${horarioContacto === 'manha' ? 't-choice-pill--active' : ''}`}
                       onClick={() => setHorarioContacto('manha')}
                     >
-                      <span>☀️ Manhã</span>
+                      <span>Manhã</span>
                       <small>9h – 13h</small>
                     </button>
                     <button
@@ -489,7 +507,7 @@ export default function TerrenosForm() {
                       className={`t-choice-pill ${horarioContacto === 'tarde' ? 't-choice-pill--active' : ''}`}
                       onClick={() => setHorarioContacto('tarde')}
                     >
-                      <span>🌤️ Tarde</span>
+                      <span>Tarde</span>
                       <small>14h – 19h</small>
                     </button>
                     <button
@@ -499,7 +517,7 @@ export default function TerrenosForm() {
                       className={`t-choice-pill ${horarioContacto === 'noite' ? 't-choice-pill--active' : ''}`}
                       onClick={() => setHorarioContacto('noite')}
                     >
-                      <span>🌙 Noite</span>
+                      <span>Noite</span>
                       <small>19h – 21h</small>
                     </button>
                     <button
@@ -509,7 +527,7 @@ export default function TerrenosForm() {
                       className={`t-choice-pill ${horarioContacto === 'qualquer' ? 't-choice-pill--active' : ''}`}
                       onClick={() => setHorarioContacto('qualquer')}
                     >
-                      <span>⚡ Qualquer hora</span>
+                      <span>Qualquer hora</span>
                       <small>Mais breve</small>
                     </button>
                   </div>
@@ -526,7 +544,7 @@ export default function TerrenosForm() {
                       className={`t-choice-pill ${preferenciaVisita === 'semana' ? 't-choice-pill--active' : ''}`}
                       onClick={() => setPreferenciaVisita('semana')}
                     >
-                      <span>📅 Dias Úteis</span>
+                      <span>Dias Úteis</span>
                       <small>Segunda a Sexta</small>
                     </button>
                     <button
@@ -536,7 +554,7 @@ export default function TerrenosForm() {
                       className={`t-choice-pill ${preferenciaVisita === 'fim-semana' ? 't-choice-pill--active' : ''}`}
                       onClick={() => setPreferenciaVisita('fim-semana')}
                     >
-                      <span>🌅 Fim de Semana</span>
+                      <span>Fim de Semana</span>
                       <small>Sábado ou Domingo</small>
                     </button>
                     <button
@@ -546,8 +564,65 @@ export default function TerrenosForm() {
                       className={`t-choice-pill ${preferenciaVisita === 'qualquer' ? 't-choice-pill--active' : ''}`}
                       onClick={() => setPreferenciaVisita('qualquer')}
                     >
-                      <span>🤝 Flexível</span>
+                      <span>Flexível</span>
                       <small>A combinar</small>
+                    </button>
+                  </div>
+                </div>
+
+                {/* 5. Já tem financiamento ou simulação? */}
+                <div className="t-field-group">
+                  <label className="t-field-label">Já tem financiamento ou simulação?</label>
+                  <div className="t-choice-pills-grid t-choice-pills--finance" role="radiogroup" aria-label="Já tem financiamento ou simulação?">
+                    <button
+                      type="button"
+                      role="radio"
+                      aria-checked={financiamento === 'sim_preaprovado'}
+                      className={`t-choice-pill ${financiamento === 'sim_preaprovado' ? 't-choice-pill--active' : ''}`}
+                      onClick={() => setFinanciamento('sim_preaprovado')}
+                    >
+                      <span>Sim, pré-aprovado</span>
+                      <small>Crédito aprovado</small>
+                    </button>
+                    <button
+                      type="button"
+                      role="radio"
+                      aria-checked={financiamento === 'simulacao_feita'}
+                      className={`t-choice-pill ${financiamento === 'simulacao_feita' ? 't-choice-pill--active' : ''}`}
+                      onClick={() => setFinanciamento('simulacao_feita')}
+                    >
+                      <span>Simulação feita</span>
+                      <small>Valores conhecidos</small>
+                    </button>
+                    <button
+                      type="button"
+                      role="radio"
+                      aria-checked={financiamento === 'em_analise'}
+                      className={`t-choice-pill ${financiamento === 'em_analise' ? 't-choice-pill--active' : ''}`}
+                      onClick={() => setFinanciamento('em_analise')}
+                    >
+                      <span>Em análise</span>
+                      <small>A aguardar banco</small>
+                    </button>
+                    <button
+                      type="button"
+                      role="radio"
+                      aria-checked={financiamento === 'capitais_proprios'}
+                      className={`t-choice-pill ${financiamento === 'capitais_proprios' ? 't-choice-pill--active' : ''}`}
+                      onClick={() => setFinanciamento('capitais_proprios')}
+                    >
+                      <span>Capitais próprios</span>
+                      <small>Sem financiamento</small>
+                    </button>
+                    <button
+                      type="button"
+                      role="radio"
+                      aria-checked={financiamento === 'ainda_nao'}
+                      className={`t-choice-pill ${financiamento === 'ainda_nao' ? 't-choice-pill--active' : ''}`}
+                      onClick={() => setFinanciamento('ainda_nao')}
+                    >
+                      <span>Ainda não</span>
+                      <small>Gostaria de apoio</small>
                     </button>
                   </div>
                 </div>
@@ -585,15 +660,15 @@ export default function TerrenosForm() {
                     </>
                   ) : (
                     <>
-                      <span>📅 Garantir Desconto e Agendar Visita</span>
+                      <span>Agendar Visita ao Terreno</span>
                       <span className="t-btn-arrow">→</span>
                     </>
                   )}
                 </button>
 
                 <div className="t-form-guarantee">
-                  <span>🔒 Visita 100% gratuita e sem qualquer compromisso.</span>
-                  <span>⚡ Contacto direto de André Queirós, proprietário.</span>
+                  <span>Visita 100% gratuita e sem qualquer compromisso.</span>
+                  <span>Contacto direto de André Queirós, proprietário.</span>
                 </div>
               </form>
             )}

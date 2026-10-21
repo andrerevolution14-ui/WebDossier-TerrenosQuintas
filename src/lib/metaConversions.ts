@@ -91,25 +91,25 @@ export async function sendMetaLeadConversion(data: MetaLeadPayload) {
 
     const leadCustomData = {
       currency: 'EUR',
-      value: 55000,
+      value: 51000,
       content_name: isWhatsAppLead
-        ? 'Lead WhatsApp — Lote Quintãs 55.000€'
+        ? 'Lead WhatsApp — Lote Quintãs 51.000€'
         : 'Lote de Terreno c/ Projeto Aprovado e IVA a 6% — Quintãs Aveiro',
       content_category: 'Terrenos e Moradias Aveiro',
       content_type: 'product',
-      contents: [{ id: 'lote_quintas_55k', quantity: 1, item_price: 55000 }],
+      contents: [{ id: 'lote_quintas_51k', quantity: 1, item_price: 51000 }],
       status: isWhatsAppLead ? 'Lead WhatsApp Direto' : 'Lead Confirmada com Número',
       lead_source: isWhatsAppLead ? 'WhatsApp Direto' : 'Formulário Web Principal',
     };
 
     const eventPayload = {
       data: [
-        // 1 Único Objetivo: LEAD (55.000€) com deduplicação perfeita com o Pixel
+        // 1 Único Objetivo: LEAD (51.000€) com deduplicação perfeita com o Pixel
         {
           event_name: 'Lead',
           event_time: Math.floor(Date.now() / 1000),
           event_id: eventId,
-          event_source_url: sourceUrl || 'https://terrenosaveiro.pt/terrenos',
+          event_source_url: sourceUrl || 'https://terreno.verdemont.eu/terrenos',
           action_source: 'website',
           user_data: userData,
           custom_data: leadCustomData,
@@ -133,7 +133,7 @@ export async function sendMetaLeadConversion(data: MetaLeadPayload) {
 
     console.log(`[Meta CAPI 🚀] Lead enviado com sucesso para a API de Conversões (Pixel ${META_PIXEL_ID}):`, {
       eventId,
-      value: 55000,
+      value: 51000,
       currency: 'EUR',
       eventsReceived: resData.events_received,
       fbtraceId: resData.fbtrace_id,

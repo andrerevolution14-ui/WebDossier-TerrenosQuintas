@@ -23,26 +23,26 @@ export default function TerrenosProject() {
     <section className="t-section t-section--dark" id="projeto">
       <div className="t-wrap">
         <div className="t-section-header">
-          <p className="t-label">📐 / O PROJETO DE ARQUITETURA APROVADO</p>
+          <p className="t-label">PROJETO DE ARQUITETURA APROVADO</p>
           <h2 className="t-heading">
-            🏡 O Projeto Já Está Feito<br />
-            <span style={{ color: '#059669' }}>e Aprovado pela Câmara de Aveiro</span>
+            Projeto de Arquitetura Aprovado<br />
+            <span style={{ color: '#059669' }}>pela Câmara Municipal de Aveiro</span>
           </h2>
           <p className="t-section-sub">
-            Renders, plantas 2D e 3D — incluídos no lote c/ <strong>desconto de 4.000€</strong> nesta semana (51.000€ negociável).
+            Renders fotorrealistas, plantas 2D e modelo 3D incluídos no valor do lote — <strong>51.000 €</strong> (negociável).
           </p>
         </div>
 
         {/* Banner de destaque */}
         <div className="t-approved-banner" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <span className="t-approved-check">✅</span>
+            <span className="t-approved-check" style={{ color: '#059669', fontWeight: 'bold' }}>✓</span>
             <span>
-              <strong>PROJETO 100% APROVADO</strong> — Poupa 12 a 24 meses de aprovações camarárias
+              <strong>PROJETO DE ARQUITETURA APROVADO</strong> — Poupa 12 a 24 meses de prazos de aprovação
             </span>
           </div>
           <p style={{ fontSize: '0.82rem', color: '#065F46', margin: 0, lineHeight: 1.45 }}>
-            ℹ️ <em>Nota: Projeto formalmente aprovado. Apenas requer <strong>Aditamento ao Processo</strong> para levantamento de licenças.</em>
+            <em>Nota técnica: Projeto formalmente deferido pela Câmara de Aveiro. Requer aditamento administrativo para emissão da licença de construção com os termos de responsabilidade das especialidades (Simplex Urbanístico).</em>
           </p>
         </div>
 
@@ -158,15 +158,13 @@ export default function TerrenosProject() {
 
         {/* Nota de personalização */}
         <div className="t-personalize-note">
-          <span className="t-personalize-icon">✨</span>
           <p>
             <strong>Personalização Disponível:</strong> Pode ajustar materiais, acabamentos e layout interior
-            conforme o seu gosto pessoal. A volumetria exterior principal já está deferida pela Câmara, pelo que
-            a implantação e o licenciamento estão garantidos.
+            conforme a sua preferência. A volumetria exterior principal já está deferida pela Câmara Municipal de Aveiro.
           </p>
         </div>
 
-        {/* Conexão com Moradia Terminada Verdemont */}
+        {/* Duas Opções de Compra para Este Lote */}
         <div
           style={{
             marginTop: '28px',
@@ -182,15 +180,16 @@ export default function TerrenosProject() {
         >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
             <span style={{ fontSize: '0.74rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#059669' }}>
-              🏡 Projeto Concluído &bull; Chave na Mão
+              Duas Opções de Aquisição
             </span>
             <span style={{ fontSize: '1.05rem', fontWeight: 700, color: '#0F172A' }}>
-              335.000€ Chave na Mão
+              51.000 € (Só Lote c/ Projeto) ou 335.000 € (Chave na Mão)
             </span>
           </div>
-          <p style={{ fontSize: '0.88rem', color: '#334155', lineHeight: 1.6, margin: 0 }}>
-            Quer ver este projeto de moradia totalmente construído e pronto a habitar? Visite o site oficial do empreendimento{' '}
-            <strong style={{ color: '#0F172A' }}>Domaine XXV</strong> em Oliveirinha (Aveiro), com jardim privativo, garagem e acabamentos de luxo.
+          <p style={{ fontSize: '0.90rem', color: '#334155', lineHeight: 1.6, margin: 0 }}>
+            Este lote pode ser comprado só com o projeto de arquitetura aprovado (<strong>51.000 € negociável</strong>),
+            ou com a moradia construída chave na mão (<strong>335.000 €</strong>). Caso prefira que cuidemos da construção de início ao fim,
+            o projeto <strong>Domaine XXV</strong> está estruturado com empreiteiros parceiros qualificados para execução rigorosa neste mesmo lote.
           </p>
           <div style={{ alignSelf: 'flex-start', marginTop: '4px' }}>
             <a
@@ -200,7 +199,7 @@ export default function TerrenosProject() {
               className="t-btn t-btn-outline"
               style={{ padding: '8px 18px', fontSize: '0.84rem', borderColor: '#10B981', color: '#0F172A' }}
             >
-              <span>Quero Saber Mais Sobre a Moradia Pronta →</span>
+              <span>Consultar Opções de Aquisição (Lote ou Chave na Mão) →</span>
             </a>
           </div>
         </div>
@@ -212,7 +211,7 @@ export default function TerrenosProject() {
             className="t-btn t-btn-cta t-cta-scroll"
             id="cta_project_contacto"
           >
-            <span>📅 Quero Visitar e Conhecer o Projeto</span>
+            <span>Agendar Visita e Conhecer o Projeto</span>
             <span className="t-btn-arrow">→</span>
           </a>
         </div>

@@ -17,7 +17,7 @@ export function trackEvent(eventName: string, payload: Record<string, unknown> =
 
   const eventData: TrackingEvent = {
     event: eventName,
-    property: 'Lote Quintãs Aveiro (55.000€)',
+    property: 'Lote Quintãs Aveiro (51.000€)',
     timestamp: new Date().toISOString(),
     ...payload,
   };
@@ -37,7 +37,7 @@ export function trackEvent(eventName: string, payload: Record<string, unknown> =
 
 /**
  * DISPARO DO OBJETIVO MAIS ALTO: Formulário Preenchido como LEAD no Meta Pixel.
- * Regista o evento padrão "Lead" com valor de 55.000€ e deduplicação CAPI através de eventId.
+ * Regista o evento padrão "Lead" com valor de 51.000€ e deduplicação CAPI através de eventId.
  */
 export function trackFormSubmissionLead(leadData: { nome?: string; telemovel?: string; eventId?: string }) {
   if (typeof window === 'undefined') return;
@@ -47,7 +47,7 @@ export function trackFormSubmissionLead(leadData: { nome?: string; telemovel?: s
   try {
     const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
     if (typeof fbq === 'function') {
-      // 1. Objetivo mais alto no Meta Ads: LEAD (55.000€)
+      // 1. Objetivo mais alto no Meta Ads: LEAD (51.000€)
       fbq(
         'track',
         'Lead',
@@ -55,7 +55,7 @@ export function trackFormSubmissionLead(leadData: { nome?: string; telemovel?: s
           content_name: 'Lote de Terreno c/ Projeto Aprovado e IVA a 6% — Quintãs Aveiro',
           content_category: 'Terrenos e Moradias Aveiro',
           currency: 'EUR',
-          value: 55000,
+          value: 51000,
           lead_source: 'Formulário Web Principal',
           status: 'Lead Confirmada com Número',
         },
@@ -69,7 +69,7 @@ export function trackFormSubmissionLead(leadData: { nome?: string; telemovel?: s
         {
           content_name: 'Contacto e Telemóvel Confirmados no Site',
           currency: 'EUR',
-          value: 55000,
+          value: 51000,
           status: 'Sucesso',
         },
         { eventID: `${eventId}_registration` }
@@ -141,7 +141,7 @@ let lastClickTime = 0;
 
 /**
  * Disparado ao clicar em qualquer botão do WhatsApp ou mensagem direta.
- * REGISTA EXATAMENTE 1 EVENTO "LEAD" NO META ADS COM VALOR MÁXIMO DE 55.000€,
+ * REGISTA EXATAMENTE 1 EVENTO "LEAD" NO META ADS COM VALOR DE 51.000€,
  * COM DEDUPLICAÇÃO PERFEITA VIA EVENTID (SEM DUPLICAR EVENTOS NEM LINHAS NO SUPABASE).
  */
 export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<string, unknown> = {}) {
@@ -157,7 +157,7 @@ export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<stri
     (extra.eventId as string) ||
     `wa_lead_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
 
-  // 1. DISPARAR EXATAMENTE 1 ÚNICO EVENTO "LEAD" NO META PIXEL (55.000€)
+  // 1. DISPARAR EXATAMENTE 1 ÚNICO EVENTO "LEAD" NO META PIXEL (51.000€)
   // Sem eventos paralelos como Contact ou CompleteRegistration que duplicam a contagem no Meta Ads!
   try {
     const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
@@ -166,22 +166,22 @@ export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<stri
         'track',
         'Lead',
         {
-          content_name: 'Lead WhatsApp — Lote Quintãs 55.000€',
+          content_name: 'Lead WhatsApp — Lote Quintãs 51.000€',
           content_category: 'Terrenos e Moradias Aveiro',
           content_type: 'product',
-          contents: [{ id: 'lote_quintas_55k', quantity: 1, item_price: 55000 }],
+          contents: [{ id: 'lote_quintas_51k', quantity: 1, item_price: 51000 }],
           currency: 'EUR',
-          value: 55000,
+          value: 51000,
           lead_source: `WhatsApp (${source})`,
           status: 'Lead WhatsApp Confirmada',
         },
         { eventID: eventId }
       );
 
-      console.log(`🎯 [Meta Pixel ${META_PIXEL_ID}] 1 LEAD Único WhatsApp registado (55.000€):`, {
+      console.log(`🎯 [Meta Pixel ${META_PIXEL_ID}] 1 LEAD Único WhatsApp registado (51.000€):`, {
         eventId,
         source,
-        value: 55000,
+        value: 51000,
         currency: 'EUR',
       });
     }
@@ -194,6 +194,7 @@ export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<stri
   const inputTel = (document.getElementById('t-telemovel') as HTMLInputElement | null)?.value?.trim();
   const quandoLigar = (document.getElementById('t-quando-ligar') as HTMLInputElement | null)?.value?.trim() || undefined;
   const quandoVisitar = (document.getElementById('t-quando-visitar') as HTMLInputElement | null)?.value?.trim() || undefined;
+  const financiamento = (document.getElementById('t-financiamento') as HTMLInputElement | null)?.value?.trim() || undefined;
 
   const nome = (extra.nome as string) || inputNome || `Interessado WhatsApp (${source})`;
   const telemovel = (extra.telemovel as string) || inputTel || 'Contacto direto WhatsApp';
@@ -207,7 +208,8 @@ export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<stri
     telemovel,
     quandoLigar,
     quandoVisitar,
-    mensagem: `Interessado clicou no botão WhatsApp (${source}) — Valor 55.000€.`,
+    financiamento,
+    mensagem: `Interessado clicou no botão WhatsApp (${source}) — Valor 51.000€ (Negociável).`,
     origem: `WhatsApp — ${source}`,
     eventId,
     fbp,

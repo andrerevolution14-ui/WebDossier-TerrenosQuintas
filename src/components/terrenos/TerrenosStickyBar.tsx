@@ -42,7 +42,7 @@ export default function TerrenosStickyBar() {
           id="cta_sticky_bar"
           className="t-btn t-btn-cta t-sticky-btn t-cta-scroll"
         >
-          <span>✨ -4.000€ Desconto · Agendar Visita</span>
+          <span>Agendar Visita ao Terreno · 51.000 € Negociável</span>
           <span className="t-btn-arrow">→</span>
         </a>
       </div>

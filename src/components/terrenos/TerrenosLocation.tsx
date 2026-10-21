@@ -19,13 +19,13 @@ export default function TerrenosLocation() {
     <section className="t-section" id="localizacao">
       <div className="t-wrap">
         <div className="t-section-header">
-          <p className="t-label">📍 / LOCALIZAÇÃO ESTRATÉGICA EM AVEIRO</p>
+          <p className="t-label">LOCALIZAÇÃO ESTRATÉGICA EM AVEIRO</p>
           <h2 className="t-heading">
-            🚗 A 7 Minutos do Glicínias Plaza,<br />
-            <span style={{ color: '#059669' }}>no Sossego Exclusivo de Quintãs</span>
+            A 7 Minutos do Glicínias Plaza,<br />
+            <span style={{ color: '#059669' }}>no Sossego de Quintãs</span>
           </h2>
           <p className="t-section-sub">
-            A <strong>7 minutos</strong> do Glicínias Plaza e dos principais eixos de Aveiro, com a privacidade de uma zona residencial de moradias.
+            A <strong>7 minutos</strong> do Glicínias Plaza e dos principais eixos de Aveiro, com a privacidade de uma zona residencial tranquila de moradias.
           </p>
         </div>
 
@@ -33,7 +33,6 @@ export default function TerrenosLocation() {
           {/* Map */}
           <div className="t-map-wrap">
             <div className="t-map-badge">
-              <span>📍</span>
               <span>Rua Acácio Simões Vieira · Quintãs, Oliveirinha</span>
             </div>
             <iframe
@@ -50,7 +49,7 @@ export default function TerrenosLocation() {
               className="t-map-link"
               id="cta_ver_mapa"
             >
-              <span>📍 Visitar o Terreno no Local</span>
+              <span>Visitar o Terreno no Local</span>
               <span>→</span>
             </a>
           </div>

@@ -33,9 +33,9 @@ export default function TerrenosVideo() {
     <section className="t-section t-section--dark" id="videos">
       <div className="t-wrap">
         <div className="t-section-header">
-          <p className="t-label">🎬 / VÍDEOS DO PROJETO & ENVOLVENTE</p>
+          <p className="t-label">VÍDEOS DO PROJETO & ENVOLVENTE</p>
           <h2 className="t-heading">
-            🎥 Veja o Terreno e o Projeto em Vídeo
+            Veja o Terreno e o Projeto em Vídeo
           </h2>
           <p className="t-section-sub">
             Clique em qualquer vídeo para assistir em ecrã ampliado com total detalhe.

@@ -2,64 +2,63 @@
 
 import { scrollToForm } from '@/lib/scrollToForm';
 
-// Tabela detalhada de preços que justifica o valor de 55.000€
+// Tabela detalhada de preços que justifica o valor de 51.000€
 const pricingRows = [
   {
-    item: 'Valor Justo do Terreno (comparativo em Quintãs)',
-    detail: 'Lote plano 233 m² com frente de rua e infraestruturas prontas',
-    marketValue: '55.000€',
+    item: 'Lote Urbano 233 m² em Quintãs',
+    detail: 'Terreno plano com frente de rua e todas as infraestruturas prontas à porta',
+    marketValue: '50.000€',
     included: true,
   },
   {
-    item: 'Projeto de Arquitetura Completo e Aprovado',
-    detail: 'Peças desenhadas e especialidades aprovadas na Câmara de Aveiro',
+    item: 'Projeto de Arquitetura Aprovado',
+    detail: 'Projeto deferido pela Câmara de Aveiro com peças desenhadas e escritas',
     marketValue: '10.000€',
     included: true,
   },
   {
-    item: 'PIP + Aprovação Camarária Deferida',
-    detail: 'Viabilidade urbanística garantida (poupa 12 a 24 meses de espera)',
-    marketValue: '1.500€',
+    item: 'Processo Urbanístico e Implantação',
+    detail: 'Viabilidade e implantação já deferidas (poupa 12 a 24 meses de espera)',
+    marketValue: '2.000€',
     included: true,
   },
   {
-    item: 'Materiais Técnicos e Modelo 3D (Plantas & Renders)',
-    detail: 'Planta técnica cotada 2D, modelo 3D e renders fotorrealistas',
-    marketValue: '3.500€',
+    item: 'Materiais Técnicos, Modelo 3D e Renders',
+    detail: 'Planta técnica cotada 2D, modelo 3D espacial e renders fotorrealistas',
+    marketValue: '3.000€',
     included: true,
   },
 ];
 
 export default function TerrenosPricing() {
-  const totalMarket = '70.000€';
+  const totalMarket = '65.000€';
 
   return (
     <section className="t-section" id="preco">
       <div className="t-wrap">
         <div className="t-section-header">
-          <p className="t-label">💶 / INVESTIMENTO NO SEU FUTURO</p>
+          <p className="t-label">INVESTIMENTO NO SEU FUTURO</p>
           <h2 className="t-heading">
-            💎 Tudo Incluído para Começar a Construir
+            Tudo Incluído para Avançar com a Sua Moradia
           </h2>
           <p className="t-section-sub">
-            Investimento completo para a sua nova moradia com <strong>desconto de 4.000€</strong> nesta semana:
+            Investimento direto com o proprietário — <strong>51.000 €</strong> (negociável), sem comissões de mediação imobiliária:
           </p>
         </div>
 
-        {/* ── BANNER PROMO SEMANAL (DESCONTO DE INTERESSE) ── */}
+        {/* ── BANNER DE VALOR DIRETO E TRANSPARENTE ── */}
         <div className="t-promo-pricing-banner">
           <div className="t-promo-pricing-inner">
             <div className="t-promo-pricing-left">
-              <span className="t-promo-pricing-flash">✨ DESCONTO DE INTERESSE NESTA SEMANA</span>
+              <span className="t-promo-pricing-flash">OPORTUNIDADE DIRETA COM O PROPRIETÁRIO</span>
               <span className="t-promo-pricing-title">
-                Reserve esta semana e garanta <strong>-4.000€ de desconto imediato</strong>
+                Lote de 233 m² com Projeto de Arquitetura Aprovado
               </span>
-              <span className="t-promo-pricing-dates">🏷️ Válido de 12 a 16 de Outubro de 2026</span>
+              <span className="t-promo-pricing-dates">Quintãs, Oliveirinha · A 7 minutos do centro de Aveiro</span>
             </div>
             <div className="t-promo-pricing-right">
-              <span className="t-promo-pricing-from">De <s>55.000€</s></span>
-              <span className="t-promo-pricing-to">51.000€</span>
-              <span className="t-promo-pricing-neg">Ainda Negociável</span>
+              <span className="t-promo-pricing-to">51.000 €</span>
+              <span className="t-promo-pricing-neg">Negociável</span>
             </div>
           </div>
         </div>
@@ -67,8 +66,8 @@ export default function TerrenosPricing() {
         {/* Tabela de Preços com Cada Item Discriminado */}
         <div className="t-pricing-table">
           <div className="t-pricing-header">
-            <span>📋 O que Está Incluído no Lote</span>
-            <span>💶 Valor de Mercado</span>
+            <span>O que Está Incluído no Lote</span>
+            <span>Valor de Mercado</span>
           </div>
 
           {pricingRows.map((row) => (
@@ -90,31 +89,30 @@ export default function TerrenosPricing() {
           {/* Total de Mercado com Poupança */}
           <div className="t-pricing-total-row">
             <div className="t-pricing-total-label">
-              <span>Valor Total de Mercado (em separado)</span>
+              <span>Valor Total de Mercado Estimado (em separado)</span>
               <span className="t-pricing-total-sub">
-                Terreno 233m² + Projeto Aprovado + PIP + Modelos 3D e Renders
+                Terreno 233m² + Projeto de Arquitetura Aprovado + Modelos 3D e Renders
               </span>
             </div>
             <div className="t-pricing-total-values">
               <span className="t-pricing-total-market t-pricing-total-market--red">{totalMarket}</span>
-              <span className="t-pricing-saving-badge">🏷️ Poupança direta de 19.000€</span>
+              <span className="t-pricing-saving-badge">Poupança direta de 14.000€</span>
             </div>
           </div>
 
           {/* O Nosso Preço Chave */}
           <div className="t-pricing-our-price">
             <div className="t-pricing-our-info">
-              <span className="t-pricing-our-badge">✨ Desconto de Interesse</span>
+              <span className="t-pricing-our-badge">Venda Direta</span>
               <span className="t-pricing-our-label">Preço Total do Lote — Tudo Incluído</span>
               <span className="t-pricing-our-sub">Terreno 233m² + Projeto Aprovado + Plantas + Renders</span>
             </div>
             <div className="t-pricing-our-value">
               <div className="t-pricing-our-price-row">
-                <span className="t-pricing-our-original">55.000€</span>
-                <span className="t-pricing-our-amount">51.000€</span>
+                <span className="t-pricing-our-amount">51.000 €</span>
                 <span className="t-pricing-our-neg">Negociável</span>
               </div>
-              <span className="t-pricing-our-direct">Venda Direta · Desconto de 4.000€ até 16/Out</span>
+              <span className="t-pricing-our-direct">Venda Direta · Sem comissões de mediação</span>
             </div>
           </div>
         </div>
@@ -134,8 +132,7 @@ export default function TerrenosPricing() {
             boxShadow: '0 4px 16px rgba(16, 185, 129, 0.08)',
           }}
         >
-          <span style={{ fontSize: '1.6rem', flexShrink: 0, marginTop: '2px' }}>💎</span>
-          <div>
+          <div style={{ flex: 1 }}>
             <span
               style={{
                 display: 'inline-block',
@@ -151,20 +148,18 @@ export default function TerrenosPricing() {
                 marginBottom: '6px',
               }}
             >
-              Poupança Que Muda Tudo
+              Benefício Fiscal Maior
             </span>
-            <span style={{ display: 'block', fontSize: '1.02rem', fontWeight: 700, color: '#064E3B', marginBottom: '4px' }}>
-              IVA a 6% na Construção = ~40.000€ que ficam no seu bolso
+            <span style={{ display: 'block', fontSize: '1.05rem', fontWeight: 700, color: '#064E3B', marginBottom: '6px' }}>
+              IVA a 6% na Construção para Habitação Própria Permanente (~40.000€ de Poupança)
             </span>
             <p style={{ fontSize: '0.90rem', color: 'var(--text-body)', lineHeight: 1.55, margin: 0 }}>
-              Enquanto outros pagam 23% de IVA na construção, a sua moradia em Quintãs qualifica-se para
-              a <strong>taxa reduzida de 6%</strong>. São quase <strong>40.000€ poupados</strong> — dinheiro
-              que pode investir nos acabamentos de sonho, na piscina, ou naquelas férias em família.
+              Ao construir a sua moradia para habitação própria permanente neste lote, a empreitada beneficia legalmente da <strong>taxa reduzida de IVA a 6%</strong> (ao abrigo do Código do IVA), em vez da taxa normal de 23%. Uma diferença substancial de 17 pontos percentuais que representa cerca de <strong>35.000€ a 40.000€ poupados</strong> no custo total de construção.
             </p>
           </div>
         </div>
 
-        {/* Opção Moradia Já Construída Verdemont */}
+        {/* Duas Opções de Compra para Este Lote */}
         <div
           style={{
             background: '#FFFFFF',
@@ -180,15 +175,14 @@ export default function TerrenosPricing() {
         >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
             <span style={{ fontSize: '0.74rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#059669' }}>
-              ✦ Prefere Entrar Já? Moradia Pronta a Habitar
+              Duas Formas de Comprar Este Lote
             </span>
             <span style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-              335.000€ Chave na Mão
+              51.000 € (Só Lote) ou 335.000 € (Chave na Mão)
             </span>
           </div>
-          <p style={{ fontSize: '0.88rem', color: 'var(--text-body)', lineHeight: 1.55, margin: 0 }}>
-            Se o seu sonho não pode esperar — a moradia Domaine XXV já terminada, com jardim de ~82 m², garagem
-            coberta e acabamentos de luxo. Avaliação bancária de <strong>450.000€</strong>.
+          <p style={{ fontSize: '0.90rem', color: 'var(--text-body)', lineHeight: 1.6, margin: 0 }}>
+            Este lote pode ser comprado só com o projeto (<strong>51.000 € negociável</strong>), ou com a moradia construída chave na mão (<strong>335.000 €</strong>). Se prefere não gerir a obra e receber a casa pronta a habitar com acabamentos contemporâneos, garagem e jardim, apresentamos a solução chave na mão com construtores parceiros.
           </p>
           <div style={{ alignSelf: 'flex-start', marginTop: '4px' }}>
             <a
@@ -198,7 +192,7 @@ export default function TerrenosPricing() {
               className="t-btn t-btn-outline"
               style={{ color: 'var(--text-primary)', borderColor: '#10B981' }}
             >
-              <span>Quero Saber Mais Sobre a Moradia Pronta →</span>
+              <span>Consultar Opções (Lote ou Chave na Mão) →</span>
             </a>
           </div>
         </div>
@@ -211,7 +205,7 @@ export default function TerrenosPricing() {
             id="cta_pricing_contacto"
             className="t-btn t-btn-cta t-cta-scroll"
           >
-            <span>📅 Quero Garantir o Desconto de -4.000€</span>
+            <span>Agendar Visita ao Terreno</span>
             <span className="t-btn-arrow">→</span>
           </a>
         </div>

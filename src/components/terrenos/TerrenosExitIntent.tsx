@@ -111,43 +111,41 @@ export default function TerrenosExitIntent() {
         </button>
 
         <div className="t-exit-content">
-          {/* Tag de Urgência Promo */}
+          {/* Tag Direta */}
           <div className="t-exit-badge-pill">
             <span className="t-exit-badge-dot" />
-            <span>✨ Desconto de Interesse -4.000€ · Até 16 de Outubro</span>
+            <span>Oportunidade Direta com o Proprietário</span>
           </div>
 
-          {/* Título que vende o sonho */}
+          {/* Título claro e profissional */}
           <h3 id="exit-popup-title" className="t-exit-title">
-            🏡 A sua moradia de sonho a 7 min de Aveiro — com desconto esta semana
+            Lote de 233 m² com projeto de moradia T3 aprovado · 51.000 €
           </h3>
 
           {/* Texto Descritivo */}
           <p className="t-exit-desc">
-            Imagine acordar numa moradia moderna, com jardim privado e os seus filhos a brincar lá fora — tudo isto
-            a <strong>7 min do Glicínias</strong>. O projeto já está aprovado. E esta semana, o terreno sai com
-            <strong> -4.000€ de desconto</strong>: de 55.000€ por <strong>51.000€ (ainda negociável)</strong>.
+            Terreno plano pronto a construir em Quintãs, a <strong>7 min de Aveiro</strong>. Projeto de arquitetura aprovado pela Câmara de Aveiro · Aditamento para emissão da licença. Benefício fiscal de <strong>IVA a 6% na construção</strong> para habitação própria permanente.
           </p>
 
-          {/* Checklist de Benefícios Visíveis */}
+          {/* Checklist de Benefícios */}
           <ul className="t-exit-checklist">
             <li>
-              <span className="t-exit-check-icon">✨</span>
-              <span><strong>-4.000€</strong> de desconto de interesse para reservas até 16 de Outubro.</span>
+              <span className="t-exit-check-icon" style={{ color: '#059669', fontWeight: 'bold' }}>✓</span>
+              <span><strong>51.000 € (Negociável)</strong> — venda direta sem custos de agência.</span>
             </li>
             <li>
-              <span className="t-exit-check-icon">💶</span>
-              <span><strong>Poupe ~40.000€</strong> em impostos com IVA a 6% na construção.</span>
+              <span className="t-exit-check-icon" style={{ color: '#059669', fontWeight: 'bold' }}>✓</span>
+              <span><strong>Poupe até ~40.000€</strong> em impostos com IVA a 6% na construção.</span>
             </li>
             <li>
-              <span className="t-exit-check-icon">🏡</span>
-              <span>Projeto T3 aprovado incluído — <strong>comece a construir já</strong>.</span>
+              <span className="t-exit-check-icon" style={{ color: '#059669', fontWeight: 'bold' }}>✓</span>
+              <span>Opção só lote com projeto (51.000 €) ou <strong>chave na mão (335.000 €)</strong>.</span>
             </li>
           </ul>
 
           <div className="t-exit-cta-trigger-box">
             <p className="t-exit-cta-label">
-              Deixe o seu contacto para ser contactado e saber mais
+              Deixe os seus dados para agendarmos uma visita sem compromisso
             </p>
             <a
               href="#formulario"
@@ -158,7 +156,7 @@ export default function TerrenosExitIntent() {
                 handleGoToForm();
               }}
             >
-              <span>📅 Quero Garantir o Desconto de -4.000€</span>
+              <span>Agendar Visita ao Terreno</span>
               <span className="t-btn-arrow">→</span>
             </a>
           </div>

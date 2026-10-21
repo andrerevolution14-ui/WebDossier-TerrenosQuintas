@@ -5,12 +5,16 @@ import { scrollToForm } from '@/lib/scrollToForm';
 
 const faqs = [
   {
-    q: 'O projeto de arquitetura está mesmo 100% aprovado pela Câmara de Aveiro?',
-    a: 'Sim. O projeto de arquitetura foi formalmente deferido e aprovado pelos serviços de urbanismo da Câmara Municipal de Aveiro. Para o levantamento das licenças de construção é necessário realizar um Aditamento ao Processo — uma formalidade simples, necessária por o projeto ter ultrapassado o prazo máximo obrigatório de 2 anos sem início de obra. Este aditamento é rápido e não coloca em risco a aprovação já concedida.',
+    q: 'Qual é a situação exata da aprovação do projeto de arquitetura?',
+    a: 'O projeto de arquitetura foi formalmente deferido e aprovado pela Câmara Municipal de Aveiro. Uma vez que decorreram mais de 2 anos sem o início físico da obra, é necessário efetuar um aditamento administrativo para a emissão da licença de construção com os termos de responsabilidade dos técnicos autores das especialidades (conforme estabelecido no regime Simplex Urbanístico). A volumetria e implantação estão seguras, não havendo risco de indeferimento de arquitetura.',
   },
   {
-    q: 'Como funciona o benefício incrível do IVA a 6% na construção desta moradia?',
-    a: 'A empreitada de construção desta moradia para habitação própria qualifica-se legalmente para a taxa reduzida de IVA a 6%. Em vez de ser tributada à taxa normal de 23%, beneficia de uma redução fiscal direta de 17 pontos percentuais — o que representa menos por volta de 40.000€ no valor de construção em impostos que permanece diretamente na sua conta bancária.',
+    q: 'Como funciona o benefício do IVA a 6% para construção de habitação própria?',
+    a: 'A empreitada de construção de moradia destinada a habitação própria permanente qualifica-se legalmente para a taxa reduzida de IVA a 6% ao abrigo do Código do IVA. Comparativamente à taxa normal de 23%, isto representa uma poupança fiscal direta de 17 pontos percentuais — o que se traduz em cerca de 35.000€ a 40.000€ que não saem do seu bolso durante a obra.',
+  },
+  {
+    q: 'Este lote pode ser comprado com a moradia construída chave na mão?',
+    a: 'Sim! Tem duas opções: comprar apenas o lote com o projeto de arquitetura aprovado por 51.000 € (negociável) para construir ao seu ritmo ou com o seu próprio empreiteiro, ou optar pela moradia construída chave na mão por 335.000 €, através do projeto Domaine XXV estruturado com construtores parceiros qualificados.',
   },
   {
     q: 'Posso escolher o meu próprio construtor? Ou sou obrigado a usar o vosso?',
@@ -33,8 +37,8 @@ const faqs = [
     a: 'O processo é 100% seguro e transparente. Celebra-se um Contrato Promessa de Compra e Venda (CPCV) com prazo para escritura em Cartório ou Casa Pronta. O lote tem caderneta predial urbana e registo predial limpo, sem ónus nem encargos.',
   },
   {
-    q: 'O valor é realmente negociável? E como funciona o desconto de -4.000€ desta semana?',
-    a: 'Sim! Para quem reservar durante a nossa campanha desta semana (12 a 16 de Outubro), garantimos de antemão um acerto de preço obrigatório de -4.000€, ficando o lote por 51.000€. E mesmo após esse desconto imediato, o valor continua aberto a negociação e propostas sérias de quem tiver disponibilidade para avançar.',
+    q: 'O valor de 51.000 € é realmente negociável?',
+    a: 'Sim. O valor de 51.000 € está aberto a propostas sérias de compradores com capacidade de decisão e perfil validado. A venda é direta com o proprietário André Queirós, sem qualquer comissão de intermediação imobiliária.',
   },
 ];
 
@@ -49,8 +53,8 @@ export default function TerrenosFaq() {
     <section className="t-section t-section--alt" id="faq">
       <div className="t-wrap">
         <div className="t-section-header">
-          <p className="t-label">💡 / ESCLARECIMENTO TOTAL</p>
-          <h2 className="t-heading">❓ Perguntas Frequentes</h2>
+          <p className="t-label">ESCLARECIMENTO TOTAL</p>
+          <h2 className="t-heading">Perguntas Frequentes</h2>
           <p className="t-section-sub">
             Respostas diretas e honestas às principais dúvidas sobre este terreno, o projeto e o processo de compra.
           </p>
@@ -89,7 +93,7 @@ export default function TerrenosFaq() {
             id="cta_faq_contacto"
             className="t-btn t-btn-cta t-cta-scroll"
           >
-            <span>📅 Agendar Visita e Falar com o Proprietário</span>
+            <span>Agendar Visita e Falar com o Proprietário</span>
             <span className="t-btn-arrow">→</span>
           </a>
         </div>

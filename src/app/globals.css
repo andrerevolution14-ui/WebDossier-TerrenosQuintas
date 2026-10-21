@@ -2216,6 +2216,9 @@ strong, b {
 .t-choice-pills--visit {
   grid-template-columns: repeat(3, 1fr) !important;
 }
+.t-choice-pills--finance {
+  grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+}
 
 .t-choice-pill {
   display: flex;

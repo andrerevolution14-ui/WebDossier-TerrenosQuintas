@@ -14,16 +14,16 @@ import TerrenosWhatsAppButton from '@/components/terrenos/TerrenosWhatsAppButton
 import TerrenosExitIntent from '@/components/terrenos/TerrenosExitIntent';
 
 export const metadata: Metadata = {
-  title: 'Lote de Terreno c/ Projeto Aprovado e IVA a 6% na Construção | Quintãs, Oliveirinha, Aveiro | 55.000€',
+  title: 'Lote de 233 m² com projeto de moradia T3 aprovado · Quintãs, a 7 min de Aveiro · 51.000 €',
   description:
-    'Lote urbano de 233m² em Quintãs, Oliveirinha, a 7 min de Aveiro. Projeto 100% Aprovado pela Câmara com benefício fiscal de IVA a 6% na construção da moradia. 55.000€ Negociável.',
+    'Lote de 233 m² em Quintãs, Oliveirinha, a 7 min de Aveiro. Projeto de arquitetura aprovado pela Câmara de Aveiro · Aditamento para emissão da licença. Benefício fiscal de IVA a 6% na construção. 51.000 € (Negociável).',
   alternates: {
-    canonical: '/terrenos',
+    canonical: 'https://terreno.verdemont.eu/terrenos',
   },
   openGraph: {
-    title: 'Lote c/ Projeto Aprovado e IVA a 6% na Construção | 55.000€ Negociável',
+    title: 'Lote de 233 m² com projeto de moradia T3 aprovado · Quintãs, a 7 min de Aveiro · 51.000 €',
     description:
-      'Lote 233m² em Quintãs, Oliveirinha. Projeto Aprovado pela Câmara e benefício de taxa reduzida de IVA a 6% na construção.',
+      'Lote de 233 m² em Quintãs, Oliveirinha. Projeto de arquitetura aprovado pela Câmara de Aveiro e benefício fiscal de IVA a 6% na construção. 51.000 € (Negociável).',
     images: [{ url: '/Curado/2.webp', width: 1200, height: 675, alt: 'Terreno Quintãs Oliveirinha Aveiro com Projeto Aprovado' }],
     locale: 'pt_PT',
     type: 'website',
@@ -35,21 +35,21 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'RealEstateListing',
-      '@id': 'https://terrenosaveiro.pt/terrenos#listing',
-      name: 'Lote de Terreno c/ Projeto Aprovado e IVA a 6% na Construção em Aveiro',
+      '@id': 'https://terreno.verdemont.eu/terrenos#listing',
+      name: 'Lote de 233 m² com projeto de moradia T3 aprovado em Aveiro',
       description:
-        'Lote urbano de 233m² em Quintãs, Oliveirinha, a 7 min de Aveiro. Projeto 100% Aprovado pela Câmara Municipal de Aveiro com benefício fiscal de IVA a 6% na construção da moradia.',
-      url: 'https://terrenosaveiro.pt/terrenos',
+        'Lote urbano de 233 m² em Quintãs, Oliveirinha, a 7 min de Aveiro. Projeto de arquitetura aprovado pela Câmara Municipal de Aveiro com benefício fiscal de IVA a 6% na construção da moradia.',
+      url: 'https://terreno.verdemont.eu/terrenos',
       datePosted: '2026-09-21',
       offers: {
         '@type': 'Offer',
-        price: '55000',
+        price: '51000',
         priceCurrency: 'EUR',
         availability: 'https://schema.org/InStock',
-        validFrom: '2026-09-21',
+        validFrom: '2026-10-21',
         priceSpecification: {
           '@type': 'PriceSpecification',
-          price: '55000',
+          price: '51000',
           priceCurrency: 'EUR',
           valueAddedTaxIncluded: true,
         },
@@ -74,30 +74,30 @@ const jsonLd = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://terrenosaveiro.pt/terrenos#faq',
+      '@id': 'https://terreno.verdemont.eu/terrenos#faq',
       mainEntity: [
         {
           '@type': 'Question',
-          name: 'O projeto de arquitetura está mesmo 100% aprovado pela Câmara de Aveiro?',
+          name: 'Qual o estado real da aprovação do projeto de arquitetura?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Sim. O projeto de arquitetura foi formalmente deferido e aprovado pelos serviços de urbanismo da Câmara Municipal de Aveiro. Para o levantamento das licenças de construção é necessário realizar um Aditamento ao Processo — uma formalidade simples, necessária por o projeto ter ultrapassado o prazo máximo obrigatório de 2 anos sem início de obra. Este aditamento é rápido e não coloca em risco a aprovação já concedida.',
+            text: 'O projeto de arquitetura está formalmente aprovado pela Câmara Municipal de Aveiro. Como decorreram mais de 2 anos sem o início físico da obra, é unicamente necessário efetuar o aditamento administrativo para emissão da licença de construção com os termos de responsabilidade das especialidades (conforme previsto no regime Simplex). Não existe risco de indeferimento arquitetónico.',
           },
         },
         {
           '@type': 'Question',
-          name: 'Como funciona o benefício incrível do IVA a 6% na construção desta moradia?',
+          name: 'Como funciona o benefício fiscal do IVA a 6% na construção da moradia?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'A empreitada de construção desta moradia para habitação própria qualifica-se legalmente para a taxa reduzida de IVA a 6%. Em vez de ser tributada à taxa normal de 23%, beneficia de uma redução fiscal direta de 17 pontos percentuais — o que representa menos por volta de 40.000€ no valor de construção em impostos que permanece diretamente na sua conta bancária.',
+            text: 'A empreitada de construção de moradia para habitação própria permanente beneficia da taxa reduzida de IVA a 6% em vez da taxa normal de 23%. Esta poupança de 17 pontos percentuais representa uma poupança líquida de cerca de 35.000€ a 40.000€ no orçamento de obra.',
           },
         },
         {
           '@type': 'Question',
-          name: 'Posso escolher o meu próprio construtor? Ou sou obrigado a usar o vosso?',
+          name: 'Este lote pode ser comprado com a moradia construída chave na mão?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Tem total liberdade de escolha do construtor. O projeto pertence a si após a escritura — adjudica a obra a quem quiser. Se precisar, podemos apresentar parceiros de confiança (nomeadamente o Grupo Freitas Renovações) com orçamentos detalhados para Betão Armado ou LSF.',
+            text: 'Sim. Este lote pode ser adquirido só com o projeto de arquitetura aprovado (51.000 € negociável) para construir com o seu próprio empreiteiro, ou com a moradia construída chave na mão (335.000 €).',
           },
         },
         {
@@ -110,10 +110,10 @@ const jsonLd = {
         },
         {
           '@type': 'Question',
-          name: 'O valor de 55.000€ é realmente negociável?',
+          name: 'O valor de 51.000 € é realmente negociável?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Sim. Estamos abertos a analisar propostas sérias de compradores com perfil validado ou disponibilidade para escritura rápida. Peça-nos contacto e conversamos sem compromisso.',
+            text: 'Sim. Estamos abertos a analisar propostas sérias de compradores com perfil validado ou disponibilidade para escritura rápida. Trata-se de uma venda direta com o proprietário, sem intermediários.',
           },
         },
       ],
@@ -138,7 +138,7 @@ export default function TerrenosPage() {
           3. Localização & Mapa   → Prova de proximidade (7 min de Aveiro)
           4. O Projeto Aprovado   → Renders, Planta 2D, Planta 3D, LSF/Betão
           5. Especificações Técnicas → Ficha técnica rigorosa após o projeto + IVA a 6%
-          6. Tabela de Preços     → Justificação transparente do valor 55k + poupança IVA
+          6. Tabela de Preços     → Justificação transparente do valor 51k + poupança IVA
           7. Comparativo           → Diferenciação vs terreno comum do mercado
           8. Vídeos               → Credibilidade com vídeos profissionais
           9. FAQ                   → Eliminação de objeções + nota sobre IVA e aditamento
@@ -160,7 +160,7 @@ export default function TerrenosPage() {
         {/* 5 ── ESPECIFICAÇÕES TÉCNICAS (Imediatamente após o Projeto) */}
         <TerrenosDetails />
 
-        {/* 6 ── TABELA DE PREÇOS — JUSTIFICAÇÃO DOS 55.000€ */}
+        {/* 6 ── TABELA DE PREÇOS — JUSTIFICAÇÃO DOS 51.000€ */}
         <TerrenosPricing />
 
         {/* 7 ── COMPARATIVO VS MERCADO */}
