@@ -156,6 +156,59 @@ export default function TerrenosProject() {
           </div>
         </div>
 
+        {/* ── TOUR VIRTUAL 3D INTERATIVO ── */}
+        <div
+          style={{
+            marginTop: '20px',
+            background: 'linear-gradient(135deg, #064E3B 0%, #0F172A 100%)',
+            border: '1.5px solid #10B981',
+            borderRadius: '14px',
+            padding: '16px 20px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '12px',
+            boxShadow: '0 8px 24px rgba(6, 78, 59, 0.2)',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <span style={{ fontSize: '1.5rem' }}>🌐</span>
+            <div>
+              <div style={{ fontSize: '0.98rem', fontWeight: 800, color: '#FFFFFF' }}>
+                Visite a Moradia em 3D Interativo
+              </div>
+              <p style={{ fontSize: '0.80rem', color: '#A7F3D0', margin: 0, lineHeight: 1.35 }}>
+                Explore o interior da moradia aprovada em 360° no telemóvel ou computador.
+              </p>
+            </div>
+          </div>
+          <a
+            href="https://visita3dmoradia-vvtu.vercel.app/#cozinha"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="cta_visita_3d_moradia"
+            className="t-btn"
+            style={{
+              background: '#10B981',
+              color: '#FFFFFF',
+              fontWeight: 800,
+              fontSize: '0.86rem',
+              padding: '10px 18px',
+              borderRadius: '9999px',
+              textDecoration: 'none',
+              boxShadow: '0 4px 14px rgba(16, 185, 129, 0.4)',
+              whiteSpace: 'nowrap',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+            }}
+          >
+            <span>Visite o Projeto Aqui</span>
+            <span>→</span>
+          </a>
+        </div>
+
         {/* Nota de personalização */}
         <div className="t-personalize-note">
           <p>
@@ -199,15 +252,35 @@ export default function TerrenosProject() {
           </a>
         </div>
 
-        <div className="t-cta-center">
+        <div className="t-cta-center" style={{ gap: '12px', flexWrap: 'wrap' }}>
           <a
             href="#formulario"
             onClick={scrollToForm}
             className="t-btn t-btn-cta t-cta-scroll"
             id="cta_project_contacto"
           >
-            <span>Agendar Visita e Conhecer o Projeto</span>
+            <span>Agendar Visita ao Terreno</span>
             <span className="t-btn-arrow">→</span>
+          </a>
+          <a
+            href="https://visita3dmoradia-vvtu.vercel.app/#cozinha"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="cta_project_visita_3d_secondary"
+            className="t-btn t-btn-outline"
+            style={{
+              borderColor: '#10B981',
+              color: '#064E3B',
+              background: '#FFFFFF',
+              fontWeight: 700,
+              padding: '12px 22px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+            }}
+          >
+            <span>Visite o Projeto Aqui (3D)</span>
+            <span>↗</span>
           </a>
         </div>
       </div>

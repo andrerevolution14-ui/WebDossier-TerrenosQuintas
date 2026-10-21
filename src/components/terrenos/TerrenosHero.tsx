@@ -94,6 +94,27 @@ export default function TerrenosHero() {
             >
               Agendar Visita ao Terreno →
             </a>
+            <div style={{ textAlign: 'center', marginTop: '4px' }}>
+              <a
+                href="https://visita3dmoradia-vvtu.vercel.app/#cozinha"
+                target="_blank"
+                rel="noopener noreferrer"
+                id="cta_hero_visita_3d"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '5px',
+                  fontSize: '0.82rem',
+                  fontWeight: 700,
+                  color: '#065F46',
+                  textDecoration: 'underline',
+                  textUnderlineOffset: '3px',
+                }}
+              >
+                <span>Visite o projeto aqui em 3D interativo</span>
+                <span>↗</span>
+              </a>
+            </div>
           </div>
         </div>
 
