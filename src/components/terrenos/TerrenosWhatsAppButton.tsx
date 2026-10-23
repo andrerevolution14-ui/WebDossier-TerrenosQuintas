@@ -1,17 +1,23 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { trackWhatsAppContact } from '@/lib/analytics';
-
-const PHONE_NUMBER = '351920601070';
-const DEFAULT_MESSAGE =
-  'Olá André! Vi o lote de terreno em Quintãs (Aveiro) no site e gostaria de obter mais informações sobre o projeto, agendamento de visita e condições. Obrigado!';
-
-const WA_URL = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(DEFAULT_MESSAGE)}`;
+import {
+  WA_PHONE_NUMBER,
+  WA_PHONE_DISPLAY,
+  WA_DEFAULT_PRESET_MESSAGE,
+  openWhatsAppDirect,
+  getWhatsAppDirectUrl,
+} from '@/lib/whatsapp';
 
 export default function TerrenosWhatsAppButton() {
   const [showTooltip, setShowTooltip] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
+
+  // Prevenir disparos acidentais quando o utilizador está apenas a fazer scroll com o polegar no telemóvel
+  const touchStartY = useRef<number | null>(null);
+  const touchStartX = useRef<number | null>(null);
+  const isScrollDrag = useRef<boolean>(false);
 
   useEffect(() => {
     // Verificar se o utilizador já fechou o balão nesta sessão
@@ -30,6 +36,22 @@ export default function TerrenosWhatsAppButton() {
     return () => clearTimeout(timer);
   }, []);
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartY.current = e.touches[0].clientY;
+    touchStartX.current = e.touches[0].clientX;
+    isScrollDrag.current = false;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (touchStartY.current !== null && touchStartX.current !== null) {
+      const deltaY = Math.abs(e.touches[0].clientY - touchStartY.current);
+      const deltaX = Math.abs(e.touches[0].clientX - touchStartX.current);
+      if (deltaY > 10 || deltaX > 10) {
+        isScrollDrag.current = true;
+      }
+    }
+  };
+
   const handleDismissTooltip = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -40,15 +62,29 @@ export default function TerrenosWhatsAppButton() {
     } catch {}
   };
 
-  const handleWhatsAppClick = () => {
+  const handleWhatsAppClick = (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+    }
+
+    if (isScrollDrag.current) {
+      // Ignora toques acidentais durante o scroll com o polegar
+      return;
+    }
+
     // 1. Telemetria e Meta Pixel / CAPI Tracking ao mesmo nível dos formulários (Lead 51.000€)
     trackWhatsAppContact('floating_whatsapp_btn', {
       channel: 'whatsapp_floating_corner',
-      phone: '+351 920 601 070',
+      phone: WA_PHONE_DISPLAY,
       property: 'Lote Quintãs Aveiro (51.000€)',
-      message_intent: 'general_landing_objectives',
+      message: WA_DEFAULT_PRESET_MESSAGE,
     });
+
+    // 2. Abrir WhatsApp direto com deep-link nativo sem ecrãs intermédios
+    openWhatsAppDirect(WA_DEFAULT_PRESET_MESSAGE, WA_PHONE_NUMBER);
   };
+
+  const directUrl = getWhatsAppDirectUrl(WA_DEFAULT_PRESET_MESSAGE, WA_PHONE_NUMBER);
 
   return (
     <div
@@ -74,10 +110,12 @@ export default function TerrenosWhatsAppButton() {
           </button>
 
           <a
-            href={WA_URL}
+            href={directUrl}
             target="_blank"
             rel="noopener noreferrer"
             onClick={handleWhatsAppClick}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
             className="t-wa-tooltip-body"
           >
             <div className="t-wa-tooltip-header">
@@ -105,10 +143,12 @@ export default function TerrenosWhatsAppButton() {
 
       {/* Botão Flutuante Principal de WhatsApp Sempre Ativo */}
       <a
-        href={WA_URL}
+        href={directUrl}
         target="_blank"
         rel="noopener noreferrer"
         onClick={handleWhatsAppClick}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
         className="t-wa-floating-btn"
         id="t-floating-whatsapp-btn"
         title="Falar com André Queirós no WhatsApp (+351 920 601 070)"
@@ -130,7 +170,7 @@ export default function TerrenosWhatsAppButton() {
           </svg>
         </span>
 
-        {/* Grupo de Texto e Indicador Online */}
+        {/* Grupo de Texto e Indicador Online — Rótulo claro no telemóvel e desktop */}
         <span className="t-wa-text-group">
           <span className="t-wa-label-title">Falar no WhatsApp</span>
           <span className="t-wa-label-sub">

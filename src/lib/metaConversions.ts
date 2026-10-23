@@ -87,24 +87,19 @@ export async function sendMetaLeadConversion(data: MetaLeadPayload) {
       userData.fbc = fbc;
     }
 
-    const isWhatsAppLead = isGenericPhone || (data.sourceUrl && data.sourceUrl.includes('whatsapp'));
-
     const leadCustomData = {
       currency: 'EUR',
       value: 51000,
-      content_name: isWhatsAppLead
-        ? 'Lead WhatsApp — Lote Quintãs 51.000€'
-        : 'Lote de Terreno c/ Projeto Aprovado e IVA a 6% — Quintãs Aveiro',
+      content_name: 'Lote de Terreno c/ Projeto Aprovado e IVA a 6% — Quintãs Aveiro',
       content_category: 'Terrenos e Moradias Aveiro',
       content_type: 'product',
       contents: [{ id: 'lote_quintas_51k', quantity: 1, item_price: 51000 }],
-      status: isWhatsAppLead ? 'Lead WhatsApp Direto' : 'Lead Confirmada com Número',
-      lead_source: isWhatsAppLead ? 'WhatsApp Direto' : 'Formulário Web Principal',
+      status: 'Lead Confirmada com Número',
+      lead_source: 'Formulário Web Principal',
     };
 
     const eventPayload = {
       data: [
-        // 1 Único Objetivo: LEAD (51.000€) com deduplicação perfeita com o Pixel
         {
           event_name: 'Lead',
           event_time: Math.floor(Date.now() / 1000),
@@ -131,7 +126,7 @@ export async function sendMetaLeadConversion(data: MetaLeadPayload) {
       return { success: false, error: resData.error };
     }
 
-    console.log(`[Meta CAPI 🚀] Lead enviado com sucesso para a API de Conversões (Pixel ${META_PIXEL_ID}):`, {
+    console.log(`[Meta CAPI 🚀] Lead REAL enviado com sucesso (Pixel ${META_PIXEL_ID}):`, {
       eventId,
       value: 51000,
       currency: 'EUR',
@@ -142,6 +137,62 @@ export async function sendMetaLeadConversion(data: MetaLeadPayload) {
     return { success: true, data: resData };
   } catch (err) {
     console.error('[Meta CAPI ❌] Exceção na chamada da API de Conversões:', err);
+    return { success: false, error: err };
+  }
+}
+
+/**
+ * Envia evento CONTACT (e NÃO Lead) para a Meta Conversions API (CAPI).
+ * Utilizado exclusivamente para cliques no WhatsApp e chamadas telefónicas diretas,
+ * impedindo que cliques sem mensagem sejam contabilizados como "Leads" no Meta Ads.
+ */
+export async function sendMetaContactConversion(data: MetaLeadPayload) {
+  try {
+    const { eventId, sourceUrl, clientIp, clientUserAgent, fbp, fbc } = data;
+
+    const userData: Record<string, unknown> = {};
+    if (clientIp && clientIp !== '::1' && clientIp !== '127.0.0.1' && !clientIp.startsWith('192.168.') && !clientIp.startsWith('10.')) {
+      userData.client_ip_address = clientIp;
+    }
+    if (clientUserAgent) {
+      userData.client_user_agent = clientUserAgent;
+    }
+    if (fbp) {
+      userData.fbp = fbp;
+    }
+    if (fbc) {
+      userData.fbc = fbc;
+    }
+
+    const eventPayload = {
+      data: [
+        {
+          event_name: 'Contact',
+          event_time: Math.floor(Date.now() / 1000),
+          event_id: eventId,
+          event_source_url: sourceUrl || 'https://terreno.verdemont.eu/terrenos',
+          action_source: 'website',
+          user_data: userData,
+          custom_data: {
+            currency: 'EUR',
+            value: 51000,
+            content_name: 'Contacto WhatsApp / Telefone — Lote Quintãs',
+            content_category: 'Terrenos e Moradias Aveiro',
+          },
+        },
+      ],
+      access_token: META_CAPI_ACCESS_TOKEN,
+    };
+
+    const res = await fetch(`https://graph.facebook.com/v19.0/${META_PIXEL_ID}/events`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(eventPayload),
+    });
+
+    const resData = await res.json();
+    return { success: res.ok && !resData.error, data: resData };
+  } catch (err) {
     return { success: false, error: err };
   }
 }

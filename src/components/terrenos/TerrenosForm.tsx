@@ -5,10 +5,16 @@ import { scrollToForm } from '@/lib/scrollToForm';
 import { trackFormSubmissionLead, trackWhatsAppContact } from '@/lib/analytics';
 import { saveLeadToSupabase } from '@/lib/supabase';
 
-const WA_PHONE = '351920601070';
-const WA_DIRECT_URL = `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(
-  'Olá André! Vi o terreno em Quintãs (51.000€ negociável) e gostaria de agendar uma visita!'
-)}`;
+import {
+  getWhatsAppDirectUrl,
+  openWhatsAppDirect,
+  WA_PHONE_NUMBER,
+  WA_PHONE_DISPLAY,
+  WA_DEFAULT_PRESET_MESSAGE,
+} from '@/lib/whatsapp';
+
+const WA_PHONE = WA_PHONE_NUMBER;
+const WA_DIRECT_URL = getWhatsAppDirectUrl(WA_DEFAULT_PRESET_MESSAGE);
 
 declare global {
   interface Window {
@@ -255,11 +261,10 @@ export default function TerrenosForm() {
     }, 100);
   }
 
-  const customWaSuccessUrl = submittedData
-    ? `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(
-        `Olá André! Acabei de agendar uma visita ao terreno em Quintãs (${submittedData.nome} - ${submittedData.formattedPhone}). Preferência: ${submittedData.preferencia} | Contacto: ${submittedData.horario} | Financiamento: ${submittedData.financiamento}.`
-      )}`
-    : WA_DIRECT_URL;
+  const successWaMsg = submittedData
+    ? `Olá André! Acabei de agendar uma visita ao terreno em Quintãs (${submittedData.nome} - ${submittedData.formattedPhone}). Preferência: ${submittedData.preferencia} | Contacto: ${submittedData.horario} | Financiamento: ${submittedData.financiamento}.`
+    : WA_DEFAULT_PRESET_MESSAGE;
+  const customWaSuccessUrl = getWhatsAppDirectUrl(successWaMsg);
 
   return (
     <section className="t-section t-section--form" id="contacto">
@@ -303,12 +308,14 @@ export default function TerrenosForm() {
                 rel="noopener noreferrer"
                 className="t-direct-wa-btn"
                 id="cta_form_direct_wa"
-                onClick={() =>
+                onClick={(e) => {
+                  e.preventDefault();
                   trackWhatsAppContact('formulario_whatsapp_direto', {
                     nome: nome.trim() || undefined,
                     telemovel: telemovel.trim() || undefined,
-                  })
-                }
+                  });
+                  openWhatsAppDirect(WA_DEFAULT_PRESET_MESSAGE);
+                }}
               >
                 <span>WhatsApp Direto: <strong>920 601 070</strong></span>
               </a>
@@ -382,12 +389,14 @@ export default function TerrenosForm() {
                     rel="noopener noreferrer"
                     className="t-btn t-btn-cta t-btn-full"
                     id="cta_form_success_wa"
-                    onClick={() =>
+                    onClick={(e) => {
+                      e.preventDefault();
                       trackWhatsAppContact('formulario_sucesso_whatsapp', {
                         nome: submittedData.nome,
                         telemovel: submittedData.formattedPhone,
-                      })
-                    }
+                      });
+                      openWhatsAppDirect(successWaMsg);
+                    }}
                   >
                     <span>Falar Agora no WhatsApp</span>
                     <span className="t-btn-arrow">→</span>
@@ -618,12 +627,14 @@ export default function TerrenosForm() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="t-form-error-wa"
-                      onClick={() =>
+                      onClick={(e) => {
+                        e.preventDefault();
                         trackWhatsAppContact('formulario_erro_whatsapp', {
                           nome: nome.trim() || undefined,
                           telemovel: telemovel.trim() || undefined,
-                        })
-                      }
+                        });
+                        openWhatsAppDirect(WA_DEFAULT_PRESET_MESSAGE);
+                      }}
                     >
                       Falar pelo WhatsApp →
                     </a>

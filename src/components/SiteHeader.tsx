@@ -4,18 +4,18 @@ import { trackWhatsAppLead } from '@/lib/analytics';
 
 // ─── WhatsApp Config — 920601070 ──────────────────────────────────────────
 export const WA_PHONE = '351920601070';
-export const WA_BASE  = `https://wa.me/${WA_PHONE}`;
+export const WA_BASE  = `https://api.whatsapp.com/send?phone=${WA_PHONE}`;
 
 // Mensagem automática unificada para todos os botões de contacto
 const WA_MSG = encodeURIComponent(
-  'Olá André! Vi a Moradia Domaine XXV em Oliveirinha e gostaria de agendar uma visita. Como podemos combinar?'
+  'Olá André! Vi o lote de terreno em Quintãs (Aveiro) e gostaria de obter mais informações sobre o projeto. Podemos falar?'
 );
 
-export const WA_VISIT   = `${WA_BASE}?text=${WA_MSG}`;
-export const WA_MANAGER = `${WA_BASE}?text=${WA_MSG}`;
-export const WA_CREDIT  = `${WA_BASE}?text=${WA_MSG}`;
-export const WA_GENERIC = `${WA_BASE}?text=${WA_MSG}`;
-export const WA_DOSSIER = `${WA_BASE}?text=${WA_MSG}`;
+export const WA_VISIT   = `${WA_BASE}&text=${WA_MSG}`;
+export const WA_MANAGER = `${WA_BASE}&text=${WA_MSG}`;
+export const WA_CREDIT  = `${WA_BASE}&text=${WA_MSG}`;
+export const WA_GENERIC = `${WA_BASE}&text=${WA_MSG}`;
+export const WA_DOSSIER = `${WA_BASE}&text=${WA_MSG}`;
 
 export default function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 
 import { WA_PHONE } from './SiteHeader';
 import { trackWhatsAppLead } from '@/lib/analytics';
+import { openWhatsAppDirect } from '@/lib/whatsapp';
 
 interface LeadModalProps {
   isOpen: boolean;
@@ -27,12 +28,11 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
     trackWhatsAppLead('lead_modal_form', { name: name.trim(), typology, timeSlot });
 
     const msg = `Olá André! Vi a Moradia Domaine XXV em Oliveirinha e gostaria de agendar uma visita. Como podemos combinar?\n\nNome: ${name.trim()}\nContacto: ${phone.trim()}\nInteresse: ${typology}`;
-    const waUrl = `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(msg)}`;
 
     setTimeout(() => {
       setSending(false);
       onClose();
-      window.open(waUrl, '_blank');
+      openWhatsAppDirect(msg, WA_PHONE);
     }, 400);
   };
 

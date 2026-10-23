@@ -155,34 +155,29 @@ export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<stri
 
   const eventId =
     (extra.eventId as string) ||
-    `wa_lead_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+    `wa_contact_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
 
-  // 1. DISPARAR EXATAMENTE 1 ÚNICO EVENTO "LEAD" NO META PIXEL (51.000€)
-  // Sem eventos paralelos como Contact ou CompleteRegistration que duplicam a contagem no Meta Ads!
+  // 1. DISPARAR EVENTO "CONTACT" NO META PIXEL (e NÃO "Lead", evitando falsas leads sem envio de mensagem)
   try {
     const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
     if (typeof fbq === 'function') {
       fbq(
         'track',
-        'Lead',
+        'Contact',
         {
-          content_name: 'Lead WhatsApp — Lote Quintãs 51.000€',
+          content_name: 'Contacto WhatsApp — Lote Quintãs 51.000€',
           content_category: 'Terrenos e Moradias Aveiro',
-          content_type: 'product',
-          contents: [{ id: 'lote_quintas_51k', quantity: 1, item_price: 51000 }],
           currency: 'EUR',
           value: 51000,
           lead_source: `WhatsApp (${source})`,
-          status: 'Lead WhatsApp Confirmada',
+          status: 'Clique WhatsApp',
         },
         { eventID: eventId }
       );
 
-      console.log(`🎯 [Meta Pixel ${META_PIXEL_ID}] 1 LEAD Único WhatsApp registado (51.000€):`, {
+      console.log(`🎯 [Meta Pixel ${META_PIXEL_ID}] Contacto WhatsApp registado (Contact):`, {
         eventId,
         source,
-        value: 51000,
-        currency: 'EUR',
       });
     }
   } catch (err) {

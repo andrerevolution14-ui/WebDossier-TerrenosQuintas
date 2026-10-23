@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { saveLeadToSupabase } from '@/lib/supabase';
-import { sendMetaLeadConversion } from '@/lib/metaConversions';
+import { sendMetaLeadConversion, sendMetaContactConversion } from '@/lib/metaConversions';
 
 function parseCookie(cookieHeader: string, key: string): string | undefined {
   const match = cookieHeader.match(new RegExp(`(?:^|;\\s*)${key}=([^;]*)`));
@@ -140,19 +140,33 @@ export async function POST(req: Request) {
       console.log('[Lead API] Supabase: Inserção ignorada por não conter contacto real (clique WhatsApp direto sem dados no formulário).');
     }
 
-    // 2. Disparo Meta Conversions API (CAPI) — Evento LEAD com o valor de 51.000€
+    // 2. Disparo Meta Conversions API (CAPI) — Lead APENAS quando há contacto real e válido
     let metaResult = null;
     try {
-      metaResult = await sendMetaLeadConversion({
-        eventId,
-        nome: cleanNome,
-        telemovel: cleanTelemovel,
-        sourceUrl,
-        clientIp,
-        clientUserAgent,
-        fbp,
-        fbc,
-      });
+      if (hasRealContactInfo) {
+        metaResult = await sendMetaLeadConversion({
+          eventId,
+          nome: cleanNome,
+          telemovel: cleanTelemovel,
+          sourceUrl,
+          clientIp,
+          clientUserAgent,
+          fbp,
+          fbc,
+        });
+      } else {
+        // Cliques no WhatsApp ou telefone direto sem dados submetidos contam como "Contact", NUNCA como "Lead"
+        metaResult = await sendMetaContactConversion({
+          eventId,
+          nome: cleanNome,
+          telemovel: cleanTelemovel,
+          sourceUrl,
+          clientIp,
+          clientUserAgent,
+          fbp,
+          fbc,
+        });
+      }
     } catch (metaErr) {
       console.error('[Lead API] Erro ao enviar para Meta CAPI:', metaErr);
     }
