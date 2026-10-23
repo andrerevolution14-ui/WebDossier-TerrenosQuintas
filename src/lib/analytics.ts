@@ -136,112 +136,15 @@ function getOrCreateFbc(): string | undefined {
   return fbc;
 }
 
-// In-memory debounce timestamp to prevent rapid double-taps
-let lastClickTime = 0;
-
 /**
- * Disparado ao clicar em qualquer botão do WhatsApp ou mensagem direta.
- * REGISTA EXATAMENTE 1 EVENTO "LEAD" NO META ADS COM VALOR DE 51.000€,
- * COM DEDUPLICAÇÃO PERFEITA VIA EVENTID (SEM DUPLICAR EVENTOS NEM LINHAS NO SUPABASE).
+ * Cliques ou mensagens por WhatsApp não são guardados na base de dados
+ * nem considerados Lead ou Contacto (sem tracking por solicitação explícita).
  */
-export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<string, unknown> = {}) {
-  if (typeof window === 'undefined') return;
-
-  const now = Date.now();
-  if (now - lastClickTime < 2500) {
-    return;
-  }
-  lastClickTime = now;
-
-  const eventId =
-    (extra.eventId as string) ||
-    `wa_contact_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
-
-  // 1. DISPARAR EVENTO "CONTACT" NO META PIXEL (e NÃO "Lead", evitando falsas leads sem envio de mensagem)
-  try {
-    const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
-    if (typeof fbq === 'function') {
-      fbq(
-        'track',
-        'Contact',
-        {
-          content_name: 'Contacto WhatsApp — Lote Quintãs 51.000€',
-          content_category: 'Terrenos e Moradias Aveiro',
-          currency: 'EUR',
-          value: 51000,
-          lead_source: `WhatsApp (${source})`,
-          status: 'Clique WhatsApp',
-        },
-        { eventID: eventId }
-      );
-
-      console.log(`🎯 [Meta Pixel ${META_PIXEL_ID}] Contacto WhatsApp registado (Contact):`, {
-        eventId,
-        source,
-      });
-    }
-  } catch (err) {
-    console.error('Erro ao disparar Lead WhatsApp no Meta Pixel:', err);
-  }
-
-  // 2. Tentar recuperar nome ou telemóvel apenas se já tiverem sido escritos no formulário
-  const inputNome = (document.getElementById('t-nome') as HTMLInputElement | null)?.value?.trim();
-  const inputTel = (document.getElementById('t-telemovel') as HTMLInputElement | null)?.value?.trim();
-  const quandoLigar = (document.getElementById('t-quando-ligar') as HTMLInputElement | null)?.value?.trim() || undefined;
-  const quandoVisitar = (document.getElementById('t-quando-visitar') as HTMLInputElement | null)?.value?.trim() || undefined;
-  const financiamento = (document.getElementById('t-financiamento') as HTMLInputElement | null)?.value?.trim() || undefined;
-
-  const nome = (extra.nome as string) || inputNome || `Interessado WhatsApp (${source})`;
-  const telemovel = (extra.telemovel as string) || inputTel || 'Contacto direto WhatsApp';
-
-  // 3. ENVIAR PARA /api/lead VIA 1 ÚNICO PEDIDO FETCH KEEPALIVE (sem duplicar com sendBeacon!)
-  const fbp = getOrCreateFbp();
-  const fbc = getOrCreateFbc();
-
-  const leadPayload = {
-    nome,
-    telemovel,
-    quandoLigar,
-    quandoVisitar,
-    financiamento,
-    mensagem: `Interessado clicou no botão WhatsApp (${source}) — Valor 51.000€ (Negociável).`,
-    origem: `WhatsApp — ${source}`,
-    eventId,
-    fbp,
-    fbc,
-    url: window.location.href,
-    isWhatsAppLead: true,
-  };
-
-  try {
-    fetch('/api/lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(leadPayload),
-      keepalive: true,
-    }).catch(() => {});
-  } catch {}
-
-  trackEvent('whatsapp_click_contact', { source, eventId, nome, telemovel, value: 55000, ...extra });
-}
-
-// Inicializar listener global para captar links do WhatsApp e chamadas telefónicas
-if (typeof window !== 'undefined') {
-  window.addEventListener(
-    'click',
-    (e: MouseEvent) => {
-      const target = (e.target as HTMLElement | null)?.closest('a');
-      if (!target) return;
-      const href = target.getAttribute('href') || '';
-      if (href.includes('wa.me') || href.includes('whatsapp.com')) {
-        const source = target.id || target.getAttribute('data-source') || 'wa_link';
-        trackWhatsAppContact(source);
-      } else if (href.startsWith('tel:')) {
-        trackWhatsAppContact('chamada_telefonica_direta');
-      }
-    },
-    { capture: true }
-  );
+export function trackWhatsAppContact(
+  _source = 'whatsapp_cta',
+  _extra: Record<string, unknown> = {}
+) {
+  // Sem gravação na base de dados, sem Meta Pixel, sem CAPI, sem tracking.
 }
 
 export const trackWhatsAppLead = trackWhatsAppContact;

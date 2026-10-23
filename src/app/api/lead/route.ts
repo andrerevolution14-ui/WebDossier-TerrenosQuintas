@@ -40,6 +40,14 @@ export async function POST(req: Request) {
       isWhatsAppLead,
     } = body || {};
 
+    if (isWhatsAppLead) {
+      // WhatsApp não é guardado na base de dados nem considerado Lead/Contacto
+      return NextResponse.json({
+        success: true,
+        message: 'WhatsApp ignorado (sem gravação de base de dados nem tracking).',
+      });
+    }
+
     const cleanNome =
       nome && typeof nome === 'string' && nome.trim()
         ? nome.trim()
